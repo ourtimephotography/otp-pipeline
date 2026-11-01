@@ -7,7 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;700&display=swap" rel="stylesheet">
 <style>
   /* Our Time pipeline strip for Notion job pages.
-     URL: ?job=<page id>&sig=<signature>&stage=<1-9>&api=<OTP Payments web app /exec URL>
+     URL: ?job=<page id>&sig=<signature>&stage=<1-10>[&sr=1]&api=<OTP Payments web app /exec URL>
+     Stage numbers: 1-9 for every job, 10 = Yearbook; sr=1 (senior jobs) shows Yearbook between Delivered and Complete.
      Clicking a stage asks the web app to set the job's "Pipeline stage"; "Auto" clears it. */
   :root { --paper:#f4f4ef; --paper2:#e9eae2; --ink:#1d2320; --soft:#545d57; --mute:#8a918b; --amber:#b9781f; --amberInk:#1d1608; }
   html, body { margin:0; background:transparent; font-family:Figtree, Helvetica, Arial, sans-serif; }
@@ -24,6 +25,7 @@
   .now  { background:var(--amber); color:var(--amberInk); }
   .now .t { font-weight:700; }
   .next { background:var(--paper); color:var(--mute); }
+  .s.yb.next { background:#fbf6ec; color:#8f5a12; }
   .bar { display:flex; justify-content:space-between; align-items:center; padding:2px 4px 0; font-size:12px; color:var(--mute); min-height:18px; }
   .bar button { border:0; background:none; font:inherit; color:var(--soft); cursor:pointer; text-decoration:underline; padding:0; }
 </style>
@@ -32,15 +34,18 @@
 <div class="row" id="row"></div>
 <div class="bar"><span id="msg"></span><span id="mode"></span></div>
 <script>
-  const STAGES = ['Inquiry', 'Planning call', 'Quote', 'Booked', 'Signed + paid', 'Shoot', 'Editing', 'Delivered', 'Complete'];
+  const STAGES = ['Inquiry', 'Planning call', 'Quote', 'Booked', 'Signed + paid', 'Shoot', 'Editing', 'Delivered', 'Complete', 'Yearbook'];
   const q = new URLSearchParams(location.search);
+  const ORDER = q.get('sr') === '1' ? [1, 2, 3, 4, 5, 6, 7, 8, 10, 9] : [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const job = q.get('job'), sig = q.get('sig'), api = q.get('api');
   let stage = Number(q.get('stage')) || 1, manual = false;
 
   function draw() {
-    document.getElementById('row').innerHTML = STAGES.map((name, i) => {
-      const st = i + 1 < stage ? 'done' : i + 1 === stage ? 'now' : 'next';
-      return '<button class="s ' + st + '" data-n="' + (i + 1) + '" title="Set the job to ' + name + '">' +
+    const at = ORDER.indexOf(stage);
+    document.getElementById('row').innerHTML = ORDER.map((n, i) => {
+      const name = STAGES[n - 1];
+      const st = i < at ? 'done' : i === at ? 'now' : 'next';
+      return '<button class="s ' + st + (n === 10 ? ' yb' : '') + '" data-n="' + n + '" title="Set the job to ' + name + '">' +
         '<span class="k">' + (st === 'done' ? '✓' : i + 1) + '</span><span class="t">' + name + '</span></button>';
     }).join('');
     const mode = document.getElementById('mode');
