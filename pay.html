@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sign and pay · Our Time Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#f4f4ef; --ink:#1d2320; --muted:#545d57; --amber:#b9781f; --btn-ink:#1d1608; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; background:var(--paper); color:var(--ink); font:16px/1.6 Figtree, Helvetica, Arial, sans-serif; }
+  main { max-width:560px; margin:0 auto; padding:48px 20px; }
+  .brand { font-family:Georgia, serif; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  h1 { font-family:"Libre Caslon Display", Georgia, serif; font-weight:400; font-size:34px; line-height:1.15; margin:0 0 16px; }
+  p { margin:0 0 14px; }
+  .btn { display:inline-block; margin-top:10px; background:var(--amber); color:var(--btn-ink); text-decoration:none; font-weight:600; padding:14px 24px; border-radius:999px; }
+  .note { color:var(--muted); font-size:14px; margin-top:22px; }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--amber); margin-right:8px; animation:pulse 1s infinite alternate; }
+  @keyframes pulse { from { opacity:.25 } to { opacity:1 } }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">Our Time Photography</div>
+  <h1 id="title">One moment…</h1>
+  <div id="body"><p><span class="dot"></span>Getting your secure checkout ready.</p></div>
+  <div id="action"></div>
+</main>
+<script>
+// Asks Our Time Autopilot (a Google Apps Script web app) for this job's checkout without sending Google cookies,
+// which is what breaks the web app for people signed into several Google accounts.
+(function () {
+  var q = new URLSearchParams(location.search);
+  var api = q.get('api');
+  function show(title, body, button) {
+    document.getElementById('title').textContent = title;
+    document.getElementById('body').innerHTML = body;
+    var a = document.getElementById('action');
+    a.innerHTML = '';
+    if (button) {
+      var link = document.createElement('a');
+      link.className = 'btn';
+      link.href = button[1];
+      link.textContent = button[0] + ' →';
+      a.appendChild(link);
+      if (/^https:\/\/checkout\.stripe\.com\//.test(button[1])) {
+        var n = document.createElement('p');
+        n.className = 'note';
+        n.textContent = 'Taking you to Stripe’s secure checkout…';
+        a.appendChild(n);
+        setTimeout(function () { location.href = button[1]; }, 1200);
+      }
+    }
+  }
+  if (!api || !/^https:\/\/script\.google\.com\//.test(api)) {
+    show('Something went wrong', '<p>This link is incomplete. Please use the button on your booking page, or reply to our email and we’ll sort it out.</p>');
+    return;
+  }
+  var url = api + '?action=paydata&job=' + encodeURIComponent(q.get('job') || '') +
+    '&kind=' + encodeURIComponent(q.get('kind') || '') + '&sig=' + encodeURIComponent(q.get('sig') || '');
+  fetch(url, {credentials: 'omit', redirect: 'follow'})
+    .then(function (r) { return r.json(); })
+    .then(function (d) { show(d.title, '<p>' + d.body + '</p>', d.button); })
+    .catch(function () {
+      show('Something went wrong', '<p>We couldn’t reach our booking system just now. Please try again in a minute, or reply to our email and we’ll sort it out.</p>');
+    });
+})();
+</script>
+</body>
+</html>
