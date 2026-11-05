@@ -8,12 +8,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <style>
-  :root { --paper:#f4f4ef; --ink:#1d2320; --muted:#545d57; }
+  :root { --paper:#f4f4ef; --ink:#1d2320; --muted:#545d57; --amber:#b9781f; }
   body { margin:0; min-height:100vh; background:var(--paper); color:var(--ink); font:16px/1.6 Figtree, Helvetica, Arial, sans-serif; }
   main { max-width:560px; margin:0 auto; padding:48px 20px; }
   .brand { font-family:Georgia, serif; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
   h1 { font-family:"Libre Caslon Display", Georgia, serif; font-weight:400; font-size:34px; line-height:1.15; margin:0 0 16px; }
   p { margin:0 0 14px; }
+  .btn { display:inline-block; margin:8px 0 18px; padding:14px 24px; border-radius:999px; background:var(--amber); color:#1d1608; font-weight:600; font-size:15px; text-decoration:none; }
+  .btn:hover { filter:brightness(1.05); }
+  .btn:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+  .muted { color:var(--muted); font-size:15px; }
 </style>
 </head>
 <body>
@@ -21,7 +25,24 @@
   <div class="brand">Our Time Photography</div>
   <h1>Thank you!</h1>
   <p>You’re signed and paid. A confirmation email from Our Time Photography is on its way, and your booking page will show your payment within a few minutes.</p>
-  <p>You can close this page.</p>
+  <p id="back" hidden><a class="btn" id="back-link" href="#">Back to your booking page</a></p>
+  <p class="muted" id="close">You can close this page.</p>
 </main>
+<script>
+  // The checkout passes the client's booking page as ?b=. Only a Notion Sites page is linked.
+  (function () {
+    try {
+      var b = new URLSearchParams(location.search).get('b');
+      if (!b) return;
+      var u = new URL(b);
+      var host = u.hostname.toLowerCase();
+      var ok = u.protocol === 'https:' && (host === 'notion.site' || host.slice(-12) === '.notion.site');
+      if (!ok) return;
+      document.getElementById('back-link').href = u.href;
+      document.getElementById('back').hidden = false;
+      document.getElementById('close').textContent = 'Your booking page has your agreement, payments and session details anytime.';
+    } catch (e) {}
+  })();
+</script>
 </body>
 </html>
