@@ -61,7 +61,14 @@ h1, h2, h3 { font-family:var(--display); font-weight:400; margin:0; letter-spaci
 .tag { font-size:12.5px; padding:4px 9px; border-radius:999px; background:var(--paper-2); color:var(--soft) }
 .empty { grid-column:1/-1; padding:40px 0; color:var(--soft) }
 #map .leaflet-tile-pane { filter:grayscale(.55) sepia(.12) brightness(1.04) contrast(.95) }
-#map { height:min(70vh, 620px); border-radius:6px; overflow:hidden; background:var(--paper-2); margin-bottom:clamp(56px, 8vw, 96px); border:1px solid var(--line) }
+#map { height:min(64vh, 560px); border-radius:6px; overflow:hidden; background:var(--paper-2); border:1px solid var(--line) }
+.maplist { list-style:none; margin:18px 0 clamp(56px, 8vw, 96px); padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:4px 18px }
+.maplist button { width:100%; text-align:left; display:flex; align-items:baseline; gap:10px; padding:9px 10px; border:0; border-radius:6px; background:transparent; color:var(--ink); font:500 15.5px/1.3 var(--body); cursor:pointer }
+.maplist button::before { content:''; flex:none; width:9px; height:9px; border-radius:50%; background:var(--amber); transform:translateY(-1px) }
+.maplist button small { color:var(--soft); font-weight:400; font-size:13.5px; margin-left:auto; white-space:nowrap }
+.maplist button:hover { background:var(--paper-2) }
+.maplist button[aria-current="true"] { background:var(--ink); color:var(--paper) }
+.maplist button[aria-current="true"] small { color:var(--paper) }
 .mapnote { display:grid; place-items:center; text-align:center; color:var(--soft); padding:24px }
 .leaflet-popup-content { font:15px/1.4 var(--body); margin:12px 14px }
 .leaflet-popup-content a { color:var(--amber-ink); font-weight:600 }
@@ -134,7 +141,7 @@ footer.small img { width:30px; height:30px; opacity:.75; vertical-align:middle; 
       <div class="row"><span>Season</span><div class="opts"><button class="chip" type="button" data-f="season" data-v="Spring" aria-pressed="false">Spring</button><button class="chip" type="button" data-f="season" data-v="Summer" aria-pressed="false">Summer</button><button class="chip" type="button" data-f="season" data-v="Fall" aria-pressed="false">Fall</button><button class="chip" type="button" data-f="season" data-v="Winter" aria-pressed="false">Winter</button></div></div>
     </div>
     <div class="grid" id="grid"></div>
-    <div id="map" hidden></div>
+    <div id="mapwrap" hidden><div id="map"></div><ul class="maplist" id="maplist" aria-label="Locations on the map"></ul></div>
   </div>
 </main>
 
@@ -177,11 +184,30 @@ function renderList() {
   $('#count').textContent = shown.length === LOCS.length ? `${LOCS.length} locations` : `Showing ${shown.length} of ${LOCS.length} locations`;
   const nf = state.for.size + state.town.size + state.setting.size + state.season.size + (state.easy ? 1 : 0);
   $('#clear').hidden = !nf; $('#fcount').hidden = !nf; $('#fcount').textContent = nf;
-  $('#grid').hidden = state.view !== 'grid'; $('#map').hidden = state.view !== 'map';
+  $('#grid').hidden = state.view !== 'grid'; $('#mapwrap').hidden = state.view !== 'map';
   $('#v-grid').setAttribute('aria-pressed', state.view === 'grid'); $('#v-map').setAttribute('aria-pressed', state.view === 'map');
   if (state.view === 'map') drawMap(shown);
 }
+function drawList(shown) {
+  $('#maplist').innerHTML = shown.filter(l => l.lat && l.lon).map(l =>
+    `<li><button type="button" data-k="${l.key}">${esc(l.name)}<small>${esc(l.town)}</small></button></li>`).join('');
+  $('#maplist').querySelectorAll('button').forEach(b => b.addEventListener('click', () => focusLoc(b.dataset.k)));
+}
+function markList(k) { $('#maplist').querySelectorAll('button').forEach(b => b.setAttribute('aria-current', b.dataset.k === k)); }
+let annByKey = {}, mkByKey = {};
+function focusLoc(k) {
+  markList(k);
+  if (window.mapkit && amap && annByKey[k]) {
+    const a = annByKey[k];
+    amap.setRegionAnimated(new mapkit.CoordinateRegion(a.coordinate, new mapkit.CoordinateSpan(0.06, 0.06)));
+    setTimeout(() => { amap.selectedAnnotation = a; }, 650);
+  } else if (map && mkByKey[k]) {
+    map.setView(mkByKey[k].getLatLng(), 14); mkByKey[k].openPopup();
+  }
+  $('#map').scrollIntoView({behavior: 'smooth', block: 'center'});
+}
 function drawMap(shown) {
+  drawList(shown);
   const el = $('#map');
   if (!PREVIEW && MK_TOKEN && window.mapkit) return drawApple(el, shown);
   if (PREVIEW || !window.L) { el.innerHTML = '<div class="mapnote" style="height:100%">The map appears on the live page.</div>'; return; }
@@ -192,7 +218,8 @@ function drawMap(shown) {
   }
   markers.forEach(m => m.remove()); markers = [];
   const icon = L.divIcon({className: '', html: '<div class="pin"></div>', iconSize: [16, 16], iconAnchor: [8, 8]});
-  shown.filter(l => l.lat && l.lon).forEach(l => markers.push(L.marker([l.lat, l.lon], {icon, title: l.name}).addTo(map)
+  mkByKey = {};
+  shown.filter(l => l.lat && l.lon).forEach(l => markers.push(mkByKey[l.key] = L.marker([l.lat, l.lon], {icon, title: l.name}).on('click', () => markList(l.key)).addTo(map)
     .bindPopup(`<b>${esc(l.name)}</b><br>${esc(l.town)}<br><a href="#${l.key}">See photos →</a>`)));
   setTimeout(() => { map.invalidateSize(); if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15)); }, 50);
 }
@@ -213,6 +240,7 @@ function drawApple(el, shown) {
   const anns = shown.filter(l => l.lat && l.lon).map(l => new mapkit.MarkerAnnotation(new mapkit.Coordinate(l.lat, l.lon),
     { title: l.name, color: '#b9781f', glyphColor: '#ffffff', data: l, callout: delegate, titleVisibility: mkLabels(), clusteringIdentifier: 'loc' }));
   amap.annotationForCluster = c => new mapkit.MarkerAnnotation(c.coordinate, { color: '#8f5a12', glyphText: String(c.memberAnnotations.length), title: c.memberAnnotations.length + ' locations', titleVisibility: mapkit.FeatureVisibility.Hidden });
+  annByKey = {}; anns.forEach(a => { annByKey[a.data.key] = a; a.addEventListener('select', () => markList(a.data.key)); });
   amap.addAnnotations(anns);
   if (anns.length) amap.showItems(anns, { animate: false, padding: new mapkit.Padding(50, 40, 50, 40) });
 }
