@@ -208,7 +208,8 @@ function drawApple(el, shown) {
     d.innerHTML = `<b>${esc(a.data.name)}</b><span>${esc(a.data.town)}</span><a href="#${a.data.key}">See photos →</a>`;
     return d; } };
   const anns = shown.filter(l => l.lat && l.lon).map(l => new mapkit.MarkerAnnotation(new mapkit.Coordinate(l.lat, l.lon),
-    { title: l.name, color: '#b9781f', glyphColor: '#ffffff', data: l, callout: delegate }));
+    { title: l.name, color: '#b9781f', glyphColor: '#ffffff', data: l, callout: delegate, titleVisibility: mapkit.FeatureVisibility.Hidden, clusteringIdentifier: 'loc' }));
+  amap.annotationForCluster = c => new mapkit.MarkerAnnotation(c.coordinate, { color: '#8f5a12', glyphText: String(c.memberAnnotations.length), title: c.memberAnnotations.length + ' locations', titleVisibility: mapkit.FeatureVisibility.Hidden });
   amap.addAnnotations(anns);
   if (anns.length) amap.showItems(anns, { animate: false, padding: new mapkit.Padding(50, 40, 50, 40) });
 }
