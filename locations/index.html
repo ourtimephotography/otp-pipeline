@@ -62,8 +62,8 @@ h1, h2, h3 { font-family:var(--display); font-weight:400; margin:0; letter-spaci
 .empty { grid-column:1/-1; padding:40px 0; color:var(--soft) }
 #map .leaflet-tile-pane { filter:grayscale(.55) sepia(.12) brightness(1.04) contrast(.95) }
 #map { height:min(64vh, 560px); border-radius:6px; overflow:hidden; background:var(--paper-2); border:1px solid var(--line) }
-.maplist { list-style:none; margin:18px 0 clamp(56px, 8vw, 96px); padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); grid-auto-rows:1fr; gap:0 }
-.maplist li { display:flex; min-width:0 }
+.maplist { list-style:none; margin:18px 0 clamp(56px, 8vw, 96px); padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); grid-auto-rows:1fr; gap:6px 14px }
+.maplist li { display:flex; min-width:0; border-radius:6px; overflow:hidden }
 .maplist li:nth-child(8n+5), .maplist li:nth-child(8n+6), .maplist li:nth-child(8n+7), .maplist li:nth-child(8n+8) { background:var(--paper-2) }
 @media (max-width: 1000px) { .maplist { grid-template-columns:repeat(3, minmax(0,1fr)) } .maplist li { background:none !important } .maplist li:nth-child(6n+4), .maplist li:nth-child(6n+5), .maplist li:nth-child(6n+6) { background:var(--paper-2) !important } }
 @media (max-width: 720px) { .maplist { grid-template-columns:repeat(2, minmax(0,1fr)) } .maplist li { background:none !important } .maplist li:nth-child(4n+3), .maplist li:nth-child(4n+4) { background:var(--paper-2) !important } }
