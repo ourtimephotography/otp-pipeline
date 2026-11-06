@@ -61,6 +61,7 @@ h1, h2, h3 { font-family:var(--display); font-weight:400; margin:0; letter-spaci
 .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px }
 .tag { font-size:12.5px; padding:4px 9px; border-radius:999px; background:var(--paper-2); color:var(--soft) }
 .empty { grid-column:1/-1; padding:40px 0; color:var(--soft) }
+#map .leaflet-tile-pane { filter:grayscale(.55) sepia(.12) brightness(1.04) contrast(.95) }
 #map { height:min(70vh, 620px); border-radius:6px; overflow:hidden; background:var(--paper-2); margin-bottom:clamp(56px, 8vw, 96px); border:1px solid var(--line) }
 .mapnote { display:grid; place-items:center; text-align:center; color:var(--soft); padding:24px }
 .leaflet-popup-content { font:15px/1.4 var(--body); margin:12px 14px }
@@ -182,8 +183,8 @@ function drawMap(shown) {
   if (PREVIEW || !window.L) { el.innerHTML = '<div class="mapnote" style="height:100%">The map appears on the live page.</div>'; return; }
   if (!map) {
     map = L.map(el, {scrollWheelZoom: false});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
   }
   markers.forEach(m => m.remove()); markers = [];
   const icon = L.divIcon({className: '', html: '<div class="pin"></div>', iconSize: [16, 16], iconAnchor: [8, 8]});
