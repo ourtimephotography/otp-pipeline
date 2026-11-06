@@ -36,6 +36,7 @@
   var api = q.get('api');
   function show(title, body, button) {
     document.getElementById('title').textContent = title;
+    document.title = title + ' · Our Time Photography';
     document.getElementById('body').innerHTML = body;
     var a = document.getElementById('action');
     a.innerHTML = '';

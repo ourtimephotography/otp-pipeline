@@ -24,7 +24,7 @@
 <main>
   <div class="brand">Our Time Photography</div>
   <h1>Thank you!</h1>
-  <p>You’re signed and paid. A confirmation email from Our Time Photography is on its way, and your booking page will show your payment within a few minutes.</p>
+  <p id="msg">You’re signed and paid. A confirmation email from Our Time Photography is on its way, and your booking page will show your payment within a few minutes.</p>
   <p id="back" hidden><a class="btn" id="back-link" href="#">Back to your booking page</a></p>
   <p class="muted" id="close">You can close this page.</p>
 </main>
@@ -32,7 +32,11 @@
   // The checkout passes the client's booking page as ?b=. Only a Notion Sites page is linked.
   (function () {
     try {
-      var b = new URLSearchParams(location.search).get('b');
+      var q = new URLSearchParams(location.search);
+      if (q.get('k') === 'balance') {   // the balance checkout (no signing)
+        document.getElementById('msg').textContent = 'Your balance is paid. Your booking page will show it within a few minutes, and your gallery link comes by email as soon as your photos are ready.';
+      }
+      var b = q.get('b');
       if (!b) return;
       var u = new URL(b);
       var host = u.hostname.toLowerCase();
