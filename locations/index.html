@@ -130,6 +130,7 @@ h1, h2, h3 { font-family:var(--display); font-weight:400; margin:0; letter-spaci
 .steps span { color:var(--soft); font-size:15.5px; line-height:1.5 }
 .guide .acts { margin-top:22px; display:flex; flex-wrap:wrap; gap:10px }
 @media (max-width:900px) { .guide-grid { grid-template-columns:1fr } }
+@media (max-width:560px) { .guide-live { height:360px } }
 .gallery { columns:3 300px; column-gap:clamp(14px, 2vw, 24px); padding-bottom:clamp(56px, 8vw, 96px) }
 .gallery img { display:block; width:100%; height:auto; margin:0 0 clamp(14px, 2vw, 24px); border-radius:4px; break-inside:avoid; background:var(--paper-2) }
 footer.cta { background:var(--ink); color:var(--paper); padding-block:clamp(56px, 8vw, 96px) }
@@ -316,6 +317,7 @@ function drawGuide(l) {
   mkInit();
   document.getElementById('guideframe').classList.add('live');
   const g = guideParts(w), C = p => new mapkit.Coordinate(p[0], p[1]), vis = mapkit.FeatureVisibility.Visible;
+  const narrow = el.clientWidth < 520 && g.parks.length > 1;   // busy maps on phones: no room for every label side by side
   gmap = new mapkit.Map(el, { colorScheme: mapkit.Map.ColorSchemes.Light, mapType: mapkit.Map.MapTypes.MutedStandard, showsMapTypeControl: true, showsPointsOfInterest: false, isRotationEnabled: false, showsCompass: mapkit.FeatureVisibility.Hidden, showsZoomControl: true });
   const ov = [];
   g.roads.forEach(r => {
@@ -330,15 +332,15 @@ function drawGuide(l) {
   gmap.addOverlays(ov);
   const pins = [
     ...g.parks.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#1d2320', glyphText: 'P', titleVisibility: vis, displayPriority: 1000 })),
-    ...g.spots.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#b9781f', glyphImage: CAM, titleVisibility: vis, displayPriority: 1000 })),
-    ...g.entrances.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#545d57', glyphText: '↑', titleVisibility: vis, displayPriority: 800 })),
+    ...g.spots.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#b9781f', glyphImage: CAM, titleVisibility: narrow ? mapkit.FeatureVisibility.Hidden : vis, displayPriority: 1000 })),
+    ...g.entrances.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#545d57', glyphText: '↑', titleVisibility: vis, displayPriority: 1000 })),
   ];
   gmap.addAnnotations(pins);
   const pts = [...(g.route || []), ...g.roads.flat(), ...g.parks.map(p => p.at), ...g.spots.map(p => p.at), ...g.entrances.map(p => p.at)];
   const la = pts.map(p => p[0]), lo = pts.map(p => p[1]);
   const n = Math.max(...la), s = Math.min(...la), e = Math.max(...lo), wst = Math.min(...lo);
   const pad = w.pad || [1.35, 1.9, .0011, .0005];   // lat scale, lon scale, extra north, extra south (room for pin labels)
-  if (w.margin) { const m = w.margin; gmap.region = new mapkit.CoordinateRegion(new mapkit.Coordinate((n + m[0] + s - m[1]) / 2, (e + m[2] + wst - m[3]) / 2), new mapkit.CoordinateSpan((n - s + m[0] + m[1]) * 1.08, (e - wst + m[2] + m[3]) * 1.08)); return; }   // margin = degrees to add N, S, E, W
+  if (w.margin) { const m = w.margin.slice(); if (narrow) { m[2] += .006; m[3] += .006; } gmap.region = new mapkit.CoordinateRegion(new mapkit.Coordinate((n + m[0] + s - m[1]) / 2, (e + m[2] + wst - m[3]) / 2), new mapkit.CoordinateSpan((n - s + m[0] + m[1]) * 1.08, (e - wst + m[2] + m[3]) * 1.08)); return; }   // margin = degrees to add N, S, E, W
   gmap.region = new mapkit.CoordinateRegion(new mapkit.Coordinate((n + pad[2] + s - pad[3]) / 2, (e + wst) / 2), new mapkit.CoordinateSpan((n - s + pad[2] + pad[3]) * pad[0], (e - wst) * pad[1]));
 }
 const CAM = { 1: 'img/camera-20.png', 2: 'img/camera-40.png', 3: 'img/camera-60.png' };
