@@ -71,7 +71,8 @@ h1, h2, h3 { font-family:var(--display); font-weight:400; margin:0; letter-spaci
 .maplist button { flex:1; width:100%; text-align:left; display:grid; grid-template-columns:9px 1fr; column-gap:10px; align-content:start; align-items:baseline; padding:12px 14px; border:0; background:transparent; color:var(--ink); font:500 15.5px/1.3 var(--body); cursor:pointer }
 .maplist button::before { content:''; width:9px; height:9px; border-radius:50%; background:var(--amber); transform:translateY(-1px) }
 .maplist button small { grid-column:2; color:var(--soft); font-weight:400; font-size:13.5px; margin-top:2px }
-.maplist button:hover { color:var(--amber-ink) }
+.maplist button:hover, .maplist button.hot { color:var(--amber-ink) }
+.maplist button.hot { box-shadow:inset 3px 0 0 var(--amber); background:rgba(185,120,31,.10) }
 .maplist button[aria-current="true"] { background:var(--ink); color:var(--paper) }
 .maplist button[aria-current="true"] small { color:var(--paper) }
 .mapnote { display:grid; place-items:center; text-align:center; color:var(--soft); padding:24px }
@@ -218,6 +219,7 @@ function hoverLoc(k, on) {
     if (on) mkByKey[k].setZIndexOffset(1000); else mkByKey[k].setZIndexOffset(0);
   }
 }
+function hotList(keys) { $('#maplist').querySelectorAll('button').forEach(b => b.classList.toggle('hot', keys.includes(b.dataset.k))); }
 function markList(k) { $('#maplist').querySelectorAll('button').forEach(b => b.setAttribute('aria-current', b.dataset.k === k)); }
 let annByKey = {}, mkByKey = {};
 function focusLoc(k) {
@@ -244,7 +246,7 @@ function drawMap(shown) {
   markers.forEach(m => m.remove()); markers = [];
   const icon = L.divIcon({className: '', html: '<div class="pin"></div>', iconSize: [16, 16], iconAnchor: [8, 8]});
   mkByKey = {};
-  shown.filter(l => l.lat && l.lon).forEach(l => markers.push(mkByKey[l.key] = L.marker([l.lat, l.lon], {icon, title: l.name}).on('click', () => markList(l.key)).addTo(map)
+  shown.filter(l => l.lat && l.lon).forEach(l => markers.push(mkByKey[l.key] = L.marker([l.lat, l.lon], {icon, title: l.name}).on('click', () => markList(l.key)).on('mouseover', () => hotList([l.key])).on('mouseout', () => hotList([])).addTo(map)
     .bindPopup(`<b>${esc(l.name)}</b><br>${esc(l.town)}<br><a href="#${l.key}">See photos →</a>`)));
   setTimeout(() => { map.invalidateSize(); if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15)); }, 50);
 }
@@ -256,6 +258,20 @@ function drawApple(el, shown) {
   if (!amap) {
     mapkit.init({ authorizationCallback: done => done(MK_TOKEN), language: 'en' });
     amap = new mapkit.Map(el, { colorScheme: mapkit.Map.ColorSchemes.Light, showsMapTypeControl: false, showsPointsOfInterest: false, isRotationEnabled: false });
+    let rafId = 0;
+    el.addEventListener('mousemove', ev => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        const hits = Object.values(annByKey).filter(a => {
+          const p = amap.convertCoordinateToPointOnPage(a.coordinate);
+          const dx = ev.pageX - p.x, dy = ev.pageY - (p.y - 20);
+          return dx * dx + dy * dy < 22 * 22;
+        }).map(a => a.data.key);
+        hotList(hits);
+      });
+    });
+    el.addEventListener('mouseleave', () => hotList([]));
     amap.addEventListener('region-change-end', () => { const v = mkLabels(); amap.annotations.forEach(a => { if (a.data) a.titleVisibility = v; }); });
   }
   amap.removeAnnotations(amap.annotations);
