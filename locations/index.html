@@ -197,10 +197,13 @@ function drawMap(shown) {
   setTimeout(() => { map.invalidateSize(); if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15)); }, 50);
 }
 let amap = null;
+// names show once zoomed in past the whole-metro view; MapKit's adaptive mode drops any label that would collide
+const mkLabels = () => (amap && amap.region.span.latitudeDelta < 0.45) ? mapkit.FeatureVisibility.Adaptive : mapkit.FeatureVisibility.Hidden;
 function drawApple(el, shown) {
   if (!amap) {
     mapkit.init({ authorizationCallback: done => done(MK_TOKEN), language: 'en' });
     amap = new mapkit.Map(el, { colorScheme: mapkit.Map.ColorSchemes.Light, showsMapTypeControl: false, showsPointsOfInterest: false, isRotationEnabled: false });
+    amap.addEventListener('region-change-end', () => { const v = mkLabels(); amap.annotations.forEach(a => { if (a.data) a.titleVisibility = v; }); });
   }
   amap.removeAnnotations(amap.annotations);
   const delegate = { calloutContentForAnnotation: a => {
@@ -208,7 +211,7 @@ function drawApple(el, shown) {
     d.innerHTML = `<b>${esc(a.data.name)}</b><span>${esc(a.data.town)}</span><a href="#${a.data.key}">See photos →</a>`;
     return d; } };
   const anns = shown.filter(l => l.lat && l.lon).map(l => new mapkit.MarkerAnnotation(new mapkit.Coordinate(l.lat, l.lon),
-    { title: l.name, color: '#b9781f', glyphColor: '#ffffff', data: l, callout: delegate, titleVisibility: mapkit.FeatureVisibility.Hidden, clusteringIdentifier: 'loc' }));
+    { title: l.name, color: '#b9781f', glyphColor: '#ffffff', data: l, callout: delegate, titleVisibility: mkLabels(), clusteringIdentifier: 'loc' }));
   amap.annotationForCluster = c => new mapkit.MarkerAnnotation(c.coordinate, { color: '#8f5a12', glyphText: String(c.memberAnnotations.length), title: c.memberAnnotations.length + ' locations', titleVisibility: mapkit.FeatureVisibility.Hidden });
   amap.addAnnotations(anns);
   if (anns.length) amap.showItems(anns, { animate: false, padding: new mapkit.Padding(50, 40, 50, 40) });
