@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a session · Our Time Photography</title>
+<meta name="description" content="Tell us about the family, senior or event session you have in mind and we'll get back to you within a day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root {
+  --paper: #f4f4ef; --paper-2: #ebebe3; --card: #fbfbf8; --ink: #1d2320; --ink-soft: #545d57; --line: #d4d6cc;
+  --amber: #b9781f; --amber-ink: #8f5a12; --amber-wash: #f3e6cf; --err: #9b2c1f;
+  --font-display: "Libre Caslon Display", "Iowan Old Style", Georgia, serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.6 var(--font-body); -webkit-font-smoothing: antialiased }
+a { color: inherit }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 4px }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; letter-spacing: -0.01em; text-wrap: balance }
+.label { font: 600 13px/1.2 var(--font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber-ink) }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 26px; border-radius: 999px; font: 600 16px/1 var(--font-body); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .2s, opacity .2s }
+.btn:hover { transform: translateY(-1px) }
+.btn-solid { background: var(--amber); color: #1d1608 }
+.btn-ghost { border-color: currentColor; background: transparent; color: var(--ink) }
+.btn[disabled] { opacity: .6; cursor: default; transform: none }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line) }
+.top .in { max-width: 1180px; margin: 0 auto; padding: 14px max(16px, env(safe-area-inset-left)); display: flex; align-items: center; justify-content: space-between; gap: 16px }
+.top img { height: 18px; width: auto; display: block }
+.top a.back { font-size: 14px; color: var(--ink-soft); text-decoration: none }
+.top a.back:hover { color: var(--ink) }
+@media (max-width: 480px) { .top img { height: 14px } }
+
+/* layout: photo panel + form */
+.page { max-width: 1180px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left)) 80px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 72px); align-items: start }
+.side { position: sticky; top: 76px; padding-top: 40px }
+.photo { position: relative; aspect-ratio: 3 / 2; transition: aspect-ratio .4s; border-radius: 6px; overflow: hidden; background: var(--paper-2) }
+.photo[data-kind=senior] { aspect-ratio: 4 / 5 }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s }
+.photo img.on { opacity: 1 }
+.summary { margin-top: 20px }
+.summary .price { font: 400 40px/1 var(--font-display); margin: 8px 0 8px }
+.summary .price small { font: 400 15px var(--font-body); color: var(--ink-soft); margin-left: 6px }
+.summary p { margin: 0; color: var(--ink-soft); font-size: 15.5px }
+main { padding-top: 40px; min-width: 0 }
+.intro h1 { font-size: clamp(38px, 5vw, 58px); line-height: 1.04; margin: 10px 0 14px }
+.intro p { margin: 0 0 8px; color: var(--ink-soft); max-width: 56ch }
+@media (max-width: 860px) {
+  .page { grid-template-columns: 1fr; gap: 0 }
+  .side { position: static; padding-top: 24px }
+  .photo, .photo[data-kind=senior] { aspect-ratio: 16 / 9 }
+  .photo img[data-for=senior] { object-position: 50% 18% }
+  .summary { display: none }
+  main { padding-top: 24px }
+}
+
+/* form */
+form { margin-top: 28px }
+fieldset { border: 0; margin: 0 0 34px; padding: 0; min-width: 0 }
+legend { padding: 0; font: 400 26px/1.2 var(--font-display); margin-bottom: 16px }
+.hint { font-size: 14px; color: var(--ink-soft); margin: -10px 0 16px }
+.field { margin-bottom: 18px }
+.field > label, .field > .q { display: block; font-weight: 600; font-size: 15.5px; margin-bottom: 6px }
+.field .opt { font-weight: 400; color: var(--ink-soft); font-size: 14px }
+.field .sub { display: block; font-size: 14px; color: var(--ink-soft); margin: -3px 0 7px }
+input[type=text], input[type=email], input[type=tel], input[type=number], input[type=date], input[type=time], select, textarea {
+  width: 100%; font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); appearance: none; -webkit-appearance: none }
+select { background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%); background-position: calc(100% - 20px) 52%, calc(100% - 15px) 52%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px }
+textarea { min-height: 96px; resize: vertical; line-height: 1.5 }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--amber); outline-offset: 1px; border-color: transparent }
+.field.bad input, .field.bad select, .field.bad textarea { border-color: var(--err) }
+.field .err { display: none; color: var(--err); font-size: 14px; margin-top: 6px }
+.field.bad .err { display: block }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px }
+@media (max-width: 520px) { .row { grid-template-columns: 1fr } }
+
+/* session picker */
+.types { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.type { position: relative; display: block; cursor: pointer; border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 16px 16px 14px; transition: border-color .2s, background .2s }
+.type input { position: absolute; opacity: 0; pointer-events: none }
+.type b { display: block; font: 400 21px/1.15 var(--font-display); padding-right: 26px }
+.type span { display: block; font-size: 14px; color: var(--ink-soft); margin-top: 4px }
+.type:hover { border-color: var(--amber) }
+.type:has(input:checked) { border-color: var(--amber); background: var(--amber-wash); box-shadow: inset 0 0 0 1px var(--amber) }
+.type:has(input:focus-visible) { outline: 2px solid var(--amber); outline-offset: 2px }
+.type::after { content: ""; position: absolute; top: 14px; right: 14px; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--card) }
+.type:has(input:checked)::after { border-color: var(--amber); background: radial-gradient(circle, var(--amber) 0 5px, var(--card) 5.5px) }
+
+/* chips (radio rows) */
+.chips { display: flex; flex-wrap: wrap; gap: 8px }
+.chip { position: relative; cursor: pointer }
+.chip input { position: absolute; opacity: 0; pointer-events: none }
+.chip span { display: inline-block; padding: 9px 15px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); font-size: 15px; transition: border-color .2s, background .2s }
+.chip:hover span { border-color: var(--amber) }
+.chip input:checked + span { border-color: var(--amber); background: var(--amber-wash); box-shadow: inset 0 0 0 1px var(--amber) }
+.chip input:focus-visible + span { outline: 2px solid var(--amber); outline-offset: 2px }
+
+/* location picker */
+.locs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; max-height: 470px; overflow-y: auto; padding: 2px; margin: 0 -2px; overscroll-behavior: contain }
+.loc { position: relative; cursor: pointer; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--card); display: flex; flex-direction: column }
+.loc input { position: absolute; opacity: 0; pointer-events: none }
+.loc img { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; display: block; background: var(--paper-2) }
+.loc .nm { padding: 8px 10px 9px; font-size: 14px; line-height: 1.3; font-weight: 600 }
+.loc .nm small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 12.5px; margin-top: 1px }
+.loc .see { margin: -2px 10px 9px; font-size: 13px; font-weight: 500; color: var(--amber-ink); text-decoration: none; align-self: flex-start }
+.loc .see:hover { text-decoration: underline; text-underline-offset: 3px }
+.loc.plain { justify-content: center; min-height: 100px; background: var(--paper-2) }
+.loc.plain .nm { text-align: center }
+.loc:hover { border-color: var(--amber) }
+.loc:has(input:checked) { border-color: var(--amber); box-shadow: 0 0 0 2px var(--amber) }
+.loc:has(input:focus-visible) { outline: 2px solid var(--amber); outline-offset: 2px }
+.loc:has(input:checked)::after { content: "✓"; position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; border-radius: 50%; background: var(--amber); color: #1d1608; font: 600 14px/24px var(--font-body); text-align: center }
+.locs-foot { font-size: 14px; color: var(--ink-soft); margin-top: 10px }
+.locs-foot a { color: var(--amber-ink) }
+
+/* running estimate */
+.est { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 18px 20px; margin: 0 0 24px }
+.est .top-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap }
+.est .amt { font: 400 38px/1 var(--font-display); font-variant-numeric: tabular-nums; transition: color .3s }
+.est .amt.bump { color: var(--amber-ink) }
+.est ul { list-style: none; padding: 0; margin: 12px 0 0; font-size: 14.5px; color: var(--ink-soft) }
+.est li { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; border-top: 1px dashed var(--line) }
+.est li:first-child { border-top: 0 }
+.est li b { font-weight: 500; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums }
+.est .fine { font-size: 13px; color: var(--ink-soft); margin: 10px 0 0 }
+.side .est { margin: 18px 0 0 }
+@media (max-width: 860px) { .side .est { display: none } }
+@media (min-width: 861px) { main .est { display: none } }
+.check { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 15.5px }
+.check input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--amber); flex: none }
+.check small { display: block; color: var(--ink-soft); font-size: 14px }
+
+[hidden] { display: none !important }
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden }
+.send { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding-top: 8px; border-top: 1px solid var(--line); padding-top: 24px }
+.send p { margin: 0; font-size: 14px; color: var(--ink-soft); flex: 1 1 240px }
+.formerr { color: var(--err); font-size: 15px; margin: 14px 0 0; min-height: 1px }
+
+/* thank you */
+.done { padding-top: 12px }
+.done h1 { font-size: clamp(38px, 5vw, 58px); line-height: 1.04; margin: 10px 0 16px }
+.done p { color: var(--ink-soft); max-width: 54ch }
+.done ol { padding-left: 20px; color: var(--ink-soft); max-width: 54ch }
+.done li { margin-bottom: 8px }
+.done .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px }
+
+footer { border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 14px }
+footer .in { max-width: 1180px; margin: 0 auto; padding: 22px max(16px, env(safe-area-inset-left)); display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between }
+footer a { color: var(--amber-ink) }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a href="https://www.ourtimephoto.com/" aria-label="Our Time Photography home"><img src="https://photos.smugmug.com/photos/i-tqsfk2v/0/L/i-tqsfk2v-L.png" alt="Our Time Photography" width="1010" height="71"></a>
+  <a class="back" href="https://www.ourtimephoto.com/#otp-pricing">← Back to pricing</a>
+</div></header>
+
+<div class="page">
+  <aside class="side" aria-hidden="true">
+    <div class="photo" id="photo">
+      <img data-for="family" src="https://photos.smugmug.com/photos/i-dkGQbwG/0/XL/i-dkGQbwG-XL.jpg" alt="">
+      <img data-for="senior" src="https://photos.smugmug.com/photos/i-fw6694C/0/X2/i-fw6694C-X2.jpg" alt="">
+      <img data-for="event" src="https://photos.smugmug.com/photos/i-hFRZdwT/0/XL/i-hFRZdwT-XL.jpg" alt="">
+      <img data-for="corporate" src="https://photos.smugmug.com/photos/i-kNvvDJP/0/XL/i-kNvvDJP-XL.jpg" alt="">
+    </div>
+    <div class="summary" id="summary"></div>
+    <div class="est" id="est-side" hidden></div>
+  </aside>
+
+  <main>
+    <div id="form-view">
+      <div class="intro">
+        <span class="label">Book a session</span>
+        <h1 id="headline">Let’s plan your session</h1>
+        <p id="lede">We’re booking sessions from January 2027 on. Tell us a little about what you have in mind and we’ll get back to you within a day with next steps.</p>
+      </div>
+
+      <form id="f" novalidate>
+        <fieldset>
+          <legend>What kind of session?</legend>
+          <div class="types" role="radiogroup" aria-label="Session type">
+            <label class="type"><input type="radio" name="session" value="family"><b>Family</b><span>$350 per hour, up to six people</span></label>
+            <label class="type"><input type="radio" name="session" value="senior"><b>Senior</b><span>$300 per hour</span></label>
+            <label class="type"><input type="radio" name="session" value="event"><b>Event</b><span>Birthdays, mitzvahs, celebrations</span></label>
+            <label class="type"><input type="radio" name="session" value="corporate"><b>Corporate event</b><span>Custom quote</span></label>
+          </div>
+          <div class="field" id="f-session" style="margin:0"><div class="err">Pick the kind of session you’d like.</div></div>
+        </fieldset>
+
+        <div id="rest" hidden>
+          <fieldset>
+            <legend>About you</legend>
+            <div class="field" id="f-name"><label for="name">Your full name</label><input id="name" name="name" type="text" autocomplete="name" maxlength="120"><div class="err">Please add your name.</div></div>
+            <div class="row">
+              <div class="field" id="f-email"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com"><div class="err">Please check your email address.</div></div>
+              <div class="field" id="f-phone" data-req="Please add a phone number we can reach you at."><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div>
+            </div>
+          </fieldset>
+
+          <!-- Family -->
+          <fieldset data-show="family">
+            <legend>Your crew</legend>
+            <div class="field"><label for="who-f">Who will be in the photos?</label><span class="sub">Names and ages, and any pets coming along.</span><textarea id="who-f" data-name="who" maxlength="600" placeholder="Sam (38), Alex (36), Maya (8), Theo (5) and our dog Biscuit"></textarea></div>
+            <div class="field" style="max-width:340px" data-req="How many people will be in the photos?"><label for="people">How many people?</label><span class="sub">Up to six included. Please don’t include pets in your total here.</span><input id="people" name="people" type="number" inputmode="numeric" min="1" max="60"></div>
+          </fieldset>
+
+          <!-- Senior -->
+          <fieldset data-show="senior">
+            <legend>Your senior</legend>
+            <div class="field" data-req="Please add your senior’s name."><label for="who-s">Senior’s name</label><input id="who-s" data-name="who" type="text" maxlength="120"></div>
+            <div class="row">
+              <div class="field"><label for="school">Which high school?</label><input id="school" name="school" type="text" maxlength="120"></div>
+              <div class="field" data-req="Pick a graduation year."><label for="grad">Class of</label><select id="grad" name="gradYear"><option value="">Choose</option></select></div>
+            </div>
+            <div class="field"><span class="q">How many outfits are you thinking?</span>
+              <div class="chips"><label class="chip"><input type="radio" name="outfits" value="1"><span>Just one</span></label><label class="chip"><input type="radio" name="outfits" value="2"><span>Two</span></label><label class="chip"><input type="radio" name="outfits" value="3 or more"><span>Three or more</span></label><label class="chip"><input type="radio" name="outfits" value="Not sure yet"><span>Not sure yet</span></label></div>
+            </div>
+          </fieldset>
+
+          <!-- Event + Corporate -->
+          <fieldset data-show="event corporate">
+            <legend id="ev-legend">Your event</legend>
+            <div class="field" data-show="corporate" data-req="Please add your company or organization."><label for="company">Company or organization</label><input id="company" name="company" type="text" autocomplete="organization" maxlength="120"></div>
+            <div class="field" data-show="event" data-req="Pick what you’re celebrating."><label for="eventKind">What are you celebrating?</label>
+              <select id="eventKind" name="eventKind"><option value="">Choose</option><option>Milestone birthday</option><option>Bar or bat mitzvah</option><option>Anniversary or reunion</option><option>Community celebration</option><option>Something else</option></select></div>
+            <div class="row">
+              <div class="field" data-req="Please add the event date."><label for="eventDate">Event date</label><input id="eventDate" name="eventDate" type="date"></div>
+              <div class="field" data-req="Please add an estimated guest count."><label for="guests">About how many guests?</label><input id="guests" name="guests" type="number" inputmode="numeric" min="1" max="5000"></div>
+            </div>
+            <div class="row">
+              <div class="field" data-req="Please add a start time."><label for="startTime">Start time</label><input id="startTime" name="startTime" type="time" step="900"></div>
+              <div class="field" data-req="Please add an end time."><label for="endTime">End time</label><input id="endTime" name="endTime" type="time" step="900"></div>
+            </div>
+            <div class="field" data-show="event"><span class="q">How many photographers?</span><span class="sub">One is plenty for most parties. Two for a big crowd or two things happening at once.</span>
+              <div class="chips"><label class="chip"><input type="radio" name="photographers" value="1"><span>One</span></label><label class="chip"><input type="radio" name="photographers" value="2"><span>Two</span></label><label class="chip"><input type="radio" name="photographers" value="Not sure"><span>Not sure yet</span></label></div>
+            </div>
+            <p class="hint" id="ev-hint" style="margin-top:-6px">Events have a two-hour minimum. We’ll talk through the hours that matter most on our planning call.</p>
+            <div class="field" data-req="Please add the venue, or “not booked yet”."><label for="venue">Venue</label><span class="sub">Name and city, or “not booked yet”.</span><input id="venue" name="venue" type="text" maxlength="200"></div>
+            <div class="field" data-show="corporate"><label for="usage">How will you use the photos?</label><span class="sub">Website, social, annual report, internal newsletter...</span><input id="usage" name="usage" type="text" maxlength="200"></div>
+          </fieldset>
+
+          <!-- When + where (family, senior) -->
+          <fieldset data-show="family senior">
+            <legend>When and where</legend>
+            <div class="field" data-req="Pick how long you’d like."><span class="q">How long?</span><span class="sub">Most families and seniors book one hour.</span>
+              <div class="chips"><label class="chip"><input type="radio" name="hours" value="1" checked><span>1 hour</span></label><label class="chip"><input type="radio" name="hours" value="1.5"><span>1½ hours</span></label><label class="chip"><input type="radio" name="hours" value="2"><span>2 hours</span></label></div>
+            </div>
+            <div class="field" data-req="Please add a few dates or a season that work."><label for="dates">Preferred dates or season</label><input id="dates" type="text" data-name="dates" maxlength="300" placeholder="Late September weekends, or any Sunday in October"></div>
+            <div class="field" id="f-location" data-req="Pick a location, or “Not sure yet”."><span class="q">Pick a location</span><span class="sub">Every spot shows photos from our own sessions. Not sure? We’ll help you choose on the planning call.</span>
+              <div class="locs" id="locs" role="radiogroup" aria-label="Location"></div>
+              <p class="locs-foot">Want a closer look? See maps, parking and more photos on our <a id="locs-link" href="locations/?from=book">session locations</a> page, and choose your spot from there. Your answers here will be saved.</p>
+            </div>
+            <div class="field"><label class="check"><input type="checkbox" id="download"><span>Add every photo as high-resolution downloads <span id="dl-price"></span><small>Yours to print and share however you like. You can also decide later.</small></span></label></div>
+            <div class="field" id="f-ideas" data-req-else="Tell us a little about the place you have in mind."><label for="ideas"><span id="ideas-q">Any location ideas?</span> <span class="opt" id="ideas-opt">(optional)</span></label><input id="ideas" name="locationIdeas" type="text" maxlength="600" placeholder="Grandma’s farm, our neighborhood park, somewhere with fall color"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>A few last things</legend>
+            <div class="field"><span class="q">Have you had a session with us before?</span>
+              <div class="chips">
+                <label class="chip"><input type="radio" name="returning" value="We’re new"><span>No, we’re new</span></label>
+                <label class="chip"><input type="radio" name="returning" value="Devin photographed us before"><span>Yes, with Devin</span></label>
+                <label class="chip"><input type="radio" name="returning" value="Whitley photographed us before"><span>Yes, with Whitley</span></label>
+                <label class="chip"><input type="radio" name="returning" value="We’ve been before (not sure who)"><span>Yes, not sure who</span></label>
+              </div>
+            </div>
+            <div class="field"><label for="source">How did you hear about us? <span class="opt">(optional)</span></label>
+              <select id="source" name="source"><option value="">Choose</option><option>Referral</option><option>Friends + family</option><option>Website / social</option><option>Saw you at an event</option><option>Returning client</option><option>Other</option></select></div>
+            <div class="field"><label for="message">Anything else we should know? <span class="opt">(optional)</span></label><textarea id="message" name="message" maxlength="1500"></textarea></div>
+          </fieldset>
+
+          <div class="trap" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+          <div class="est" id="est-main" hidden></div>
+          <div class="send">
+            <button class="btn btn-solid" id="go" type="submit">Send my inquiry</button>
+            <p>No payment now. We’ll reply within a day to set up a quick planning call.</p>
+          </div>
+          <p class="formerr" id="formerr" role="alert"></p>
+        </div>
+      </form>
+    </div>
+
+    <div id="done-view" class="done" hidden>
+      <span class="label">Inquiry sent</span>
+      <h1 id="done-title">Thank you!</h1>
+      <p>We have your details and we’ll be in touch within a day. Here’s what happens next:</p>
+      <ol id="done-steps"></ol>
+      <p>Don’t see our email? Check spam for a note from info@ourtimephoto.com, or write to us anytime.</p>
+      <div class="btns">
+        <a class="btn btn-solid" id="done-locs" href="https://pay.ourtimephoto.com/locations/">Browse session locations</a>
+        <a class="btn btn-ghost" href="https://www.ourtimephoto.com/">Back to our website</a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer><div class="in"><span>© Our Time Photography · Twin Cities, Minnesota</span><span>Questions? <a href="mailto:info@ourtimephoto.com">info@ourtimephoto.com</a> · <a href="https://pay.ourtimephoto.com/booking.html">Find my booking</a></span></div></footer>
+
+<script>
+(function () {
+  var API = 'https://script.google.com/macros/s/AKfycbyqwtOZUSeqGhUXUH1q2kZQAa2-IRcblQt-Tp0RmKp1J86BY4MDPvkZF7bYCprv-y42cg/exec';
+  var LOCS = [{"key":"rapids-lake","name":"Rapids Lake","town":"Carver","for":["Family"],"card":"rapids-lake-card.jpg"},{"key":"lake-minnewashta-regional-park","name":"Lake Minnewashta Regional Park","town":"Chanhassen","for":["Family"],"card":"lake-minnewashta-regional-park-card.jpg"},{"key":"chaska-city-square-park","name":"Chaska City Square Park","town":"Chaska","for":["Family"],"card":"chaska-city-square-park-card.jpg"},{"key":"chaska-railroad-tracks","name":"Chaska Railroad Tracks","town":"Chaska","for":["Seniors"],"card":"chaska-railroad-tracks-card.jpg"},{"key":"firemen-s-park-veterans-park","name":"Firemen's Park + Veterans Park","town":"Chaska","for":["Family"],"card":"firemen-s-park-veterans-park-card.jpg"},{"key":"minnesota-landscape-arboretum","name":"Minnesota Landscape Arboretum","town":"Chaska","for":["Seniors","Family"],"card":"minnesota-landscape-arboretum-card.jpg"},{"key":"sunset-park","name":"Sunset Park","town":"Chaska","for":["Family","Seniors"],"card":"sunset-park-card.jpg"},{"key":"miller-park","name":"Miller Park","town":"Eden Prairie","for":["Family"],"card":"miller-park-card.jpg"},{"key":"prairie-bluff-conservation-area","name":"Prairie Bluff Conservation Area","town":"Eden Prairie","for":["Seniors"],"card":"prairie-bluff-conservation-area-card.jpg"},{"key":"purgatory-creek-park","name":"Purgatory Creek Park","town":"Eden Prairie","for":["Family"],"card":"purgatory-creek-park-card.jpg"},{"key":"downtown-excelsior","name":"Downtown Excelsior","town":"Excelsior","for":["Seniors","Family"],"card":"downtown-excelsior-card.jpg"},{"key":"port-of-excelsior","name":"Port of Excelsior","town":"Excelsior","for":["Seniors"],"card":"port-of-excelsior-card.jpg"},{"key":"levee-park","name":"Levee Park","town":"Hastings","for":["Family","Seniors"],"card":"levee-park-card.jpg"},{"key":"schaar-s-bluff","name":"Schaar's Bluff","town":"Hastings","for":["Seniors","Family"],"card":"schaar-s-bluff-card.jpg"},{"key":"lagoon-park","name":"Lagoon Park","town":"Jordan","for":["Family","Seniors"],"card":"lagoon-park-card.jpg"},{"key":"lyndale-park-peace-garden","name":"Lyndale Park Peace Garden","town":"Minneapolis","for":["Family","Seniors"],"card":"lyndale-park-peace-garden-card.jpg"},{"key":"mill-city-ruins","name":"Mill City Ruins","town":"Minneapolis","for":["Seniors","Family"],"card":"mill-city-ruins-card.jpg"},{"key":"minnehaha-regional-park","name":"Minnehaha Regional Park","town":"Minneapolis","for":["Seniors","Family"],"card":"minnehaha-regional-park-card.jpg"},{"key":"stone-arch-bridge","name":"Stone Arch Bridge","town":"Minneapolis","for":["Seniors"],"card":"stone-arch-bridge-card.jpg"},{"key":"wood-lake-nature-center","name":"Wood Lake Nature Center","town":"Richfield","for":["Family"],"card":"wood-lake-nature-center-card.jpg"},{"key":"huber-park","name":"Huber Park","town":"Shakopee","for":["Seniors","Family"],"card":"huber-park-card.jpg"},{"key":"cathedral-hill","name":"Cathedral Hill","town":"St. Paul","for":["Seniors"],"card":"cathedral-hill-card.jpg"},{"key":"como-park","name":"Como Park","town":"St. Paul","for":["Family","Seniors"],"card":"como-park-card.jpg"},{"key":"harriet-island-regional-park","name":"Harriet Island Regional Park","town":"St. Paul","for":["Family"],"card":"harriet-island-regional-park-card.jpg"},{"key":"st-anthony-park-library","name":"St. Anthony Park Library","town":"St. Paul","for":["Seniors"],"card":"st-anthony-park-library-card.jpg"},{"key":"aamodt-s-apple-farm","name":"Aamodt's Apple Farm","town":"Stillwater","for":["Family"],"card":"aamodt-s-apple-farm-card.jpg"},{"key":"carver-park-reserve","name":"Carver Park Reserve","town":"Victoria","for":["Seniors"],"card":"carver-park-reserve-card.jpg"},{"key":"wassermann-lake-reserve","name":"Wassermann Lake Reserve","town":"Victoria","for":["Seniors"],"card":"wassermann-lake-reserve-card.jpg"},{"key":"grimm-farm-historic-site","name":"Grimm Farm Historic Site","town":"Waconia","for":["Family"],"card":"grimm-farm-historic-site-card.jpg"}];
+  var loaded = Date.now();
+  var TYPES = {
+    family: {head: 'Book a family session', price: '$350', unit: 'per hour', note: 'Up to six people, plus $30 per extra person per hour. Dogs are always welcome, and always free.'},
+    senior: {head: 'Book a senior session', price: '$300', unit: 'per hour', note: 'One hour all about your senior, with time for an outfit change and a spot or two that feel like them.'},
+    event: {head: 'Book your event', price: 'From $250', unit: 'per hour, per photographer', note: 'Two-hour minimum. Every photo included as a full-resolution download.'},
+    corporate: {head: 'Book a corporate event', price: 'From $1,000', unit: 'up to 3 hours', note: 'Then $300 for each extra hour, including the rights to use the photos in your marketing. We’ll send a custom quote after our planning call.'}
+  };
+  var STEPS = {
+    session: ['We’ll email you within a day with a link to book a short planning call.', 'On the call we’ll pick your date, spot and timing, and talk outfits.', 'Then you’ll get your booking page to sign and pay the retainer, and you’re on the calendar.'],
+    event: ['We’ll email you within a day to set up a short planning call.', 'On the call we’ll go over the schedule, the moments that matter and how many photographers you need.', 'Then you’ll get a quote and a booking page to sign and hold your date.']
+  };
+  var form = document.getElementById('f'), rest = document.getElementById('rest');
+  var $ = function (id) { return document.getElementById(id); };
+
+  // graduation years: this school year's class and the next three
+  var now = new Date(), first = now.getFullYear() + (now.getMonth() >= 6 ? 1 : 0);
+  for (var y = first; y < first + 4; y++) { var o = document.createElement('option'); o.value = o.textContent = y; $('grad').appendChild(o); }
+
+  function current() { var r = form.querySelector('input[name=session]:checked'); return r ? r.value : ''; }
+
+  function buildLocs(kind, keep) {
+    var want = kind === 'senior' ? 'Seniors' : 'Family';
+    var html = '';
+    var plain = function (v, t) { return '<label class="loc plain"><input type="radio" name="location" value="' + v + '"><span class="nm">' + t + '</span></label>'; };
+    html += plain('Not sure - help me pick', 'Not sure yet<small>Help me pick</small>');
+    LOCS.filter(function (l) { return l.for.indexOf(want) >= 0 || l.name === keep; }).forEach(function (l) {
+      html += '<label class="loc"><input type="radio" name="location" value="' + esc(l.name) + '"><img src="locations/img/' + l.card + '" alt="" loading="lazy" width="1000" height="500"><span class="nm">' + esc(l.name) + '<small>' + esc(l.town) + '</small></span><a class="see" href="locations/?from=book&for=' + want + '#' + l.key + '">See this spot →</a></label>';
+    });
+    html += plain('Somewhere else (tell us below)', 'Somewhere else<small>Tell us below</small>');
+    $('locs').innerHTML = html;
+    if (keep) { var hit = $('locs').querySelector('input[value="' + cssEsc(keep) + '"]'); if (hit) { hit.checked = true; } }
+  }
+
+  function show(kind) {
+    var t = TYPES[kind];
+    rest.hidden = !t;
+    $('f-session').classList.remove('bad');
+    $('photo').dataset.kind = kind || 'family';
+    document.querySelectorAll('#photo img').forEach(function (im) { im.classList.toggle('on', im.dataset.for === (kind || 'family')); });
+    if (!t) return;
+    $('headline').textContent = t.head;
+    $('summary').innerHTML = '<span class="label">' + (kind === 'corporate' ? 'Corporate events' : kind.charAt(0).toUpperCase() + kind.slice(1) + (kind === 'event' ? 's' : ' sessions')) + '</span><div class="price">' + t.price + '<small>' + t.unit + '</small></div><p>' + t.note + '</p>';
+    document.querySelectorAll('[data-show]').forEach(function (el) { el.hidden = el.dataset.show.split(' ').indexOf(kind) < 0; });
+    $('dl-price').textContent = kind === 'senior' ? '(+$125)' : '(+$150)';
+    $('ev-legend').textContent = kind === 'corporate' ? 'Your event' : 'Your celebration';
+    $('ev-hint').textContent = kind === 'corporate' ? '$1,000 covers up to three hours. We’ll talk through the schedule on our planning call.' : 'Events have a two-hour minimum. We’ll talk through the hours that matter most on our planning call.';
+    var picked = form.querySelector('input[name=location]:checked');
+    if (kind === 'family' || kind === 'senior') buildLocs(kind, picked ? picked.value : pendingLoc);
+    pendingLoc = '';
+  }
+
+  // Draft: answers are kept in this browser tab (sessionStorage) so a trip to the locations page and back loses nothing.
+  // Cleared when the tab closes or the inquiry is sent. The hidden spam field is never saved.
+  var DRAFT = 'otpBookDraft';
+  function saveDraft() {
+    var d = {v: {}, r: {}, c: {}};
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name && !el.id || el.id === 'website' || el.type === 'submit') return;
+      if (el.type === 'radio') { if (el.checked) d.r[el.name] = el.value; }
+      else if (el.type === 'checkbox') d.c[el.id] = el.checked;
+      else if (el.id) d.v[el.id] = el.value;
+    });
+    try { sessionStorage.setItem(DRAFT, JSON.stringify(d)); } catch (x) {}
+  }
+  function loadDraft() { try { return JSON.parse(sessionStorage.getItem(DRAFT) || 'null'); } catch (x) { return null; } }
+  function clearDraft() { try { sessionStorage.removeItem(DRAFT); sessionStorage.removeItem('otpFromBook'); } catch (x) {} }
+  try { sessionStorage.removeItem('otpFromBook'); } catch (x) {}   // back on the form: the locations page goes back to normal
+
+  // ?session=family|senior|event|corporate  and  ?location=<library name>
+  var q = new URLSearchParams(location.search);
+  var start = (q.get('session') || '').toLowerCase().replace(/s$/, '').replace(/^corporate.*/, 'corporate');
+  var pendingLoc = q.get('location') || '';
+  var draft = loadDraft();
+  if (draft) {
+    Object.keys(draft.v).forEach(function (id) { var el = $(id); if (el && el.id !== 'website') el.value = draft.v[id]; });
+    Object.keys(draft.c).forEach(function (id) { var el = $(id); if (el) el.checked = !!draft.c[id]; });
+    Object.keys(draft.r).forEach(function (n) {
+      if (n === 'session' || n === 'location') return;
+      var el = form.querySelector('input[name="' + n + '"][value="' + cssEsc(draft.r[n]) + '"]'); if (el) el.checked = true;
+    });
+    if (!TYPES[start] && TYPES[draft.r.session]) start = draft.r.session;
+    if (!pendingLoc && draft.r.location) pendingLoc = draft.r.location;
+  }
+  var cameBack = !!(draft && q.get('location'));
+  if (TYPES[start]) form.querySelector('input[value=' + start + ']').checked = true;
+  form.addEventListener('change', function (e) { if (e.target.name === 'session') { show(e.target.value); try { history.replaceState(null, '', '?session=' + e.target.value); } catch (x) {} } });
+  show(TYPES[start] ? start : '');
+  if (!TYPES[start] && pendingLoc) buildLocs('family', pendingLoc);
+  if (cameBack) setTimeout(function () { var f = $('locs').closest('.field'); f.scrollIntoView({block: 'center'}); var c = $('locs').querySelector('input:checked'); if (c) c.closest('.loc').scrollIntoView({block: 'nearest'}); }, 50);
+  form.addEventListener('input', saveDraft);
+  form.addEventListener('change', saveDraft);
+  // the locations link carries the session type so that page can start filtered to it
+  $('locs').addEventListener('click', function (e) { if (e.target.closest('a.see')) saveDraft(); });
+  $('locs-link').addEventListener('click', function () { saveDraft(); this.href = 'locations/?from=book&for=' + (current() === 'senior' ? 'Seniors' : 'Family'); });
+
+  form.addEventListener('input', function (e) { var f = e.target.closest('.field'); if (f) f.classList.remove('bad'); $('formerr').textContent = ''; });
+  form.addEventListener('change', function (e) { var f = e.target.closest('.field'); if (f) f.classList.remove('bad'); });
+
+  // Required fields: every visible .field[data-req]; location ideas only when they pick "Somewhere else".
+  document.querySelectorAll('.field[data-req], .field[data-req-else]').forEach(function (f) {
+    if (f.querySelector('.err')) return;
+    var e = document.createElement('div'); e.className = 'err'; e.textContent = f.dataset.req || f.dataset.reqElse; f.appendChild(e);
+  });
+  function elsewhere() { return /^Somewhere else/.test(radio('location')); }
+  function syncIdeas() { var on = elsewhere(); $('ideas-opt').hidden = on; $('ideas-q').textContent = on ? 'Where do you have in mind?' : 'Any location ideas?'; }
+  form.addEventListener('change', function (e) { if (e.target.name === 'location') { syncIdeas(); $('f-ideas').classList.remove('bad'); $('f-location').classList.remove('bad'); } });
+  syncIdeas();
+  function blank(f) {
+    var radios = f.querySelectorAll('input[type=radio]');
+    if (radios.length) return !f.querySelector('input[type=radio]:checked');
+    var el = f.querySelector('input:not([type=checkbox]), select, textarea');
+    if (!el) return false;
+    var v = (el.value || '').trim();
+    if (el.type === 'number') return !(Number(v) >= 1);
+    if (el.id === 'phone') return v.replace(/\D/g, '').length < 7;
+    return !v;
+  }
+  function missing() {
+    return Array.prototype.filter.call(form.querySelectorAll('.field[data-req], .field[data-req-else]'), function (f) {
+      if (f.offsetParent === null) return false;   // hidden: not part of this session type
+      if (!f.dataset.req && !elsewhere()) return false;
+      return blank(f);
+    });
+  }
+
+  function val(id) { return ($(id).value || '').trim(); }
+  function radio(name) { var r = form.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  function niceDate(d) { if (!d) return ''; var p = d.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'}); }
+  function niceTime(t) { if (!t) return ''; var p = t.split(':'), h = +p[0]; return ((h + 11) % 12 + 1) + ':' + p[1] + (h < 12 ? ' AM' : ' PM'); }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var kind = current(), bad = [];
+    if (!kind) { $('f-session').classList.add('bad'); $('f-session').scrollIntoView({behavior: 'smooth', block: 'center'}); return; }
+    if (!val('name')) bad.push('f-name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) bad.push('f-email');
+    var miss = missing();
+    bad.forEach(function (id) { $(id).classList.add('bad'); });
+    miss.forEach(function (f) { f.classList.add('bad'); });
+    var first = bad.length ? $(bad[0]) : miss[0];
+    if (first) {
+      first.scrollIntoView({behavior: 'smooth', block: 'center'});
+      var el = first.querySelector('input:not([type=radio]), select, textarea'); if (el) setTimeout(function () { el.focus({preventScroll: true}); }, 300);
+      $('formerr').textContent = 'A few details are missing. They’re marked above.';
+      return;
+    }
+    var ev = kind === 'event' || kind === 'corporate';
+    var when = ev ? [niceDate(val('eventDate')), [niceTime(val('startTime')), niceTime(val('endTime'))].filter(Boolean).join(' to ')].filter(Boolean).join(', ') : val('dates');
+    var data = {
+      action: 'inquiry', session: kind, name: val('name'), email: val('email'), phone: val('phone'),
+      who: kind === 'family' ? val('who-f') : kind === 'senior' ? val('who-s') : '',
+      people: kind === 'family' ? val('people') : '', school: kind === 'senior' ? val('school') : '', gradYear: kind === 'senior' ? val('grad') : '',
+      outfits: kind === 'senior' ? radio('outfits') : '',
+      dates: when, location: ev ? '' : radio('location'), locationIdeas: ev ? '' : val('ideas'),
+      eventKind: kind === 'event' ? val('eventKind') : '', company: kind === 'corporate' ? val('company') : '',
+      eventDate: ev ? niceDate(val('eventDate')) : '', startTime: ev ? niceTime(val('startTime')) : '', endTime: ev ? niceTime(val('endTime')) : '',
+      guests: ev ? val('guests') : '', venue: ev ? val('venue') : '', usage: kind === 'corporate' ? val('usage') : '',
+      hours: ev ? '' : radio('hours'), photographers: kind === 'event' ? radio('photographers') : '', estimate: estimateText(),
+      returning: radio('returning'), source: val('source'), message: val('message'),
+      website: $('website').value, ms: Date.now() - loaded
+    };
+    var go = $('go'); go.disabled = true; go.textContent = 'Sending…';
+    // local preview only: nothing is sent, the answers are logged
+    var send = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+      ? new Promise(function (ok) { console.log('PREVIEW inquiry', data); setTimeout(function () { ok({json: function () { return {ok: true}; }}); }, 500); })
+      : fetch(API, {method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'text/plain;charset=utf-8'}, credentials: 'omit', redirect: 'follow'});
+    send
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d.ok) throw new Error(d.error || 'server');
+        clearDraft();
+        $('form-view').hidden = true; $('done-view').hidden = false;
+        $('done-title').textContent = 'Thank you, ' + data.name.split(/\s+/)[0] + '!';
+        $('done-steps').innerHTML = (ev ? STEPS.event : STEPS.session).map(function (s) { return '<li>' + s + '</li>'; }).join('');
+        // only when they haven't settled on a spot yet (no pick, or "Not sure yet")
+        $('done-locs').hidden = ev || !!(data.location && !/^Not sure/.test(data.location));
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      })
+      .catch(function (err) {
+        go.disabled = false; go.textContent = 'Send my inquiry';
+        var m = String(err && err.message);
+        $('formerr').textContent = m === 'email' ? 'Please check your email address.' : m === 'busy' ? 'We’re getting a lot of inquiries right now. Please try again in a few minutes, or email info@ourtimephoto.com.' :
+          'We couldn’t send your inquiry just now. Please try again in a minute, or email us at info@ourtimephoto.com.';
+      });
+  });
+
+  // running estimate (not a quote): the same site prices Autopilot uses
+  var lastAmt = '';
+  function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function hrsLabel(h) { return (h === 1.5 ? '1½' : String(h)) + ' hour' + (h === 1 ? '' : 's'); }
+  function spanHours() {
+    var a = val('startTime'), b = val('endTime'); if (!a || !b) return 0;
+    var m = function (t) { var p = t.split(':'); return +p[0] * 60 + +p[1]; };
+    var d = m(b) - m(a); if (d <= 0) d += 1440;
+    return d / 60;
+  }
+  function estimate() {
+    var kind = current(); if (!TYPES[kind]) return null;
+    var lines = [], total = 0, from = false, note = '';
+    if (kind === 'family' || kind === 'senior') {
+      var h = Number(radio('hours') || 1);
+      if (kind === 'family') {
+        var n = Math.round(Number(val('people'))) || 0, extra = Math.max(0, n - 6);
+        lines.push(['Family session, ' + hrsLabel(h), money(350 * h)]); total = 350 * h;
+        if (extra) { lines.push([extra + ' extra ' + (extra === 1 ? 'person' : 'people') + ' × $30 × ' + hrsLabel(h), money(30 * extra * h)]); total += 30 * extra * h; }
+      } else { lines.push(['Senior session, ' + hrsLabel(h), money(300 * h)]); total = 300 * h; }
+      if ($('download').checked) { var dl = kind === 'family' ? 150 : 125; lines.push(['Full-gallery downloads', money(dl)]); total += dl; }
+      note = 'Estimate only. We confirm your quote after the planning call.';
+    } else if (kind === 'event') {
+      var hrs = spanHours(), bill = Math.max(hrs || 2, 2), ph = radio('photographers') === '2' ? 2 : 1;
+      from = !hrs;
+      lines.push([(ph === 2 ? 'Two photographers' : 'One photographer') + ', ' + (hrs ? hrsLabel(+bill.toFixed(2)) : '2-hour minimum'), money(250 * bill * ph)]);
+      total = 250 * bill * ph;
+      lines.push(['Every photo as a download', 'Included']);
+      if (hrs && hrs < 2) note = 'Events have a two-hour minimum. ';
+      if (radio('photographers') === 'Not sure') note += 'With two photographers: ' + money(500 * bill) + '. ';
+      note += from ? 'Add your start and end times for a closer number. ' : '';
+      note += 'Starting price; your quote depends on the details.';
+    } else {
+      var ch = spanHours(), extraH = Math.max(0, ch - 3);
+      from = !ch;
+      lines.push(['Up to 3 hours, marketing use included', money(1000)]); total = 1000;
+      if (extraH) { lines.push([hrsLabel(+extraH.toFixed(2)).replace('hour', 'extra hour') + ' × $300', money(300 * extraH)]); total += 300 * extraH; }
+      note = (from ? 'Add your start and end times for a closer number. ' : '') + 'This estimate is subject to change based on the session needs we discuss on your planning call.';
+    }
+    return {total: total, from: from, lines: lines, note: note};
+  }
+  function renderEstimate() {
+    var e = estimate();
+    ['est-side', 'est-main'].forEach(function (id) {
+      var box = $(id); box.hidden = !e; if (!e) return;
+      var amt = (e.from ? 'From ' : '') + money(e.total);
+      box.innerHTML = '<div class="top-line"><span class="label">Your estimate</span><span class="amt">' + amt + '</span></div><ul>' +
+        e.lines.map(function (l) { return '<li><span>' + esc(l[0]) + '</span><b>' + l[1] + '</b></li>'; }).join('') + '</ul><p class="fine">' + esc(e.note) + '</p>';
+      if (lastAmt && amt !== lastAmt) { var a = box.querySelector('.amt'); a.classList.add('bump'); setTimeout(function () { a.classList.remove('bump'); }, 600); }
+    });
+    lastAmt = e ? (e.from ? 'From ' : '') + money(e.total) : '';
+  }
+  function estimateText() {
+    var e = estimate(); if (!e) return '';
+    var kind = current(), bits = [];
+    if ((kind === 'family' || kind === 'senior') && $('download').checked) bits.push('with downloads');
+    return (e.from ? 'from ' : '') + money(e.total) + (bits.length ? ' (' + bits.join(', ') + ')' : '');
+  }
+  form.addEventListener('input', renderEstimate);
+  form.addEventListener('change', renderEstimate);
+  renderEstimate();
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]; }); }
+  function cssEsc(s) { return String(s).replace(/["\\]/g, '\\$&'); }
+})();
+</script>
+</body>
+</html>
