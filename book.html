@@ -64,6 +64,7 @@ form { margin-top: 28px }
 fieldset { border: 0; margin: 0 0 34px; padding: 0; min-width: 0 }
 legend { padding: 0; font: 400 26px/1.2 var(--font-display); margin-bottom: 16px }
 .hint { font-size: 14px; color: var(--ink-soft); margin: -10px 0 16px }
+.hint.warn { color: var(--amber-ink, #8f5a12); font-weight: 500 }
 .field { margin-bottom: 18px }
 .field > label, .field > .q { display: block; font-weight: 600; font-size: 15.5px; margin-bottom: 6px }
 .field .opt { font-weight: 400; color: var(--ink-soft); font-size: 14px }
@@ -178,7 +179,7 @@ footer a { color: var(--amber-ink) }
       <div class="intro">
         <span class="label">Book a session</span>
         <h1 id="headline">Let’s plan your session</h1>
-        <p id="lede">We’re booking sessions from January 2027 on. Tell us a little about what you have in mind and we’ll get back to you within a day with next steps.</p>
+        <p id="lede">We’re booking evening and weekend sessions from January 2027 on. Tell us a little about what you have in mind and we’ll get back to you within a day with next steps.</p>
       </div>
 
       <form id="f" novalidate>
@@ -240,7 +241,8 @@ footer a { color: var(--amber-ink) }
             <div class="field" data-show="event"><span class="q">How many photographers?</span><span class="sub">One is plenty for most parties. Two for a big crowd or two things happening at once.</span>
               <div class="chips"><label class="chip"><input type="radio" name="photographers" value="1"><span>One</span></label><label class="chip"><input type="radio" name="photographers" value="2"><span>Two</span></label><label class="chip"><input type="radio" name="photographers" value="Not sure"><span>Not sure yet</span></label></div>
             </div>
-            <p class="hint" id="ev-hint" style="margin-top:-6px">Events have a two-hour minimum. We’ll talk through the hours that matter most on our planning call.</p>
+            <p class="hint" id="ev-hint" style="margin-top:-6px">We photograph events on weekday evenings and weekends. Events have a two-hour minimum. We’ll talk through the hours that matter most on our planning call.</p>
+            <p class="hint warn" id="wk-hint" hidden role="status">Heads up: we both have full-time day jobs, so we can’t take weekday events that start before 5 PM. If your timing is flexible, an evening or weekend time works great.</p>
             <div class="field" data-req="Please add the venue, or “not booked yet”."><label for="venue">Venue</label><span class="sub">Name and city, or “not booked yet”.</span><input id="venue" name="venue" type="text" maxlength="200"></div>
             <div class="field" data-show="corporate"><label for="usage">How will you use the photos?</label><span class="sub">Website, social, annual report, internal newsletter...</span><input id="usage" name="usage" type="text" maxlength="200"></div>
           </fieldset>
@@ -251,7 +253,7 @@ footer a { color: var(--amber-ink) }
             <div class="field" data-req="Pick how long you’d like."><span class="q">How long?</span><span class="sub">Most families and seniors book one hour.</span>
               <div class="chips"><label class="chip"><input type="radio" name="hours" value="1" checked><span>1 hour</span></label><label class="chip"><input type="radio" name="hours" value="1.5"><span>1½ hours</span></label><label class="chip"><input type="radio" name="hours" value="2"><span>2 hours</span></label></div>
             </div>
-            <div class="field" data-req="Please add a few dates or a season that work."><label for="dates">Preferred dates or season</label><input id="dates" type="text" data-name="dates" maxlength="300" placeholder="Late September weekends, or any Sunday in October"></div>
+            <div class="field" data-req="Please add a few dates or a season that work."><label for="dates">Preferred dates or season</label><span class="sub">We shoot on weekday evenings (after 5 PM) and weekends.</span><input id="dates" type="text" data-name="dates" maxlength="300" placeholder="Late September weekends, or any Sunday in October"></div>
             <div class="field" id="f-location" data-req="Pick a location, or “Not sure yet”."><span class="q">Pick a location</span><span class="sub">Every spot shows photos from our own sessions. Not sure? We’ll help you choose on the planning call.</span>
               <div class="locs" id="locs" role="radiogroup" aria-label="Location"></div>
               <p class="locs-foot">Want a closer look? See maps, parking and more photos on our <a id="locs-link" href="locations/?from=book">session locations</a> page, and choose your spot from there. Your answers here will be saved.</p>
@@ -552,6 +554,13 @@ footer a { color: var(--amber-ink) }
     return (e.from ? 'from ' : '') + money(e.total) + (bits.length ? ' (' + bits.join(', ') + ')' : '');
   }
   form.addEventListener('input', renderEstimate);
+  // Weekday-daytime notice: we both work 8–5 on weekdays.
+  function weekdayCheck() {
+    var d = val('eventDate'), t = val('startTime'), show = false;
+    if (d && t) { var p = d.split('-'), day = new Date(+p[0], +p[1] - 1, +p[2]).getDay(); show = day >= 1 && day <= 5 && t < '17:00'; }
+    $('wk-hint').hidden = !show;
+  }
+  form.addEventListener('input', weekdayCheck); form.addEventListener('change', weekdayCheck); weekdayCheck();
   form.addEventListener('change', renderEstimate);
   renderEstimate();
 
