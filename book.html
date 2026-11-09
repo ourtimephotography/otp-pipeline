@@ -497,6 +497,7 @@ footer a { color: var(--amber-ink) }
 
   // running estimate (not a quote): the same site prices Autopilot uses
   var lastAmt = '';
+  var P = {"family_hour":350,"family_people_included":6,"family_extra_person_hour":30,"senior_hour":300,"download_family":150,"download_senior":125,"event_hour":250,"event_min_hours":2,"corporate_base":1000,"corporate_base_hours":3,"corporate_extra_hour":300,"retainer":150,"gallery_extension_month":25};   // from otp-tools/pricing/prices.json, filled in by build.py
   function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
   function hrsLabel(h) { return (h === 1.5 ? '1½' : String(h)) + ' hour' + (h === 1 ? '' : 's'); }
   function spanHours() {
@@ -511,27 +512,27 @@ footer a { color: var(--amber-ink) }
     if (kind === 'family' || kind === 'senior') {
       var h = Number(radio('hours') || 1);
       if (kind === 'family') {
-        var n = Math.round(Number(val('people'))) || 0, extra = Math.max(0, n - 6);
-        lines.push(['Family session, ' + hrsLabel(h), money(350 * h)]); total = 350 * h;
-        if (extra) { lines.push([extra + ' extra ' + (extra === 1 ? 'person' : 'people') + ' × $30 × ' + hrsLabel(h), money(30 * extra * h)]); total += 30 * extra * h; }
-      } else { lines.push(['Senior session, ' + hrsLabel(h), money(300 * h)]); total = 300 * h; }
-      if ($('download').checked) { var dl = kind === 'family' ? 150 : 125; lines.push(['Full-gallery downloads', money(dl)]); total += dl; }
+        var n = Math.round(Number(val('people'))) || 0, extra = Math.max(0, n - P.family_people_included);
+        lines.push(['Family session, ' + hrsLabel(h), money(P.family_hour * h)]); total = P.family_hour * h;
+        if (extra) { lines.push([extra + ' extra ' + (extra === 1 ? 'person' : 'people') + ' × $30 × ' + hrsLabel(h), money(P.family_extra_person_hour * extra * h)]); total += P.family_extra_person_hour * extra * h; }
+      } else { lines.push(['Senior session, ' + hrsLabel(h), money(P.senior_hour * h)]); total = P.senior_hour * h; }
+      if ($('download').checked) { var dl = kind === 'family' ? P.download_family : P.download_senior; lines.push(['Full-gallery downloads', money(dl)]); total += dl; }
       note = 'Estimate only. We confirm your quote after the planning call.';
     } else if (kind === 'event') {
-      var hrs = spanHours(), bill = Math.max(hrs || 2, 2), ph = radio('photographers') === '2' ? 2 : 1;
+      var hrs = spanHours(), bill = Math.max(hrs || P.event_min_hours, P.event_min_hours), ph = radio('photographers') === '2' ? 2 : 1;
       from = !hrs;
-      lines.push([(ph === 2 ? 'Two photographers' : 'One photographer') + ', ' + (hrs ? hrsLabel(+bill.toFixed(2)) : '2-hour minimum'), money(250 * bill * ph)]);
-      total = 250 * bill * ph;
+      lines.push([(ph === 2 ? 'Two photographers' : 'One photographer') + ', ' + (hrs ? hrsLabel(+bill.toFixed(2)) : '2-hour minimum'), money(P.event_hour * bill * ph)]);
+      total = P.event_hour * bill * ph;
       lines.push(['Every photo as a download', 'Included']);
-      if (hrs && hrs < 2) note = 'Events have a two-hour minimum. ';
-      if (radio('photographers') === 'Not sure') note += 'With two photographers: ' + money(500 * bill) + '. ';
+      if (hrs && hrs < P.event_min_hours) note = 'Events have a two-hour minimum. ';
+      if (radio('photographers') === 'Not sure') note += 'With two photographers: ' + money(2 * P.event_hour * bill) + '. ';
       note += from ? 'Add your start and end times for a closer number. ' : '';
       note += 'Starting price; your quote depends on the details.';
     } else {
-      var ch = spanHours(), extraH = Math.max(0, ch - 3);
+      var ch = spanHours(), extraH = Math.max(0, ch - P.corporate_base_hours);
       from = !ch;
-      lines.push(['Up to 3 hours, marketing use included', money(1000)]); total = 1000;
-      if (extraH) { lines.push([hrsLabel(+extraH.toFixed(2)).replace('hour', 'extra hour') + ' × $300', money(300 * extraH)]); total += 300 * extraH; }
+      lines.push(['Up to 3 hours, marketing use included', money(P.corporate_base)]); total = P.corporate_base;
+      if (extraH) { lines.push([hrsLabel(+extraH.toFixed(2)).replace('hour', 'extra hour') + ' × $300', money(P.corporate_extra_hour * extraH)]); total += P.corporate_extra_hour * extraH; }
       note = (from ? 'Add your start and end times for a closer number. ' : '') + 'This estimate is subject to change based on the session needs we discuss on your planning call.';
     }
     return {total: total, from: from, lines: lines, note: note};
