@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="./">
+<link rel="canonical" href="https://pay.ourtimephoto.com/locations/levee-park">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Family and senior photos at Levee Park, Hastings · Our Time Photography">
+<meta property="og:description" content="Downtown Hastings on the Mississippi: the arched Hastings bridge, a colorful mural, historic brick… See Our Time Photography sessions there and book yours.">
+<meta property="og:url" content="https://pay.ourtimephoto.com/locations/levee-park">
+<meta property="og:image" content="https://pay.ourtimephoto.com/locations/img/levee-park-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Family and senior photos at Levee Park, Hastings · Our Time Photography</title>
+<meta name="description" content="Downtown Hastings on the Mississippi: the arched Hastings bridge, a colorful mural, historic brick… See Our Time Photography sessions there and book yours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Figtree:wght@400;500;600&display=swap">
+<script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js" crossorigin></script>
+<style>
+/* Light, single-theme on purpose: matches ourtimephoto.com. Layout: a filterable photo index of places, a map, and one page per place. */
+:root { color-scheme:light; --paper:#f4f4ef; --paper-2:#e9eae2; --ink:#1d2320; --soft:#545d57; --line:#d4d6cc; --amber:#b9781f; --amber-ink:#8f5a12;
+  --display:"Libre Caslon Display", Georgia, serif; --body:"Figtree", system-ui, -apple-system, sans-serif; }
+* { box-sizing:border-box }
+img { max-width:100% }
+body { margin:0; background:var(--paper); color:var(--ink); font:400 17px/1.6 var(--body); -webkit-font-smoothing:antialiased }
+body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:10; background:var(--paper) }
+a { color:inherit }
+:focus-visible { outline:2px solid var(--amber); outline-offset:3px; border-radius:3px }
+.wrap { max-width:1120px; margin:0 auto; padding-left:max(clamp(24px, 5vw, 64px), env(safe-area-inset-left, 0px)); padding-right:max(clamp(24px, 5vw, 64px), env(safe-area-inset-right, 0px)) }
+header.top { border-bottom:1px solid var(--line); background:color-mix(in srgb, var(--paper) 92%, transparent); position:sticky; top:env(safe-area-inset-top, 0px); z-index:900; backdrop-filter:blur(8px) }
+header.top .wrap { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:14px }
+header.top img { height:20px; width:auto; display:block; max-width:58vw }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:999px; font:600 15px/1 var(--body); text-decoration:none; border:1px solid transparent; cursor:pointer }
+.btn-solid { background:var(--amber); color:#1d1608 }
+.btn-line { border-color:var(--ink); background:transparent; color:var(--ink) }
+.btn-sm { padding:9px 15px; font-size:14px }
+.label { display:block; font:500 13px/1.2 var(--body); letter-spacing:.16em; text-transform:uppercase; color:var(--amber-ink) }
+h1, h2, h3 { font-family:var(--display); font-weight:400; margin:0; letter-spacing:-.01em; text-wrap:balance }
+.intro { padding-block:clamp(44px, 6vw, 80px) clamp(24px, 3vw, 36px) }
+.intro h1 { font-size:clamp(40px, 6vw, 68px); line-height:1.02; margin:14px 0 16px }
+.intro p { max-width:62ch; color:var(--soft); font-size:19px; margin:0 }
+.intro p a { color:var(--amber-ink) }
+.tools { display:grid; gap:14px; padding-block:6px 26px; margin-bottom:22px; border-bottom:1px solid var(--line) }
+.left { display:flex; align-items:center; gap:14px; flex-wrap:wrap }
+.fbtn { display:inline-flex; align-items:center; gap:8px }
+.fbtn svg { transition:transform .2s ease }
+.fbtn[aria-expanded="true"] svg { transform:rotate(180deg) }
+.fcount { display:inline-grid; place-items:center; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:var(--amber); color:#1d1608; font-size:12px; font-weight:600 }
+.fbtn[aria-pressed="true"] .fcount { background:var(--paper); color:var(--ink) }
+.row { display:grid; grid-template-columns:96px minmax(0,1fr); gap:8px 14px; align-items:start }
+.row > span { font:500 13px/1 var(--body); letter-spacing:.12em; text-transform:uppercase; color:var(--soft); padding-top:13px }
+.opts { display:flex; flex-wrap:wrap; gap:8px; min-width:0 }
+.chip { font:500 14.5px/1 var(--body); padding:10px 15px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--soft); cursor:pointer }
+.chip:hover { color:var(--ink); border-color:var(--soft) }
+.chip[aria-pressed="true"] { background:var(--ink); color:var(--paper); border-color:var(--ink) }
+.bar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; padding-block:14px 22px }
+.count { color:var(--soft); font-size:15px }
+.views { display:flex; gap:6px }
+.clear { background:none; border:0; color:var(--amber-ink); font:500 14.5px/1 var(--body); cursor:pointer; text-decoration:underline; text-underline-offset:3px; padding:6px }
+.grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:clamp(18px, 2.4vw, 30px); padding-bottom:clamp(56px, 8vw, 96px) }
+.card { display:flex; flex-direction:column; text-decoration:none; min-width:0 }
+.card .ph { border-radius:4px; overflow:hidden; background:var(--paper-2); aspect-ratio:2/1 }
+.card img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .5s ease }
+.card:hover img { transform:scale(1.03) }
+.card h3 { font-size:24px; line-height:1.15; margin:12px 0 2px }
+.card .where { color:var(--soft); font-size:15px }
+.tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px }
+.tag { font-size:12.5px; padding:4px 9px; border-radius:999px; background:var(--paper-2); color:var(--soft) }
+.empty { grid-column:1/-1; padding:40px 0; color:var(--soft) }
+#map .leaflet-tile-pane { filter:grayscale(.55) sepia(.12) brightness(1.04) contrast(.95) }
+#mapwrap:not([hidden]) { display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:16px; margin-bottom:clamp(56px, 8vw, 96px) }
+#map { height:min(74vh, 640px); border-radius:6px; overflow:hidden; background:var(--paper-2); border:1px solid var(--line) }
+.listpane { height:min(74vh, 640px); overflow-y:auto; overscroll-behavior:contain; padding-right:4px; scrollbar-width:thin }
+.maplist { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; grid-auto-rows:1fr; gap:6px }
+.maplist li { display:flex; min-width:0; border-radius:6px; overflow:hidden }
+.maplist li:nth-child(even) { background:var(--paper-2) }
+@media (max-width: 900px) {
+  #mapwrap:not([hidden]) { grid-template-columns:1fr }
+  #map { height:min(64vh, 520px) }
+  .listpane { height:auto; overflow:visible; padding-right:0 }
+  .maplist { grid-template-columns:repeat(2, minmax(0,1fr)); gap:6px 14px }
+  .maplist li { background:none !important }
+  .maplist li:nth-child(4n+3), .maplist li:nth-child(4n+4) { background:var(--paper-2) !important }
+}
+@media (max-width: 460px) { .maplist { grid-template-columns:1fr } .maplist li { background:none !important } .maplist li:nth-child(even) { background:var(--paper-2) !important } }
+.maplist button { flex:1; width:100%; text-align:left; display:grid; grid-template-columns:9px 1fr; column-gap:10px; align-content:start; align-items:baseline; padding:12px 14px; border:0; background:transparent; color:var(--ink); font:500 15.5px/1.3 var(--body); cursor:pointer }
+.maplist button::before { content:''; width:9px; height:9px; border-radius:50%; background:var(--amber); transform:translateY(-1px) }
+.maplist button small { grid-column:2; color:var(--soft); font-weight:400; font-size:13.5px; margin-top:2px }
+.maplist button:hover, .maplist button.hot { color:var(--amber-ink) }
+.maplist button.hot { box-shadow:inset 3px 0 0 var(--amber); background:rgba(185,120,31,.10) }
+.maplist button[aria-current="true"] { background:var(--ink); color:var(--paper) }
+.maplist button[aria-current="true"] small { color:var(--paper) }
+.mapnote { display:grid; place-items:center; text-align:center; color:var(--soft); padding:24px }
+.leaflet-popup-content { font:15px/1.4 var(--body); margin:12px 14px }
+.leaflet-popup-content a { color:var(--amber-ink); font-weight:600 }
+.mkcall { display:grid; gap:3px; padding:10px 12px; font:15px/1.35 var(--body); color:#1d2320; background:#fff; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,.2) }
+.mkcall span { color:#545d57 }
+.mkcall a { color:#8f5a12; font-weight:600; text-decoration:none }
+.pin-hot .pin { transform:scale(1.6); background:var(--ink) }
+.pin { transition:transform .15s ease;  width:16px; height:16px; border-radius:50%; background:var(--amber); border:3px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.35) }
+/* place page */
+.back { display:inline-flex; gap:6px; align-items:center; margin:28px 0 0; color:var(--amber-ink); font:500 15px/1 var(--body); text-decoration:none }
+.back:hover { text-decoration:underline; text-underline-offset:3px }
+.place-head { padding-block:18px clamp(24px, 3vw, 36px) }
+.place-head h1 { font-size:clamp(38px, 5.4vw, 62px); line-height:1.04; margin:10px 0 6px }
+.place-head .where { color:var(--soft); font-size:18px }
+.place-head .addr { display:inline-block; margin-top:4px; color:var(--amber-ink); font-size:16px; text-underline-offset:3px }
+.copy { margin-left:8px; font:500 13px/1 var(--body); padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--soft); cursor:pointer; vertical-align:1px }
+.copy:hover { color:var(--ink); border-color:var(--soft) }
+.place-body { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(24px, 4vw, 56px); align-items:start; padding-bottom:clamp(28px, 4vw, 44px) }
+.about { font-size:19px; margin:0 0 18px; max-width:60ch }
+.know { background:var(--paper-2); border-left:3px solid var(--amber); border-radius:6px; padding:16px 18px; color:var(--ink) }
+.know b { display:block; font:600 13px/1.3 var(--body); letter-spacing:.12em; text-transform:uppercase; color:var(--amber-ink); margin-bottom:6px }
+.facts { display:grid; gap:14px; border:1px solid var(--line); border-radius:6px; padding:20px }
+.facts dt { font:500 12.5px/1.2 var(--body); letter-spacing:.12em; text-transform:uppercase; color:var(--soft) }
+.facts dd { margin:4px 0 0 }
+.facts .acts { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px }
+.guide { border-top:1px solid var(--line); padding-block:clamp(28px, 4vw, 48px) }
+.guide h2 { font-size:clamp(28px, 3.6vw, 40px); margin:8px 0 20px }
+.guide-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr); gap:clamp(20px, 3vw, 44px); align-items:start }
+.guide-frame { position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:var(--paper-2); box-shadow:0 1px 2px rgba(29,35,32,.06), 0 12px 30px -18px rgba(29,35,32,.35) }
+.guide-live { height:clamp(320px, 42vw, 460px); display:none }
+.guide-frame.live .guide-live { display:block }
+.guide-frame.live .guide-map { display:none }
+.guide-map { display:block; width:100%; height:auto }
+.guide-legend { display:flex; flex-wrap:wrap; gap:8px 18px; margin:12px 2px 0; font-size:14px; color:var(--soft) }
+.guide-legend i { display:inline-block; vertical-align:-3px; margin-right:7px }
+.lg-p { width:18px; height:18px; border-radius:50%; background:var(--ink); color:#fff; font:600 11px/18px var(--body); text-align:center; font-style:normal }
+.lg-walk { width:26px; height:0; border-top:4px dotted var(--amber); vertical-align:3px !important }
+.lg-cam { width:16px; height:16px; border-radius:50%; background:var(--amber); box-shadow:inset 0 0 0 4px var(--amber), inset 0 0 0 6px #fff }
+.lg-road { width:26px; height:5px; border-radius:3px; background:var(--amber); vertical-align:2px !important }
+.lg-shoot { width:18px; height:14px; border-radius:50%; border:2px dashed var(--amber); background:rgba(185,120,31,.12) }
+.steps { list-style:none; margin:0; padding:0; display:grid; gap:18px; counter-reset:s }
+.steps li { counter-increment:s; display:grid; grid-template-columns:36px 1fr; gap:14px; align-items:start }
+.steps li::before { content:counter(s); width:36px; height:36px; border-radius:50%; background:var(--paper-2); border:1px solid var(--line); color:var(--amber-ink); font:400 19px/34px var(--display); text-align:center }
+.steps b { display:block; font:600 16px/1.3 var(--body); margin:6px 0 3px }
+.steps span { color:var(--soft); font-size:15.5px; line-height:1.5 }
+.guide .acts { margin-top:22px; display:flex; flex-wrap:wrap; gap:10px }
+/* Where it is: regional map with landmarks + drive times */
+.region { border-top:1px solid var(--line); padding-block:clamp(28px, 4vw, 48px) }
+.region h2 { font-size:clamp(28px, 3.6vw, 40px); margin:8px 0 10px }
+.region .lede { color:var(--soft); margin:0 0 20px; max-width:62ch }
+.region-grid { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,.5fr); gap:clamp(20px, 3vw, 44px); align-items:start }
+.region-frame { border-radius:10px; overflow:hidden; border:1px solid var(--line); background:var(--paper-2); box-shadow:0 1px 2px rgba(29,35,32,.06), 0 12px 30px -18px rgba(29,35,32,.35) }
+.region-map { height:clamp(320px, 38vw, 440px) }
+.drives { list-style:none; margin:0; padding:0 }
+.drives li { display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:15px }
+.drives li:first-child { border-top:0; padding-top:2px }
+.drives b { font:400 26px/1 var(--display, "Libre Caslon Display", Georgia, serif); white-space:nowrap }
+.drives small { display:block; color:var(--soft); font-size:13px; margin-top:2px }
+.drives-note { font-size:13px; color:var(--soft); margin:10px 0 0 }
+.region .acts { margin-top:20px; display:flex; flex-wrap:wrap; gap:10px }
+.lm { display:flex; flex-direction:column; align-items:center; gap:4px; pointer-events:none }
+.lm span { font:600 12px/1 var(--body); letter-spacing:.02em; color:var(--ink); background:rgba(251,251,248,.94); border:1px solid var(--line); border-radius:999px; padding:5px 9px; white-space:nowrap; box-shadow:0 2px 8px -3px rgba(29,35,32,.3) }
+.lm i { width:11px; height:11px; border-radius:50%; background:var(--ink); box-shadow:0 0 0 2.5px #fff }
+@media (max-width:900px) { .region-grid { grid-template-columns:1fr } }
+@media (max-width:560px) { .region-map { height:340px } }
+@media (max-width:900px) { .guide-grid { grid-template-columns:1fr } }
+@media (max-width:560px) { .guide-live { height:360px } }
+.gallery { columns:3 300px; column-gap:clamp(14px, 2vw, 24px); padding-bottom:clamp(56px, 8vw, 96px) }
+.gallery img { display:block; width:100%; height:auto; margin:0 0 clamp(14px, 2vw, 24px); border-radius:4px; break-inside:avoid; background:var(--paper-2) }
+footer.cta { background:var(--ink); color:var(--paper); padding-block:clamp(56px, 8vw, 96px) }
+footer.cta h2 { color:var(--paper); font-size:clamp(32px, 4.4vw, 50px); margin:10px 0 12px }
+footer.cta p { color:#b9bdb6; max-width:52ch; margin:0 0 22px }
+footer.cta .label { color:var(--amber) }
+footer.cta .btn-line { border-color:var(--paper); color:var(--paper) }
+footer.cta .acts { display:flex; flex-wrap:wrap; gap:12px }
+footer.small { background:var(--ink); color:#8e948d; font-size:13px; border-top:1px solid #343a36 }
+footer.small .wrap { display:flex; justify-content:space-between; align-items:center; gap:10px; padding-block:20px; flex-wrap:wrap }
+footer.small img { width:30px; height:30px; opacity:.75; vertical-align:middle; margin-right:10px }
+.bookbar { background:#f3e6cf; border-bottom:1px solid #e3cfa8; font-size:14.5px; color:var(--ink) }
+.bookbar .wrap { padding-block:10px }
+.choose-top { margin-top:14px }
+[hidden] { display:none !important }
+@media (max-width:900px) { .grid { grid-template-columns:1fr 1fr } .place-body { grid-template-columns:1fr } }
+@media (max-width:560px) { .grid { grid-template-columns:1fr } .row { grid-template-columns:1fr } .row > span { padding-top:0 } }
+@media (prefers-reduced-motion: reduce) { .card img { transition:none } }
+</style>
+</head>
+<body>
+<noscript><main style="max-width:760px;margin:40px auto;padding:0 20px;font-family:Georgia,serif"><h1>Levee Park</h1><p>Downtown Hastings on the Mississippi: the arched Hastings bridge, a colorful mural, historic brick and wide stone steps down to the river.</p><p><b>Good to know:</b> Street parking downtown. Easy to pair with Schaar&#x27;s Bluff for a second look.</p><ul><li>Hastings</li><li>Easy (stroller friendly)</li><li>Spring, Summer, Fall, Winter</li></ul><p>20 Ramsey St, Hastings, MN 55033 · <a href="https://www.google.com/maps/search/?api=1&amp;query=Levee+Park%2C+20+Ramsey+St%2C+Hastings%2C+MN+55033">Get directions</a></p><p><a href="../book.html">Book a session</a> · <a href="./">All session locations</a></p></main></noscript>
+
+<header class="top"><div class="wrap">
+  <a href="https://www.ourtimephoto.com" aria-label="Our Time Photography"><img src="https://photos.smugmug.com/photos/i-tqsfk2v/0/L/i-tqsfk2v-L.png" alt="Our Time Photography" width="1010" height="71"></a>
+  <a class="btn btn-solid btn-sm" id="bookbtn" href="../book.html">Book a session</a>
+</div></header>
+<div class="bookbar" id="bookbar" hidden><div class="wrap">Picking a spot for your booking? Open any location and tap <b>Choose this spot</b>. Your answers on the form are saved.</div></div>
+
+<main id="list">
+  <div class="wrap intro">
+    <span class="label">Where we shoot</span>
+    <h1>Session locations</h1>
+    <p>Parks, trails, lakeshores and historic spots around the Twin Cities, each with photos from real Our Time sessions. Find one you love, or bring us somewhere that means something to you. Getting ready? See our <a href="https://pay.ourtimephoto.com/prepare.html">session guide</a>.</p>
+  </div>
+  <div class="wrap">
+    <div class="bar">
+      <div class="left">
+        <button class="chip fbtn" type="button" id="ftog" aria-expanded="false" aria-controls="tools">Filters <span class="fcount" id="fcount" hidden></span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+      <div class="views">
+        <button class="clear" type="button" id="clear" hidden>Clear filters</button>
+        <button class="chip" type="button" id="v-grid" aria-pressed="true">Photos</button>
+        <button class="chip" type="button" id="v-map" aria-pressed="false">Map</button>
+      </div>
+    </div>
+    <div class="tools" id="tools" role="group" aria-label="Filter locations" hidden>
+      <div class="row"><span>Session</span><div class="opts"><button class="chip" type="button" data-f="for" data-v="Family" aria-pressed="false">Family</button><button class="chip" type="button" data-f="for" data-v="Seniors" aria-pressed="false">Seniors</button></div></div>
+      <div class="row"><span>City</span><div class="opts"><button class="chip" type="button" data-f="town" data-v="Carver" aria-pressed="false">Carver</button><button class="chip" type="button" data-f="town" data-v="Chanhassen" aria-pressed="false">Chanhassen</button><button class="chip" type="button" data-f="town" data-v="Chaska" aria-pressed="false">Chaska</button><button class="chip" type="button" data-f="town" data-v="Eden Prairie" aria-pressed="false">Eden Prairie</button><button class="chip" type="button" data-f="town" data-v="Excelsior" aria-pressed="false">Excelsior</button><button class="chip" type="button" data-f="town" data-v="Hastings" aria-pressed="false">Hastings</button><button class="chip" type="button" data-f="town" data-v="Jordan" aria-pressed="false">Jordan</button><button class="chip" type="button" data-f="town" data-v="Minneapolis" aria-pressed="false">Minneapolis</button><button class="chip" type="button" data-f="town" data-v="Richfield" aria-pressed="false">Richfield</button><button class="chip" type="button" data-f="town" data-v="St. Paul" aria-pressed="false">St. Paul</button><button class="chip" type="button" data-f="town" data-v="Shakopee" aria-pressed="false">Shakopee</button><button class="chip" type="button" data-f="town" data-v="Stillwater" aria-pressed="false">Stillwater</button><button class="chip" type="button" data-f="town" data-v="Victoria" aria-pressed="false">Victoria</button><button class="chip" type="button" data-f="town" data-v="Waconia" aria-pressed="false">Waconia</button></div></div>
+      <div class="row"><span>Setting</span><div class="opts"><button class="chip" type="button" data-f="setting" data-v="Bridges + stairs" aria-pressed="false">Bridges + stairs</button><button class="chip" type="button" data-f="setting" data-v="City + urban" aria-pressed="false">City + urban</button><button class="chip" type="button" data-f="setting" data-v="Farm + orchard" aria-pressed="false">Farm + orchard</button><button class="chip" type="button" data-f="setting" data-v="Gardens" aria-pressed="false">Gardens</button><button class="chip" type="button" data-f="setting" data-v="Historic" aria-pressed="false">Historic</button><button class="chip" type="button" data-f="setting" data-v="Lake" aria-pressed="false">Lake</button><button class="chip" type="button" data-f="setting" data-v="Prairie + fields" aria-pressed="false">Prairie + fields</button><button class="chip" type="button" data-f="setting" data-v="Railroad tracks" aria-pressed="false">Railroad tracks</button><button class="chip" type="button" data-f="setting" data-v="River" aria-pressed="false">River</button><button class="chip" type="button" data-f="setting" data-v="Woods + trails" aria-pressed="false">Woods + trails</button></div></div>
+      <div class="row"><span>Season</span><div class="opts"><button class="chip" type="button" data-f="season" data-v="Spring" aria-pressed="false">Spring</button><button class="chip" type="button" data-f="season" data-v="Summer" aria-pressed="false">Summer</button><button class="chip" type="button" data-f="season" data-v="Fall" aria-pressed="false">Fall</button><button class="chip" type="button" data-f="season" data-v="Winter" aria-pressed="false">Winter</button></div></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div id="mapwrap" hidden><div id="map"></div><div class="listpane" id="listpane"><ul class="maplist" id="maplist" aria-label="Locations on the map"></ul></div></div>
+  </div>
+</main>
+
+<main id="place" hidden></main>
+
+<footer class="cta"><div class="wrap">
+  <span class="label">Found your spot?</span>
+  <h2 id="cta-h">Let’s plan your session</h2>
+  <p id="cta-p">Tell us a little about your family or senior session and which places caught your eye. Questions anytime: info@ourtimephoto.com.</p>
+  <div class="acts"><a class="btn btn-solid" id="cta-btn" href="../book.html">Book a session</a><a class="btn btn-line" href="https://pay.ourtimephoto.com/prepare.html">Getting ready guide</a></div>
+</div></footer>
+<footer class="small"><div class="wrap"><span><img src="https://photos.smugmug.com/photos/i-Z3RsCCf/0/Th/i-Z3RsCCf-Th.png" alt="">© Our Time Photography</span><span>Family · Seniors</span></div></footer>
+
+<script>
+const PREVIEW = false;
+const MK_TOKEN = "eyJraWQiOiIzTlhNTFkySDI5IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJBNlFVVEJaNExMIiwiaWF0IjoxNzkzOTM2Njc2LCJvcmlnaW4iOiJwYXkub3VydGltZXBob3RvLmNvbSIsInNjb3BlIjoibWFwa2l0X2pzIn0.4BgBo12ivGXSH8fwCRJRp_DbOTrWqmyOAxQgwWkImiLGoC1s6jq7dH2ykBOJne2E6bnnjbJBSc7QKHof0mB6ug";
+const LOCS = [{"key": "rapids-lake", "name": "Rapids Lake", "town": "Carver", "area": "Southwest Metro", "about": "Part of the Minnesota Valley National Wildlife Refuge: golden prairie grass, wooded paths and old fieldstone walls.", "know": "Parking at the Rapids Lake Education and Visitor Center. It's a wildlife refuge, so pets stay on a leash.", "setting": ["Prairie + fields", "Historic", "Woods + trails"], "for": ["Family"], "walk": "Some walking", "seasons": ["Summer", "Fall"], "lat": 44.7175875, "lon": -93.6308638, "addr": "15865 Rapids Lake Rd, Carver, MN 55315", "directions": "https://www.google.com/maps/search/?api=1&query=Rapids+Lake%2C+15865+Rapids+Lake+Rd%2C+Carver%2C+MN+55315", "photos": [["rapids-lake-01.jpg", 1400, 934], ["rapids-lake-02.jpg", 1400, 934], ["rapids-lake-03.jpg", 800, 1200], ["rapids-lake-04.jpg", 1400, 934], ["rapids-lake-05.jpg", 1400, 934], ["rapids-lake-06.jpg", 800, 1200], ["rapids-lake-07.jpg", 1400, 934], ["rapids-lake-08.jpg", 800, 1200], ["rapids-lake-09.jpg", 800, 1200], ["rapids-lake-10.jpg", 800, 1200]], "card": ["rapids-lake-card.jpg", 1000, 500]}, {"key": "lake-minnewashta-regional-park", "name": "Lake Minnewashta Regional Park", "town": "Chanhassen", "area": "Chaska + Chanhassen", "about": "A lakeshore with a sandy beach, wooded paved paths and big boulders. Great light over the water in the evening.", "know": "Carver County regional park: a vehicle permit is required to park (daily permits are sold at the park).", "setting": ["Lake", "Woods + trails"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Summer", "Fall"], "lat": 44.8816254, "lon": -93.5983791, "addr": "6900 Hazeltine Blvd, Excelsior, MN 55331", "directions": "https://www.google.com/maps/search/?api=1&query=Lake+Minnewashta+Regional+Park%2C+6900+Hazeltine+Blvd%2C+Excelsior%2C+MN+55331", "photos": [["lake-minnewashta-regional-park-01.jpg", 1400, 934], ["lake-minnewashta-regional-park-02.jpg", 1400, 934], ["lake-minnewashta-regional-park-03.jpg", 1400, 934], ["lake-minnewashta-regional-park-04.jpg", 1400, 934], ["lake-minnewashta-regional-park-05.jpg", 800, 1200], ["lake-minnewashta-regional-park-06.jpg", 1400, 934], ["lake-minnewashta-regional-park-07.jpg", 800, 1200], ["lake-minnewashta-regional-park-08.jpg", 800, 1200], ["lake-minnewashta-regional-park-09.jpg", 1400, 934]], "card": ["lake-minnewashta-regional-park-card.jpg", 1000, 500]}, {"key": "chaska-city-square-park", "name": "Chaska City Square Park", "town": "Chaska", "area": "Chaska + Chanhassen", "about": "Downtown Chaska's historic town square: a white gazebo, brick paths, big old shade trees and the shops of Chestnut Street.", "know": "Free street parking. Easy to pair with Firemen's Park for a lakeside look.", "setting": ["Historic", "City + urban", "Gardens"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.786438, "lon": -93.600627, "addr": "300 N Chestnut St, Chaska, MN 55318", "directions": "https://www.google.com/maps/search/?api=1&query=Chaska+City+Square+Park%2C+300+N+Chestnut+St%2C+Chaska%2C+MN+55318", "photos": [["chaska-city-square-park-01.jpg", 1400, 934], ["chaska-city-square-park-02.jpg", 1400, 934], ["chaska-city-square-park-03.jpg", 1400, 934], ["chaska-city-square-park-04.jpg", 1400, 934], ["chaska-city-square-park-05.jpg", 797, 1200]], "card": ["chaska-city-square-park-card.jpg", 1000, 500]}, {"key": "chaska-railroad-tracks", "name": "Chaska Railroad Tracks", "town": "Chaska", "area": "Chaska + Chanhassen", "about": "Long straight rails lined with trees on both sides, a classic senior-photo backdrop with beautiful depth and golden light.", "know": "We keep a lookout the whole time and safety always comes first.", "setting": ["Railroad tracks", "Woods + trails"], "for": ["Seniors"], "walk": "Some walking", "seasons": ["Summer", "Fall"], "lat": 44.828942, "lon": -93.616618, "addr": "Bavaria Rd + Ashley Dr, Chaska, MN 55318", "directions": "https://www.google.com/maps/search/?api=1&query=Chaska+Railroad+Tracks%2C+Bavaria+Rd+%2B+Ashley+Dr%2C+Chaska%2C+MN+55318", "photos": [["chaska-railroad-tracks-01.jpg", 1400, 934], ["chaska-railroad-tracks-02.jpg", 800, 1200], ["chaska-railroad-tracks-03.jpg", 800, 1200], ["chaska-railroad-tracks-04.jpg", 800, 1200], ["chaska-railroad-tracks-05.jpg", 800, 1200], ["chaska-railroad-tracks-06.jpg", 800, 1200], ["chaska-railroad-tracks-07.jpg", 1400, 934]], "card": ["chaska-railroad-tracks-card.jpg", 1000, 500]}, {"key": "firemen-s-park-veterans-park", "name": "Firemen's Park + Veterans Park", "town": "Chaska", "area": "Chaska + Chanhassen", "about": "Two Chaska parks we often pair in one session: tall trees and fall color, a wooden boardwalk by the water, and stairs that work in any season.", "know": "Free parking at both parks. Close to home for us, so these are easy to schedule, even in late fall and early winter.", "setting": ["Woods + trails", "Lake", "Bridges + stairs"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Fall", "Winter", "Summer"], "lat": 44.7897734, "lon": -93.6026469, "addr": "3210 Chaska Blvd, Chaska, MN 55318", "directions": "https://www.google.com/maps/search/?api=1&query=Firemen%27s+Park+%2B+Veterans+Park%2C+3210+Chaska+Blvd%2C+Chaska%2C+MN+55318", "photos": [["firemen-s-park-veterans-park-01.jpg", 1400, 934], ["firemen-s-park-veterans-park-02.jpg", 800, 1200], ["firemen-s-park-veterans-park-03.jpg", 1400, 934], ["firemen-s-park-veterans-park-04.jpg", 1400, 934], ["firemen-s-park-veterans-park-05.jpg", 800, 1200], ["firemen-s-park-veterans-park-06.jpg", 1400, 934], ["firemen-s-park-veterans-park-07.jpg", 800, 1200]], "card": ["firemen-s-park-veterans-park-card.jpg", 1000, 500]}, {"key": "minnesota-landscape-arboretum", "name": "Minnesota Landscape Arboretum", "town": "Chaska", "area": "Chaska + Chanhassen", "about": "Flower gardens, sunflowers, waterfalls, stone stairs and footbridges. Something new around every corner.", "know": "The Arboretum charges admission and requires a photography permit for portrait sessions. Ask us for current details.", "setting": ["Gardens", "Woods + trails"], "for": ["Seniors", "Family"], "walk": "Some walking", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.861628, "lon": -93.6151843, "addr": "3675 Arboretum Dr, Chaska, MN 55318", "directions": "https://www.google.com/maps/search/?api=1&query=Minnesota+Landscape+Arboretum%2C+3675+Arboretum+Dr%2C+Chaska%2C+MN+55318", "photos": [["minnesota-landscape-arboretum-01.jpg", 1400, 934], ["minnesota-landscape-arboretum-02.jpg", 800, 1200], ["minnesota-landscape-arboretum-03.jpg", 800, 1200], ["minnesota-landscape-arboretum-04.jpg", 800, 1200], ["minnesota-landscape-arboretum-05.jpg", 800, 1200], ["minnesota-landscape-arboretum-06.jpg", 800, 1200]], "card": ["minnesota-landscape-arboretum-card.jpg", 1000, 500]}, {"key": "sunset-park", "name": "Sunset Park", "town": "Chaska", "area": "Chaska + Chanhassen", "about": "Paved and dirt trails through tall grass and trees, a wooden bench, open lawn that glows at golden hour, and a quiet pond at the edge of the park.", "know": "Free parking in the park's lot by the playground. Close to home for us, so it is easy to schedule. Evening light here is the best of the day.", "setting": ["Woods + trails", "Prairie + fields", "Lake"], "for": ["Family", "Seniors"], "walk": "Lots of walking", "seasons": ["Summer", "Fall"], "lat": 44.8086505, "lon": -93.6183541, "addr": "800 Victoria Dr, Chaska, MN 55318", "directions": "https://www.google.com/maps/search/?api=1&query=Sunset+Park%2C+800+Victoria+Dr%2C+Chaska%2C+MN+55318", "photos": [["sunset-park-01.jpg", 1400, 934], ["sunset-park-02.jpg", 1400, 934], ["sunset-park-03.jpg", 1400, 934], ["sunset-park-04.jpg", 1400, 933], ["sunset-park-05.jpg", 1400, 934], ["sunset-park-06.jpg", 1400, 934], ["sunset-park-07.jpg", 800, 1200], ["sunset-park-08.jpg", 1400, 933], ["sunset-park-09.jpg", 1400, 934], ["sunset-park-10.jpg", 1400, 934]], "card": ["sunset-park-card.jpg", 1000, 500], "guide": "<svg class=\"guide-map\" viewBox=\"0 0 900 640\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-labelledby=\"gm-t gm-d\" font-family=\"Figtree, system-ui, sans-serif\">\n  <title id=\"gm-t\">Sunset Park parking and walking map</title>\n  <desc id=\"gm-d\">Park in the Sunset Park lot next to the playground. From the lot, the paved trail heads east and then north, passing under Highway 212 to the pond, where we often take photos. Koehnen Drive is to the northeast. Not to scale.</desc>\n  <defs>\n    <marker id=\"gm-arrow\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M0 0 L10 5 L0 10 z\" fill=\"#b9781f\"/>\n    </marker>\n    <pattern id=\"gm-reeds\" width=\"14\" height=\"14\" patternUnits=\"userSpaceOnUse\">\n      <path d=\"M3 11 l2-6 M8 12 l1-7 M11 11 l-1-5\" stroke=\"#b9c2a8\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>\n    </pattern>\n  </defs>\n\n  <!-- ground -->\n  <rect width=\"900\" height=\"640\" fill=\"#eef0e6\"/>\n  <path d=\"M0 0 H900 V40 L560 95 C520 110 470 120 420 118 C300 112 170 60 0 70 Z\" fill=\"#e6e8dd\"/>\n  <rect width=\"900\" height=\"640\" fill=\"url(#gm-reeds)\" opacity=\".55\"/>\n  <!-- park lawn south of the highway -->\n  <path d=\"M0 470 L900 245 V640 H0 Z\" fill=\"#e2e7d4\"/>\n\n  <!-- neighborhood + Koehnen Dr -->\n  <path d=\"M560 95 L900 40\" stroke=\"#ffffff\" stroke-width=\"16\" stroke-linecap=\"round\"/>\n  <path d=\"M560 95 L900 40\" stroke=\"#d4d6cc\" stroke-width=\"16\" stroke-linecap=\"round\" opacity=\".55\"/>\n  <g fill=\"#d9dbd1\" stroke=\"#c6c9bd\">\n    <rect x=\"610\" y=\"44\" width=\"34\" height=\"26\" rx=\"3\"/><rect x=\"672\" y=\"34\" width=\"34\" height=\"26\" rx=\"3\"/>\n    <rect x=\"736\" y=\"22\" width=\"34\" height=\"26\" rx=\"3\"/><rect x=\"800\" y=\"12\" width=\"34\" height=\"26\" rx=\"3\"/>\n    <rect x=\"640\" y=\"104\" width=\"34\" height=\"26\" rx=\"3\"/><rect x=\"706\" y=\"93\" width=\"34\" height=\"26\" rx=\"3\"/>\n    <rect x=\"772\" y=\"82\" width=\"34\" height=\"26\" rx=\"3\"/><rect x=\"838\" y=\"71\" width=\"34\" height=\"26\" rx=\"3\"/>\n  </g>\n  <text x=\"742\" y=\"76\" font-size=\"15\" fill=\"#545d57\" transform=\"rotate(-9 742 76)\" font-style=\"italic\">Koehnen Dr</text>\n\n  <!-- north pond -->\n  <path d=\"M300 205 C305 150 380 128 440 140 C500 152 530 190 520 232 C510 270 450 285 390 278 C330 272 296 248 300 205 Z\" fill=\"#c9d7d4\" stroke=\"#aebfbb\" stroke-width=\"2\"/>\n  <!-- south ponds -->\n  <ellipse cx=\"790\" cy=\"565\" rx=\"78\" ry=\"38\" fill=\"#c9d7d4\" stroke=\"#aebfbb\" stroke-width=\"2\"/>\n  <ellipse cx=\"70\" cy=\"590\" rx=\"58\" ry=\"28\" fill=\"#c9d7d4\" stroke=\"#aebfbb\" stroke-width=\"2\"/>\n\n  <!-- trails (paved) -->\n  <g fill=\"none\" stroke=\"#ffffff\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path d=\"M520 0 C530 60 520 110 540 170 C556 215 568 250 588 300\"/>\n    <path d=\"M588 300 C610 350 640 420 640 470 C640 520 610 556 560 560 L370 560\"/>\n    <path d=\"M640 470 C700 470 760 500 870 470\"/>\n  </g>\n  <g fill=\"none\" stroke=\"#c3c6ba\" stroke-width=\"1.4\" stroke-linecap=\"round\">\n    <path d=\"M520 0 C530 60 520 110 540 170 C556 215 568 250 588 300\"/>\n    <path d=\"M588 300 C610 350 640 420 640 470 C640 520 610 556 560 560 L370 560\"/>\n    <path d=\"M640 470 C700 470 760 500 870 470\"/>\n  </g>\n\n  <!-- Highway 212 -->\n  <path d=\"M-20 435 L920 200\" stroke=\"#c9cbc0\" stroke-width=\"58\"/>\n  <path d=\"M-20 435 L920 200\" stroke=\"#d9dbd1\" stroke-width=\"50\"/>\n  <path d=\"M-20 435 L920 200\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-dasharray=\"18 16\"/>\n  <!-- underpass: trail visible under the road -->\n  <path d=\"M572 262 L604 336\" stroke=\"#eef0e6\" stroke-width=\"13\" stroke-linecap=\"butt\" opacity=\".9\"/>\n  <path d=\"M572 262 L604 336\" stroke=\"#ffffff\" stroke-width=\"9\"/>\n  <path d=\"M562 268 L560 282 M612 255 L614 269\" stroke=\"#8a918a\" stroke-width=\"2\"/>\n  <path d=\"M556 294 L574 290 M606 286 L624 282\" stroke=\"#8a918a\" stroke-width=\"2\"/>\n  <g transform=\"translate(130 395)\">\n    <path d=\"M-17 -14 H17 V4 C17 14 8 19 0 22 C-8 19 -17 14 -17 4 Z\" fill=\"#ffffff\" stroke=\"#545d57\" stroke-width=\"1.6\"/>\n    <text y=\"5\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"600\" fill=\"#1d2320\">212</text>\n  </g>\n  <text x=\"250\" y=\"344\" font-size=\"13\" fill=\"#545d57\" letter-spacing=\".12em\" transform=\"rotate(-14 250 344)\">HIGHWAY 212</text>\n\n  <!-- where we shoot -->\n  <ellipse cx=\"465\" cy=\"190\" rx=\"150\" ry=\"82\" fill=\"#b9781f\" fill-opacity=\".08\" stroke=\"#b9781f\" stroke-width=\"2.5\" stroke-dasharray=\"9 7\"/>\n\n  <!-- playground -->\n  <g transform=\"translate(450 512)\">\n    <rect x=\"-26\" y=\"-20\" width=\"52\" height=\"40\" rx=\"8\" fill=\"#d8ddc9\" stroke=\"#c3c9b2\"/>\n    <path d=\"M-14 12 L-6 -10 L2 12 M-6 -10 H12 L16 12\" fill=\"none\" stroke=\"#545d57\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  </g>\n  <text x=\"450\" y=\"482\" text-anchor=\"middle\" font-size=\"13\" fill=\"#545d57\">Playground</text>\n\n  <!-- parking lot -->\n  <g transform=\"translate(210 520)\">\n    <rect width=\"160\" height=\"78\" rx=\"8\" fill=\"#d9dbd1\" stroke=\"#b9bcb1\" stroke-width=\"1.5\"/>\n    <g stroke=\"#ffffff\" stroke-width=\"2\"><path d=\"M24 8 V30 M48 8 V30 M72 8 V30 M96 8 V30 M120 8 V30 M144 8 V30 M24 48 V70 M48 48 V70 M72 48 V70 M96 48 V70 M120 48 V70 M144 48 V70\"/></g>\n  </g>\n  <g transform=\"translate(290 559)\">\n    <circle r=\"22\" fill=\"#b9781f\" stroke=\"#ffffff\" stroke-width=\"3\"/>\n    <text y=\"8\" text-anchor=\"middle\" font-size=\"23\" font-weight=\"600\" fill=\"#ffffff\">P</text>\n  </g>\n\n  <!-- walking route -->\n  <path d=\"M372 560 L560 560 C610 556 640 520 640 470 C640 420 610 350 590 304 C576 270 560 240 540 214\"\n        fill=\"none\" stroke=\"#b9781f\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-dasharray=\"1 10\" marker-end=\"url(#gm-arrow)\"/>\n\n  <!-- labels -->\n  <g font-size=\"15\" fill=\"#1d2320\">\n    <rect x=\"128\" y=\"474\" width=\"122\" height=\"32\" rx=\"16\" fill=\"#1d2320\"/>\n    <text x=\"189\" y=\"495\" text-anchor=\"middle\" fill=\"#f4f4ef\" font-weight=\"600\">Park here</text>\n    <path d=\"M220 506 L250 524\" stroke=\"#1d2320\" stroke-width=\"1.6\"/>\n\n    <text x=\"664\" y=\"356\" font-weight=\"600\">Trail goes under</text>\n    <text x=\"664\" y=\"376\" font-weight=\"600\">Hwy 212</text>\n    <path d=\"M660 360 L612 320\" stroke=\"#1d2320\" stroke-width=\"1.4\"/>\n\n    <text x=\"212\" y=\"98\" fill=\"#8f5a12\" font-weight=\"600\">We often shoot along</text>\n    <text x=\"212\" y=\"118\" fill=\"#8f5a12\" font-weight=\"600\">the trail and pond</text>\n    <path d=\"M360 112 L392 126\" stroke=\"#8f5a12\" stroke-width=\"1.4\"/>\n  </g>\n  <text x=\"300\" y=\"455\" font-family=\"'Libre Caslon Display', Georgia, serif\" font-size=\"30\" fill=\"#1d2320\" opacity=\".8\">Sunset Park</text>\n\n  <!-- compass + scale note -->\n  <g transform=\"translate(46 50)\">\n    <circle r=\"22\" fill=\"#f4f4ef\" stroke=\"#d4d6cc\"/>\n    <path d=\"M0 -15 L7 6 L0 2 L-7 6 Z\" fill=\"#1d2320\"/>\n    <text y=\"-26\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"600\" fill=\"#545d57\">N</text>\n  </g>\n  <text x=\"16\" y=\"630\" font-size=\"12\" fill=\"#545d57\">Not to scale</text>\n</svg>", "guideNote": "Park in the Sunset Park lot next to the playground. We'll meet you there, then walk the paved trail north under Highway 212 to the pond, where we take many of our photos.", "walkmap": {"steps": [["Drive in from Victoria Drive", "The park entrance is at 800 Victoria Dr. Turn in and follow the park road north to the lot."], ["Park by the playground", "Free parking in the lot next to the playground. We'll meet you there."], ["Walk to the pond together", "About a 10-minute walk on the paved trail, under the Highway 212 bridge, to the pond where we take many of our photos."]], "entrance": [44.80864, -93.61835], "lot": [44.80975, -93.6188], "underpass": [44.81188, -93.61755], "shoot": {"center": [44.81255, -93.61835], "radius": 110}, "route": [[44.809807, -93.618673], [44.809686, -93.618874], [44.809694, -93.618947], [44.809726, -93.618984], [44.809666, -93.619097], [44.809534, -93.619258], [44.809742, -93.619398], [44.809909, -93.619484], [44.809979, -93.619496], [44.810044, -93.61948], [44.810073, -93.619464], [44.810221, -93.619202], [44.810399, -93.618912], [44.810466, -93.618845], [44.810502, -93.618776], [44.810521, -93.618693], [44.810517, -93.618615], [44.810427, -93.617811], [44.810409, -93.617713], [44.810376, -93.617619], [44.81033, -93.617558], [44.810234, -93.617481], [44.810185, -93.617429], [44.810154, -93.617336], [44.810129, -93.617165], [44.810113, -93.616946], [44.810122, -93.616865], [44.810149, -93.616754], [44.810198, -93.616648], [44.810346, -93.616712], [44.810527, -93.616785], [44.810675, -93.616867], [44.810733, -93.61688], [44.810794, -93.616893], [44.810825, -93.616991], [44.810876, -93.617074], [44.810934, -93.617134], [44.811024, -93.617212], [44.811067, -93.617241], [44.811267, -93.617348], [44.811351, -93.617382], [44.811448, -93.617406], [44.811523, -93.617437], [44.812141, -93.617729], [44.812216, -93.617752], [44.812263, -93.617755], [44.812364, -93.617764], [44.812622, -93.617861], [44.812873, -93.617993]], "entranceLabel": "Turn in from Victoria Dr"}}, {"key": "miller-park", "name": "Miller Park", "town": "Eden Prairie", "area": "Southwest Metro", "about": "Wooded edges with bright fall color and a wooden footbridge, close to central Eden Prairie.", "know": "Big parking lot and easy walking.", "setting": ["Woods + trails", "Bridges + stairs"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Fall"], "lat": 44.8553492, "lon": -93.485429, "addr": "8208 Eden Prairie Rd, Eden Prairie, MN 55344", "directions": "https://www.google.com/maps/search/?api=1&query=Miller+Park%2C+8208+Eden+Prairie+Rd%2C+Eden+Prairie%2C+MN+55344", "photos": [["miller-park-01.jpg", 1400, 933], ["miller-park-02.jpg", 933, 1400], ["miller-park-03.jpg", 1400, 933], ["miller-park-04.jpg", 1400, 933]], "card": ["miller-park-card.jpg", 1000, 500]}, {"key": "prairie-bluff-conservation-area", "name": "Prairie Bluff Conservation Area", "town": "Eden Prairie", "area": "Southwest Metro", "about": "High prairie above the Minnesota River valley. Tall grass, wide-open sky and some of the best sunsets we shoot.", "know": "Short walk out to the bluff. Best at golden hour and sunset.", "setting": ["Prairie + fields", "River"], "for": ["Seniors"], "walk": "Some walking", "seasons": ["Summer", "Fall"], "lat": 44.821123, "lon": -93.471695, "addr": "10092 Indigo Dr, Eden Prairie, MN 55347", "directions": "https://www.google.com/maps/search/?api=1&query=Prairie+Bluff+Conservation+Area%2C+10092+Indigo+Dr%2C+Eden+Prairie%2C+MN+55347", "photos": [["prairie-bluff-conservation-area-01.jpg", 1400, 934], ["prairie-bluff-conservation-area-02.jpg", 800, 1200], ["prairie-bluff-conservation-area-03.jpg", 800, 1200], ["prairie-bluff-conservation-area-04.jpg", 1400, 934], ["prairie-bluff-conservation-area-05.jpg", 800, 1200]], "card": ["prairie-bluff-conservation-area-card.jpg", 1000, 500]}, {"key": "purgatory-creek-park", "name": "Purgatory Creek Park", "town": "Eden Prairie", "area": "Southwest Metro", "about": "Open lawns, shady tree-lined paths and the Lambert Pavilion. A great pick for big extended-family groups.", "know": "Paved paths and a large parking lot, so it's easy for grandparents and strollers.", "setting": ["Woods + trails", "Gardens"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Summer", "Fall"], "lat": 44.8617396, "lon": -93.4410019, "addr": "13001 Technology Dr, Eden Prairie, MN 55344", "directions": "https://www.google.com/maps/search/?api=1&query=Purgatory+Creek+Park%2C+13001+Technology+Dr%2C+Eden+Prairie%2C+MN+55344", "photos": [["purgatory-creek-park-01.jpg", 1400, 934], ["purgatory-creek-park-02.jpg", 1400, 934], ["purgatory-creek-park-03.jpg", 800, 1200], ["purgatory-creek-park-04.jpg", 800, 1200], ["purgatory-creek-park-05.jpg", 1024, 683], ["purgatory-creek-park-06.jpg", 1400, 934]], "card": ["purgatory-creek-park-card.jpg", 1000, 500]}, {"key": "downtown-excelsior", "name": "Downtown Excelsior", "town": "Excelsior", "area": "Southwest Metro", "about": "Small-town main street charm on Water Street: old brick walls, colorful doors, a classic barber pole and cozy storefronts.", "know": "Street parking along Water Street. Weekday evenings are quietest. Easy to pair with the Port of Excelsior lakefront.", "setting": ["City + urban", "Historic"], "for": ["Seniors", "Family"], "walk": "Easy (stroller friendly)", "seasons": ["Spring", "Summer", "Fall", "Winter"], "lat": 44.9012, "lon": -93.5672, "addr": "Water St, Excelsior, MN 55331", "directions": "https://www.google.com/maps/search/?api=1&query=Downtown+Excelsior%2C+Water+St%2C+Excelsior%2C+MN+55331", "photos": [["downtown-excelsior-01.jpg", 800, 1200], ["downtown-excelsior-02.jpg", 800, 1200], ["downtown-excelsior-03.jpg", 800, 1200], ["downtown-excelsior-04.jpg", 1400, 933], ["downtown-excelsior-05.jpg", 800, 1200], ["downtown-excelsior-06.jpg", 1400, 934], ["downtown-excelsior-07.jpg", 800, 1200], ["downtown-excelsior-08.jpg", 800, 1200], ["downtown-excelsior-09.jpg", 800, 1200], ["downtown-excelsior-10.jpg", 800, 1200], ["downtown-excelsior-11.jpg", 1400, 933], ["downtown-excelsior-12.jpg", 1400, 933]], "card": ["downtown-excelsior-card.jpg", 1000, 500]}, {"key": "port-of-excelsior", "name": "Port of Excelsior", "town": "Excelsior", "area": "Southwest Metro", "about": "The Lake Minnetonka shoreline at Excelsior: docks, sailboats, big shade trees and golden evening light on the water.", "know": "Free parking near the Commons. Easy to pair with Downtown Excelsior, a block away.", "setting": ["Lake"], "for": ["Seniors"], "walk": "Easy (stroller friendly)", "seasons": ["Summer", "Fall"], "lat": 44.904231, "lon": -93.565358, "addr": "2 Water St, Excelsior, MN 55331", "directions": "https://www.google.com/maps/search/?api=1&query=Port+of+Excelsior%2C+2+Water+St%2C+Excelsior%2C+MN+55331", "photos": [["port-of-excelsior-01.jpg", 800, 1200], ["port-of-excelsior-02.jpg", 800, 1200], ["port-of-excelsior-03.jpg", 1400, 933], ["port-of-excelsior-04.jpg", 1400, 934], ["port-of-excelsior-05.jpg", 800, 1200]], "card": ["port-of-excelsior-card.jpg", 1000, 500]}, {"key": "levee-park", "name": "Levee Park", "town": "Hastings", "area": "Hastings + East Metro", "about": "Downtown Hastings on the Mississippi: the arched Hastings bridge, a colorful mural, historic brick and wide stone steps down to the river.", "know": "Street parking downtown. Easy to pair with Schaar's Bluff for a second look.", "setting": ["River", "City + urban", "Bridges + stairs"], "for": ["Family", "Seniors"], "walk": "Easy (stroller friendly)", "seasons": ["Spring", "Summer", "Fall", "Winter"], "lat": 44.7447705, "lon": -92.850064, "addr": "20 Ramsey St, Hastings, MN 55033", "directions": "https://www.google.com/maps/search/?api=1&query=Levee+Park%2C+20+Ramsey+St%2C+Hastings%2C+MN+55033", "photos": [["levee-park-01.jpg", 1400, 934], ["levee-park-02.jpg", 1400, 934], ["levee-park-03.jpg", 1400, 934], ["levee-park-04.jpg", 800, 1200], ["levee-park-05.jpg", 800, 1200], ["levee-park-06.jpg", 1400, 934]], "card": ["levee-park-card.jpg", 1000, 500]}, {"key": "schaar-s-bluff", "name": "Schaar's Bluff", "town": "Hastings", "area": "Hastings + East Metro", "about": "A bluff-top Dakota County park with tall prairie grass, shaded trails and a view down to the Mississippi River valley.", "know": "Sunset over the valley is the best light here. Plan on a short walk from the parking lot.", "setting": ["River", "Prairie + fields", "Woods + trails"], "for": ["Seniors", "Family"], "walk": "Some walking", "seasons": ["Summer", "Fall"], "lat": 44.7648631, "lon": -92.9340802, "addr": "8500 127th St E, Hastings, MN 55033", "directions": "https://www.google.com/maps/search/?api=1&query=Schaar%27s+Bluff%2C+8500+127th+St+E%2C+Hastings%2C+MN+55033", "photos": [["schaar-s-bluff-01.jpg", 800, 1200], ["schaar-s-bluff-02.jpg", 1400, 934], ["schaar-s-bluff-03.jpg", 800, 1200], ["schaar-s-bluff-04.jpg", 800, 1200], ["schaar-s-bluff-05.jpg", 1400, 934], ["schaar-s-bluff-06.jpg", 800, 1200]], "card": ["schaar-s-bluff-card.jpg", 1000, 500]}, {"key": "lagoon-park", "name": "Lagoon Park", "town": "Jordan", "area": "Southwest Metro", "about": "Big shade trees, open lawn and a quiet lagoon with wooden docks along the water. One of our favorite places for fall color.", "know": "Parking lot right next to the park. Golden hour comes through the trees beautifully here.", "setting": ["Woods + trails", "Lake", "Bridges + stairs"], "for": ["Family", "Seniors"], "walk": "Easy (stroller friendly)", "seasons": ["Summer", "Fall"], "lat": 44.6604203, "lon": -93.6299107, "addr": "300 Park Dr, Jordan, MN 55352", "directions": "https://www.google.com/maps/search/?api=1&query=Lagoon+Park%2C+300+Park+Dr%2C+Jordan%2C+MN+55352", "photos": [["lagoon-park-01.jpg", 1400, 934], ["lagoon-park-02.jpg", 800, 1200], ["lagoon-park-03.jpg", 1400, 934], ["lagoon-park-04.jpg", 800, 1200], ["lagoon-park-05.jpg", 1400, 934], ["lagoon-park-06.jpg", 800, 1200]], "card": ["lagoon-park-card.jpg", 1000, 500]}, {"key": "lyndale-park-peace-garden", "name": "Lyndale Park Peace Garden", "town": "Minneapolis", "area": "Minneapolis + Richfield", "about": "A quiet rock garden just north of Lake Harriet, with winding paths, a wooden footbridge over a little stream, big boulders, tall evergreen hedges and flowers in bloom most of the season.", "know": "Paid parking at the meters by the gardens, or free street parking along Lake Harriet Pkwy. Summer weekends get busy; the Roberts Bird Sanctuary is right next door.", "setting": ["Gardens", "Bridges + stairs"], "for": ["Family", "Seniors"], "walk": "Easy (stroller friendly)", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.928546, "lon": -93.2962403, "addr": "4124 Roseway Rd, Minneapolis, MN 55409", "directions": "https://www.google.com/maps/search/?api=1&query=Lyndale+Park+Peace+Garden%2C+4124+Roseway+Rd%2C+Minneapolis%2C+MN+55409", "photos": [["lyndale-park-peace-garden-01.jpg", 1400, 933], ["lyndale-park-peace-garden-02.jpg", 1400, 933], ["lyndale-park-peace-garden-03.jpg", 1400, 934], ["lyndale-park-peace-garden-04.jpg", 1400, 933], ["lyndale-park-peace-garden-05.jpg", 1400, 933], ["lyndale-park-peace-garden-06.jpg", 799, 1200], ["lyndale-park-peace-garden-07.jpg", 1400, 934], ["lyndale-park-peace-garden-08.jpg", 800, 1200], ["lyndale-park-peace-garden-09.jpg", 800, 1200]], "card": ["lyndale-park-peace-garden-card.jpg", 1000, 500]}, {"key": "mill-city-ruins", "name": "Mill City Ruins", "town": "Minneapolis", "area": "Minneapolis + Richfield", "about": "The limestone ruins of the old flour mills on the Mississippi riverfront: rusted iron gears, stone walls, wild grasses and the Stone Arch Bridge right behind you.", "know": "Paid parking nearby. Easy to pair with the Stone Arch Bridge, a short walk away.", "setting": ["Historic", "City + urban", "River"], "for": ["Seniors", "Family"], "walk": "Some walking", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.9800969, "lon": -93.2561825, "addr": "Mill Ruins Park, 102 Portland Ave S, Minneapolis, MN 55401", "directions": "https://www.google.com/maps/search/?api=1&query=Mill+City+Ruins%2C+Mill+Ruins+Park%2C+102+Portland+Ave+S%2C+Minneapolis%2C+MN+55401", "photos": [["mill-city-ruins-01.jpg", 1400, 933], ["mill-city-ruins-02.jpg", 799, 1199], ["mill-city-ruins-03.jpg", 800, 1200], ["mill-city-ruins-04.jpg", 800, 1200], ["mill-city-ruins-05.jpg", 800, 1200], ["mill-city-ruins-06.jpg", 1400, 933], ["mill-city-ruins-07.jpg", 800, 1200], ["mill-city-ruins-08.jpg", 800, 1200]], "card": ["mill-city-ruins-card.jpg", 1000, 500]}, {"key": "minnehaha-regional-park", "name": "Minnehaha Regional Park", "town": "Minneapolis", "area": "Minneapolis + Richfield", "about": "Minnehaha Falls, the creek winding below it, limestone walls, stone stairs and wooded trails. One of our favorite senior spots.", "know": "Paid parking at the park pay stations. The area around the falls gets busy on nice weekends; mornings are quieter.", "setting": ["River", "Woods + trails", "Bridges + stairs"], "for": ["Seniors", "Family"], "walk": "Walking + stairs", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.9153, "lon": -93.211, "addr": "4801 S Minnehaha Dr, Minneapolis, MN 55417", "directions": "https://www.google.com/maps/search/?api=1&query=Minnehaha+Regional+Park%2C+4801+S+Minnehaha+Dr%2C+Minneapolis%2C+MN+55417", "photos": [["minnehaha-regional-park-01.jpg", 512, 768], ["minnehaha-regional-park-02.jpg", 800, 1200], ["minnehaha-regional-park-03.jpg", 512, 768], ["minnehaha-regional-park-04.jpg", 512, 768], ["minnehaha-regional-park-05.jpg", 511, 768], ["minnehaha-regional-park-06.jpg", 512, 768], ["minnehaha-regional-park-07.jpg", 800, 1200], ["minnehaha-regional-park-08.jpg", 1400, 934], ["minnehaha-regional-park-09.jpg", 800, 1200], ["minnehaha-regional-park-10.jpg", 800, 1200], ["minnehaha-regional-park-11.jpg", 799, 1200], ["minnehaha-regional-park-12.jpg", 800, 1200]], "card": ["minnehaha-regional-park-card.jpg", 1000, 500]}, {"key": "stone-arch-bridge", "name": "Stone Arch Bridge", "town": "Minneapolis", "area": "Minneapolis + Richfield", "about": "The historic stone bridge over the Mississippi, with the Minneapolis skyline and the mill district behind you.", "know": "Paid parking nearby. Weekends get busy; early mornings and weekday evenings are calmer.", "setting": ["Bridges + stairs", "City + urban", "River"], "for": ["Seniors"], "walk": "Some walking", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.9807531, "lon": -93.2535137, "addr": "100 Portland Ave, Minneapolis, MN 55401", "directions": "https://www.google.com/maps/search/?api=1&query=Stone+Arch+Bridge%2C+100+Portland+Ave%2C+Minneapolis%2C+MN+55401", "photos": [["stone-arch-bridge-01.jpg", 1400, 934], ["stone-arch-bridge-02.jpg", 1400, 934], ["stone-arch-bridge-03.jpg", 1400, 934], ["stone-arch-bridge-04.jpg", 1400, 934], ["stone-arch-bridge-05.jpg", 1400, 934]], "card": ["stone-arch-bridge-card.jpg", 1000, 500]}, {"key": "wood-lake-nature-center", "name": "Wood Lake Nature Center", "town": "Richfield", "area": "Minneapolis + Richfield", "about": "A nature preserve in the middle of the city, with wooded trails, boardwalks over the marsh and big fall color.", "know": "Trails are wide and flat. Free parking at the nature center.", "setting": ["Woods + trails", "Lake"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Fall", "Summer"], "lat": 44.8819762, "lon": -93.2900882, "addr": "6710 Lake Shore Dr S, Richfield, MN 55423", "directions": "https://www.google.com/maps/search/?api=1&query=Wood+Lake+Nature+Center%2C+6710+Lake+Shore+Dr+S%2C+Richfield%2C+MN+55423", "photos": [["wood-lake-nature-center-01.jpg", 512, 768], ["wood-lake-nature-center-02.jpg", 800, 1200], ["wood-lake-nature-center-03.jpg", 800, 1200], ["wood-lake-nature-center-04.jpg", 1400, 934], ["wood-lake-nature-center-05.jpg", 512, 768], ["wood-lake-nature-center-06.jpg", 1400, 934], ["wood-lake-nature-center-07.jpg", 1400, 934]], "card": ["wood-lake-nature-center-card.jpg", 1000, 500]}, {"key": "cathedral-hill", "name": "Cathedral Hill", "town": "St. Paul", "area": "St. Paul", "about": "Grand stone steps and arches at the Cathedral of Saint Paul, plus cozy coffee-shop shots nearby at Nina's Cafe.", "know": "Indoor cafe photos depend on the cafe; we check with them before your session. Street parking.", "setting": ["City + urban", "Historic"], "for": ["Seniors"], "walk": "Some walking", "seasons": ["Spring", "Summer", "Fall", "Winter"], "lat": 44.9469589, "lon": -93.1092362, "addr": "239 Selby Ave, St. Paul, MN 55102", "directions": "https://www.google.com/maps/search/?api=1&query=Cathedral+Hill%2C+239+Selby+Ave%2C+St.+Paul%2C+MN+55102", "photos": [["cathedral-hill-01.jpg", 800, 1200], ["cathedral-hill-02.jpg", 800, 1200], ["cathedral-hill-03.jpg", 800, 1200], ["cathedral-hill-04.jpg", 800, 1200], ["cathedral-hill-05.jpg", 800, 1200], ["cathedral-hill-06.jpg", 1400, 934]], "card": ["cathedral-hill-card.jpg", 1000, 500]}, {"key": "como-park", "name": "Como Park", "town": "St. Paul", "area": "St. Paul", "about": "Formal gardens, iron gates, a pergola and the Lakeside Pavilion on Lake Como.", "know": "Free parking, but weekends are busy around the zoo and conservatory. Mornings are quieter.", "setting": ["Gardens", "Lake", "Historic"], "for": ["Family", "Seniors"], "walk": "Some walking", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.982248, "lon": -93.1431872, "addr": "1360 Lexington Pkwy N, St. Paul, MN 55103", "directions": "https://www.google.com/maps/search/?api=1&query=Como+Park%2C+1360+Lexington+Pkwy+N%2C+St.+Paul%2C+MN+55103", "photos": [["como-park-01.jpg", 969, 768], ["como-park-02.jpg", 1024, 683], ["como-park-03.jpg", 1400, 934], ["como-park-04.jpg", 1400, 934], ["como-park-05.jpg", 1400, 934], ["como-park-06.jpg", 1400, 934], ["como-park-07.jpg", 1400, 934], ["como-park-08.jpg", 1400, 934], ["como-park-09.jpg", 1400, 934], ["como-park-10.jpg", 1400, 934], ["como-park-11.jpg", 800, 1200]], "card": ["como-park-card.jpg", 891, 446]}, {"key": "harriet-island-regional-park", "name": "Harriet Island Regional Park", "town": "St. Paul", "area": "St. Paul", "about": "On the Mississippi across from downtown St. Paul: big lawns, shade trees and river views with the bridges and skyline behind you.", "know": "Free parking along Harriet Island Rd. Busy on event weekends.", "setting": ["River", "City + urban", "Woods + trails"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Summer", "Fall"], "lat": 44.9353391, "lon": -93.0986935, "addr": "200 Dr Justus Ohage Blvd, St. Paul, MN 55107", "directions": "https://www.google.com/maps/search/?api=1&query=Harriet+Island+Regional+Park%2C+200+Dr+Justus+Ohage+Blvd%2C+St.+Paul%2C+MN+55107", "photos": [["harriet-island-regional-park-01.jpg", 1400, 934], ["harriet-island-regional-park-02.jpg", 800, 1200], ["harriet-island-regional-park-03.jpg", 1400, 934], ["harriet-island-regional-park-04.jpg", 1400, 934], ["harriet-island-regional-park-05.jpg", 1400, 934], ["harriet-island-regional-park-06.jpg", 1400, 934]], "card": ["harriet-island-regional-park-card.jpg", 1000, 500]}, {"key": "st-anthony-park-library", "name": "St. Anthony Park Library", "town": "St. Paul", "area": "St. Paul", "about": "A historic Carnegie library with arched windows, a wooden balcony and warm light. Perfect for book lovers.", "know": "Indoor photos follow library hours and rules. The neighborhood around it is great for outdoor shots too.", "setting": ["Historic", "City + urban"], "for": ["Seniors"], "walk": "Easy (stroller friendly)", "seasons": ["Spring", "Summer", "Fall", "Winter"], "lat": 44.9810001, "lon": -93.1935622, "addr": "2245 Como Ave, St. Paul, MN 55108", "directions": "https://www.google.com/maps/search/?api=1&query=St.+Anthony+Park+Library%2C+2245+Como+Ave%2C+St.+Paul%2C+MN+55108", "photos": [["st-anthony-park-library-01.jpg", 800, 1200], ["st-anthony-park-library-02.jpg", 800, 1200], ["st-anthony-park-library-03.jpg", 1400, 934], ["st-anthony-park-library-04.jpg", 1400, 934], ["st-anthony-park-library-05.jpg", 800, 1200]], "card": ["st-anthony-park-library-card.jpg", 1000, 500]}, {"key": "huber-park", "name": "Huber Park", "town": "Shakopee", "area": "Southwest Metro", "about": "Shakopee's riverfront park: a pavilion, a river trail, brick downtown backdrops and the green steel pedestrian bridge over the Minnesota River.", "know": "Free parking at the park. Easy walk to downtown Shakopee for brick-wall shots.", "setting": ["River", "Bridges + stairs", "Woods + trails"], "for": ["Seniors", "Family"], "walk": "Easy (stroller friendly)", "seasons": ["Summer", "Fall"], "lat": 44.8004512, "lon": -93.5225429, "addr": "150 Fillmore St N, Shakopee, MN 55379", "directions": "https://www.google.com/maps/search/?api=1&query=Huber+Park%2C+150+Fillmore+St+N%2C+Shakopee%2C+MN+55379", "photos": [["huber-park-01.jpg", 1400, 934], ["huber-park-02.jpg", 800, 1200], ["huber-park-03.jpg", 1400, 934], ["huber-park-04.jpg", 1400, 933], ["huber-park-05.jpg", 800, 1200], ["huber-park-06.jpg", 800, 1200], ["huber-park-07.jpg", 1400, 934], ["huber-park-08.jpg", 800, 1200], ["huber-park-09.jpg", 800, 1200], ["huber-park-10.jpg", 1400, 934], ["huber-park-11.jpg", 800, 1200], ["huber-park-12.jpg", 800, 1200], ["huber-park-13.jpg", 800, 1200], ["huber-park-14.jpg", 1400, 934]], "card": ["huber-park-card.jpg", 1000, 500]}, {"key": "aamodt-s-apple-farm", "name": "Aamodt's Apple Farm", "town": "Stillwater", "area": "Hastings + East Metro", "about": "An orchard and vineyard with a red barn, rustic wood and rows of apple trees. Peak season is September and October.", "know": "It's a working farm and busy in apple season; we confirm their photo policy before booking. Weekdays are best.", "setting": ["Farm + orchard"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Fall"], "lat": 45.078635, "lon": -92.8631203, "addr": "6428 Manning Ave N, Stillwater, MN 55082", "directions": "https://www.google.com/maps/search/?api=1&query=Aamodt%27s+Apple+Farm%2C+6428+Manning+Ave+N%2C+Stillwater%2C+MN+55082", "photos": [["aamodt-s-apple-farm-01.jpg", 933, 1400], ["aamodt-s-apple-farm-02.jpg", 934, 1400], ["aamodt-s-apple-farm-03.jpg", 933, 1400], ["aamodt-s-apple-farm-04.jpg", 1400, 933], ["aamodt-s-apple-farm-05.jpg", 1400, 933]], "card": ["aamodt-s-apple-farm-card.jpg", 1000, 500]}, {"key": "carver-park-reserve", "name": "Carver Park Reserve", "town": "Victoria", "area": "Southwest Metro", "about": "A big Three Rivers park reserve of lakes, marsh and woods: a long wooden dock over the water, a red farm gate, wooded trails and quiet roads that work for car shots.", "know": "Spots are spread out, so we drive between them: the lot at the end of Spring View Rd, the gravel cul-de-sac on Carver Park Rd and the boat launch dock. Gravel roads and no restrooms here, but we bring our pop-up changing tent for outfit changes.", "setting": ["Lake", "Woods + trails", "Prairie + fields"], "for": ["Seniors"], "walk": "Drive between spots", "seasons": ["Spring", "Summer", "Fall"], "lat": 44.8707503, "lon": -93.69742, "addr": "Carver Park Rd, Victoria, MN 55386", "directions": "https://www.google.com/maps/search/?api=1&query=Carver+Park+Reserve%2C+Carver+Park+Rd%2C+Victoria%2C+MN+55386", "photos": [["carver-park-reserve-01.jpg", 1400, 934], ["carver-park-reserve-02.jpg", 800, 1200], ["carver-park-reserve-03.jpg", 1400, 933], ["carver-park-reserve-04.jpg", 800, 1200], ["carver-park-reserve-05.jpg", 800, 1200], ["carver-park-reserve-06.jpg", 1400, 934], ["carver-park-reserve-07.jpg", 1400, 933], ["carver-park-reserve-08.jpg", 1400, 934]], "card": ["carver-park-reserve-card.jpg", 1000, 500], "walkmap": {"title": "Where to park and shoot", "roadLabel": "Spring View Dr (car photos)", "steps": [["Two ways in from Victoria Drive", "Grimm Rd leads west to Spring View Dr and the Parley Lake lot. Carver Park Rd leads south to the Lake Auburn boat launch."], ["We'll pick the spots together", "Every session is a little different. We'll let you know where to meet, and we drive between spots since they're spread out."], ["Gravel roads, no restrooms", "Park roads are gravel and there are no restrooms at these spots, so we bring a pop-up changing tent for outfit changes."]], "entrances": [{"label": "Grimm Rd from Victoria Dr", "at": [44.8836, -93.70313]}, {"label": "Carver Park Rd from Victoria Dr", "at": [44.874202, -93.690036]}], "parks": [{"label": "Parley Lake lot", "at": [44.88466, -93.72448]}, {"label": "Springview lot", "at": [44.87822, -93.71915]}, {"label": "Boat launch, dock + cul-de-sac", "at": [44.86585, -93.70228]}], "spots": [{"label": "Lake view + trails", "at": [44.8836, -93.7302]}], "roads": [[[44.877577, -93.718933], [44.877677, -93.719116], [44.877905, -93.71923], [44.878158, -93.719237], [44.878368, -93.719196], [44.878546, -93.719101], [44.878626, -93.719014], [44.878692, -93.718893], [44.878769, -93.718656], [44.878774, -93.718221], [44.878764, -93.717938], [44.878815, -93.717769], [44.878936, -93.717617], [44.879095, -93.7175], [44.879192, -93.717311], [44.879247, -93.717096], [44.87933, -93.716361], [44.879321, -93.716151], [44.879259, -93.715729], [44.879246, -93.715437], [44.87927, -93.71513], [44.879331, -93.714857], [44.879428, -93.714577], [44.879539, -93.714352], [44.879697, -93.714128], [44.879893, -93.713947], [44.880083, -93.713825], [44.880339, -93.71374], [44.880583, -93.713725], [44.880853, -93.713757], [44.881038, -93.713852], [44.881072, -93.713882], [44.8812, -93.713993], [44.881454, -93.714245], [44.881526, -93.714316], [44.881859, -93.714647], [44.882057, -93.714786], [44.882241, -93.714873], [44.882465, -93.714913], [44.882691, -93.71491], [44.882911, -93.714839], [44.883195, -93.714688], [44.883643, -93.714401], [44.883918, -93.714237]]], "margin": [0.0016, 0.0022, 0.002, 0.002], "directionsLabel": "Directions to the park"}}, {"key": "wassermann-lake-reserve", "name": "Wassermann Lake Reserve", "town": "Victoria", "area": "Southwest Metro", "about": "A quiet lake reserve with a long wooden boardwalk, tall grasses and wooded shoreline.", "know": "Carver County park: a vehicle permit is required to park.", "setting": ["Lake", "Woods + trails", "Bridges + stairs"], "for": ["Seniors"], "walk": "Some walking", "seasons": ["Summer", "Fall"], "lat": 44.8395089, "lon": -93.6810073, "addr": "9175 Church Lake Blvd, Victoria, MN 55386", "directions": "https://www.google.com/maps/search/?api=1&query=Wassermann+Lake+Reserve%2C+9175+Church+Lake+Blvd%2C+Victoria%2C+MN+55386", "photos": [["wassermann-lake-reserve-01.jpg", 1400, 933], ["wassermann-lake-reserve-02.jpg", 800, 1200], ["wassermann-lake-reserve-03.jpg", 800, 1200], ["wassermann-lake-reserve-04.jpg", 800, 1200], ["wassermann-lake-reserve-05.jpg", 1400, 933]], "card": ["wassermann-lake-reserve-card.jpg", 1000, 500]}, {"key": "grimm-farm-historic-site", "name": "Grimm Farm Historic Site", "town": "Waconia", "area": "Southwest Metro", "about": "A historic farmstead inside Carver Park Reserve, with open fields, tree lines and warm fall color.", "know": "Part of Three Rivers Park District's Carver Park Reserve.", "setting": ["Historic", "Prairie + fields", "Farm + orchard"], "for": ["Family"], "walk": "Easy (stroller friendly)", "seasons": ["Fall", "Summer"], "lat": 44.8844816, "lon": -93.7199759, "addr": "7720 Grimm Rd, Waconia, MN 55387", "directions": "https://www.google.com/maps/search/?api=1&query=Grimm+Farm+Historic+Site%2C+7720+Grimm+Rd%2C+Waconia%2C+MN+55387", "photos": [["grimm-farm-historic-site-01.jpg", 800, 1200], ["grimm-farm-historic-site-02.jpg", 800, 1200], ["grimm-farm-historic-site-03.jpg", 800, 1200], ["grimm-farm-historic-site-04.jpg", 1400, 934], ["grimm-farm-historic-site-05.jpg", 800, 1200], ["grimm-farm-historic-site-06.jpg", 800, 1200]], "card": ["grimm-farm-historic-site-card.jpg", 1000, 500]}];
+const $ = s => document.querySelector(s);
+const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+// Booking mode: only when this visit started from the booking form (book.html links here with ?from=book&for=Family|Seniors).
+// Remembered for this tab (sessionStorage) while they browse; the form clears it when they go back.
+const FROMBOOK = (() => {
+  const q = new URLSearchParams(location.search);
+  try {
+    if (q.get('from') === 'book') { sessionStorage.setItem('otpFromBook', q.get('for') || 'any'); history.replaceState(null, '', location.pathname + location.hash); }
+    return sessionStorage.getItem('otpFromBook');
+  } catch (e) { return null; }
+})();
+const chooseUrl = l => "../book.html" + '?location=' + encodeURIComponent(l.name);
+const chooseBtn = l => FROMBOOK ? `<a class="btn btn-solid btn-sm" href="${chooseUrl(l)}">Choose this spot</a>` : '';
+const state = {for: new Set(), town: new Set(), setting: new Set(), season: new Set(), easy: false, view: 'grid'};
+function matches(l) {
+  if (state.for.size && ![...state.for].some(v => l.for.includes(v))) return false;
+  if (state.town.size && !state.town.has(l.town)) return false;
+  if (state.setting.size && ![...state.setting].some(v => l.setting.includes(v))) return false;
+  if (state.season.size && ![...state.season].some(v => l.seasons.includes(v))) return false;
+  if (state.easy && !/easy/i.test(l.walk || '')) return false;
+  return true;
+}
+const where = l => (l.area && l.area.includes(l.town)) ? esc(l.area) : esc(l.town) + (l.area ? ' · ' + esc(l.area) : '');
+function card(l) {
+  const c = l.card || l.photos[0];
+  return `<a class="card" href="#${l.key}"><div class="ph">${c ? `<img src="img/${c[0]}" alt="Photo from an Our Time session at ${esc(l.name)}" width="${c[1]}" height="${c[2]}" loading="lazy">` : ''}</div>
+    <h3>${esc(l.name)}</h3><div class="where">${where(l)}</div>
+    <div class="tags">${l.setting.map(s => `<span class="tag">${esc(s)}</span>`).join('')}</div></a>`;
+}
+let map = null, markers = [];
+function renderList() {
+  const shown = LOCS.filter(matches);
+  $('#grid').innerHTML = shown.length ? shown.map(card).join('') : '<p class="empty">No locations match all of those. Try removing a filter.</p>';
+  $('#count').textContent = shown.length === LOCS.length ? `${LOCS.length} locations` : `Showing ${shown.length} of ${LOCS.length} locations`;
+  const nf = state.for.size + state.town.size + state.setting.size + state.season.size + (state.easy ? 1 : 0);
+  $('#clear').hidden = !nf; $('#fcount').hidden = !nf; $('#fcount').textContent = nf;
+  $('#grid').hidden = state.view !== 'grid'; $('#mapwrap').hidden = state.view !== 'map';
+  $('#v-grid').setAttribute('aria-pressed', state.view === 'grid'); $('#v-map').setAttribute('aria-pressed', state.view === 'map');
+  if (state.view === 'map') drawMap(shown);
+}
+function drawList(shown) {
+  $('#maplist').innerHTML = shown.filter(l => l.lat && l.lon).map(l =>
+    `<li><button type="button" data-k="${l.key}">${esc(l.name)}<small>${esc(l.town)}</small></button></li>`).join('');
+  $('#maplist').querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => focusLoc(b.dataset.k));
+    b.addEventListener('mouseenter', () => hoverLoc(b.dataset.k, true));
+    b.addEventListener('mouseleave', () => hoverLoc(b.dataset.k, false));
+    b.addEventListener('focus', () => hoverLoc(b.dataset.k, true));
+    b.addEventListener('blur', () => hoverLoc(b.dataset.k, false));
+  });
+}
+function hoverLoc(k, on) {
+  const a = annByKey[k];
+  if (a && window.mapkit) {
+    // pull the pin out of its cluster, darken it and draw it on top while its name is hovered
+    a.clusteringIdentifier = on ? null : 'loc';
+    a.color = on ? '#1d2320' : '#b9781f';
+    if (on) a._dp = a.displayPriority; a.displayPriority = on ? 1000 : a._dp;
+    a.titleVisibility = on ? mapkit.FeatureVisibility.Visible : mkLabels();
+  } else if (mkByKey[k]) {
+    const el = mkByKey[k].getElement(); if (el) el.classList.toggle('pin-hot', on);
+    if (on) mkByKey[k].setZIndexOffset(1000); else mkByKey[k].setZIndexOffset(0);
+  }
+}
+function hotList(keys) {
+  let first = null;
+  $('#maplist').querySelectorAll('button').forEach(b => { const on = keys.includes(b.dataset.k); b.classList.toggle('hot', on); if (on && !first) first = b; });
+  const pane = $('#listpane');
+  if (first && pane.scrollHeight > pane.clientHeight) {
+    const r = first.getBoundingClientRect(), pr = pane.getBoundingClientRect();
+    if (r.top < pr.top || r.bottom > pr.bottom) pane.scrollTop += (r.top - pr.top) - (pr.height - r.height) / 2;
+  }
+}
+function markList(k) { $('#maplist').querySelectorAll('button').forEach(b => b.setAttribute('aria-current', b.dataset.k === k)); }
+let annByKey = {}, mkByKey = {};
+function focusLoc(k) {
+  markList(k);
+  if (window.mapkit && amap && annByKey[k]) {
+    const a = annByKey[k];
+    amap.setRegionAnimated(new mapkit.CoordinateRegion(a.coordinate, new mapkit.CoordinateSpan(0.06, 0.06)));
+    setTimeout(() => { amap.selectedAnnotation = a; }, 650);
+  } else if (map && mkByKey[k]) {
+    map.setView(mkByKey[k].getLatLng(), 14); mkByKey[k].openPopup();
+  }
+  if (window.innerWidth <= 900) $('#map').scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+function drawMap(shown) {
+  drawList(shown);
+  const el = $('#map');
+  if (!PREVIEW && MK_TOKEN && window.mapkit) return drawApple(el, shown);
+  if (PREVIEW || !window.L) { el.innerHTML = '<div class="mapnote" style="height:100%">The map appears on the live page.</div>'; return; }
+  if (!map) {
+    map = L.map(el, {scrollWheelZoom: false});
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+  }
+  markers.forEach(m => m.remove()); markers = [];
+  const icon = L.divIcon({className: '', html: '<div class="pin"></div>', iconSize: [16, 16], iconAnchor: [8, 8]});
+  mkByKey = {};
+  shown.filter(l => l.lat && l.lon).forEach(l => markers.push(mkByKey[l.key] = L.marker([l.lat, l.lon], {icon, title: l.name}).on('click', () => markList(l.key)).on('mouseover', () => hotList([l.key])).on('mouseout', () => hotList([])).addTo(map)
+    .bindPopup(`<b>${esc(l.name)}</b><br>${esc(l.town)}<br><a href="#${l.key}">See photos →</a>`)));
+  setTimeout(() => { map.invalidateSize(); if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15)); }, 50);
+}
+let amap = null, gmap = null, mkReady = false;
+function mkInit() { if (!mkReady) { mapkit.init({ authorizationCallback: done => done(MK_TOKEN), language: 'en' }); mkReady = true; } }
+// Normalizes a guide file: either the simple shape (lot/entrance/shoot/route) or lists (parks/spots/entrances/roads).
+function guideParts(w) {
+  return {
+    parks: w.parks || (w.lot ? [{ label: 'Park here', at: w.lot }] : []),
+    spots: w.spots || (w.shoot ? [{ label: 'Where we often shoot', at: w.shoot.center }] : []),
+    entrances: w.entrances || (w.entrance ? [{ label: w.entranceLabel || 'Park entrance', at: w.entrance }] : []),
+    roads: w.roads || [], route: w.route || null, area: w.shoot || null,
+  };
+}
+function guideLegend(l) {
+  const g = l.walkmap ? guideParts(l.walkmap) : { parks: [1], route: 1, area: 1, spots: [], roads: [] };
+  const it = [];
+  if (g.parks.length) it.push('<span><i class="lg-p">P</i>' + (g.parks.length > 1 ? 'Parking' : 'Park here') + '</span>');
+  if (g.spots.length && !g.area) it.push('<span><i class="lg-cam"></i>Photo spots</span>');
+  if (g.roads.length) it.push('<span><i class="lg-road"></i>' + esc((l.walkmap && l.walkmap.roadLabel) || 'Road we shoot on') + '</span>');
+  if (g.route) it.push('<span><i class="lg-walk"></i>Walking route</span>');
+  if (g.area) it.push('<span><i class="lg-shoot"></i>Where we often shoot</span>');
+  return '<div class="guide-legend">' + it.join('') + '</div>';
+}
+// Landmarks for the regional map: shown on the map (map) and/or in the drive-time list (drive).
+const LANDMARKS = [
+  { k: 'mpls', name: 'Minneapolis', from: 'Downtown Minneapolis', sub: 'Nicollet Mall', at: [44.9772, -93.2717], map: true, drive: true },
+  { k: 'stp', name: 'St. Paul', from: 'Downtown St. Paul', sub: 'State Capitol area', at: [44.9497, -93.0931], map: true, drive: true },
+  { k: 'moa', name: 'Mall of America', from: 'Mall of America', sub: 'Bloomington', at: [44.8549, -93.2422], map: true, drive: true },
+  { k: 'msp', name: 'MSP Airport', from: 'MSP Airport', sub: 'Terminal 1', at: [44.8820, -93.2050], map: false, drive: true },
+];
+let rmap = null;
+function drawRegion(l) {
+  const el = document.getElementById('regionmap');
+  if (rmap) { try { rmap.destroy(); } catch (e) {} rmap = null; }
+  if (!el || !MK_TOKEN || !window.mapkit) return;
+  mkInit();
+  const C = p => new mapkit.Coordinate(p[0], p[1]);
+  rmap = new mapkit.Map(el, { colorScheme: mapkit.Map.ColorSchemes.Light, mapType: mapkit.Map.MapTypes.MutedStandard, showsMapTypeControl: false, showsPointsOfInterest: false,
+    isRotationEnabled: false, showsCompass: mapkit.FeatureVisibility.Hidden, showsZoomControl: true, showsScale: mapkit.FeatureVisibility.Hidden });
+  const marks = LANDMARKS.filter(m => m.map).map(m => new mapkit.Annotation(C(m.at), () => {
+    const d = document.createElement('div'); d.className = 'lm'; d.innerHTML = '<span>' + esc(m.name) + '</span><i></i>'; return d;
+  }, { calloutEnabled: false, displayPriority: 500, anchorOffset: new DOMPoint(0, 6), title: m.name }));
+  const pin = new mapkit.MarkerAnnotation(C([l.lat, l.lon]), { title: l.name, subtitle: l.town, color: '#b9781f', glyphColor: '#ffffff', glyphImage: CAM, selectedGlyphImage: CAM,
+    titleVisibility: mapkit.FeatureVisibility.Visible, displayPriority: 1000 });
+  rmap.addAnnotations(marks.concat([pin]));
+  // frame the spot and the three landmarks, with room above for labels
+  const pts = [[l.lat, l.lon]].concat(LANDMARKS.filter(m => m.map).map(m => m.at));
+  const la = pts.map(p => p[0]), lo = pts.map(p => p[1]);
+  const n = Math.max(...la), s = Math.min(...la), e = Math.max(...lo), w = Math.min(...lo);
+  const dLa = Math.max(n - s, .08), dLo = Math.max(e - w, .12);
+  rmap.region = new mapkit.CoordinateRegion(new mapkit.Coordinate((n + s) / 2 + dLa * .06, (e + w) / 2), new mapkit.CoordinateSpan(dLa * 1.45, dLo * 1.35));
+  // drive times (Apple Maps ETA, no traffic); falls back to straight-line miles
+  const miles = m => { const R = 3958.8, r = x => x * Math.PI / 180, a = Math.sin(r(m.at[0] - l.lat) / 2) ** 2 + Math.cos(r(l.lat)) * Math.cos(r(m.at[0])) * Math.sin(r(m.at[1] - l.lon) / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(a)); };
+  const drv = LANDMARKS.filter(m => m.drive);
+  const fallback = () => {
+    drv.forEach(m => { const b = document.querySelector('#drives b[data-k="' + m.k + '"]'); if (b) b.textContent = Math.max(1, Math.round(miles(m))) + ' mi'; });
+    const note = document.getElementById('drives-note'); if (note) note.textContent = 'Straight-line distance.';
+  };
+  try {
+    new mapkit.Directions().eta({ origin: C([l.lat, l.lon]), destinations: drv.map(m => C(m.at)), transportType: mapkit.Directions.Transport.Automobile }, (err, data) => {
+      if (err || !data || !data.etas || !data.etas.length) return fallback();
+      data.etas.forEach((t, i) => {
+        const m = drv[i], b = m && document.querySelector('#drives b[data-k="' + m.k + '"]'); if (!b) return;
+        const mins = Math.max(5, Math.round((t.staticTravelTime || t.expectedTravelTime) / 60 / 5) * 5);
+        b.textContent = mins >= 60 ? Math.floor(mins / 60) + ' hr' + (mins % 60 ? ' ' + (mins % 60) + ' min' : '') : mins + ' min';
+        if (m.k === 'mpls') { const lede = document.getElementById('region-lede'); if (lede) lede.textContent = l.name + ' is in ' + l.town + ', about ' + b.textContent + ' from downtown Minneapolis. Here’s where that sits next to a few places you might know.'; }
+      });
+    });
+  } catch (e) { fallback(); }
+}
+function drawGuide(l) {
+  const el = document.getElementById('guidemap'), w = l.walkmap;
+  if (!el || !w || !MK_TOKEN || !window.mapkit) return;
+  if (gmap) { try { gmap.destroy(); } catch (e) {} gmap = null; }
+  mkInit();
+  document.getElementById('guideframe').classList.add('live');
+  const g = guideParts(w), C = p => new mapkit.Coordinate(p[0], p[1]), vis = mapkit.FeatureVisibility.Visible;
+  const narrow = el.clientWidth < 520 && g.parks.length > 1;   // busy maps on phones: no room for every label side by side
+  gmap = new mapkit.Map(el, { colorScheme: mapkit.Map.ColorSchemes.Light, mapType: mapkit.Map.MapTypes.MutedStandard, showsMapTypeControl: true, showsPointsOfInterest: false, isRotationEnabled: false, showsCompass: mapkit.FeatureVisibility.Hidden, showsZoomControl: true });
+  const ov = [];
+  g.roads.forEach(r => {
+    ov.push(new mapkit.PolylineOverlay(r.map(C), { style: new mapkit.Style({ lineWidth: 10, strokeColor: '#ffffff', strokeOpacity: .9, lineCap: 'round', lineJoin: 'round' }) }));
+    ov.push(new mapkit.PolylineOverlay(r.map(C), { style: new mapkit.Style({ lineWidth: 5, strokeColor: '#b9781f', strokeOpacity: .85, lineCap: 'round', lineJoin: 'round' }) }));
+  });
+  if (g.area) ov.push(new mapkit.CircleOverlay(C(g.area.center), g.area.radius, { style: new mapkit.Style({ fillColor: '#b9781f', fillOpacity: .14, strokeColor: '#b9781f', strokeOpacity: .9, lineWidth: 2, lineDash: [8, 6] }) }));
+  if (g.route) {
+    ov.push(new mapkit.PolylineOverlay(g.route.map(C), { style: new mapkit.Style({ lineWidth: 9, strokeColor: '#ffffff', strokeOpacity: .9, lineCap: 'round', lineJoin: 'round' }) }));
+    ov.push(new mapkit.PolylineOverlay(g.route.map(C), { style: new mapkit.Style({ lineWidth: 5, strokeColor: '#b9781f', lineDash: [1, 10], lineCap: 'round', lineJoin: 'round' }) }));
+  }
+  gmap.addOverlays(ov);
+  const pins = [
+    ...g.parks.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#1d2320', glyphText: 'P', titleVisibility: vis, displayPriority: 1000 })),
+    ...g.spots.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#b9781f', glyphImage: CAM, titleVisibility: narrow ? mapkit.FeatureVisibility.Hidden : vis, displayPriority: 1000 })),
+    ...g.entrances.map(p => new mapkit.MarkerAnnotation(C(p.at), { title: p.label, color: '#545d57', glyphText: '↑', titleVisibility: vis, displayPriority: 1000 })),
+  ];
+  gmap.addAnnotations(pins);
+  const pts = [...(g.route || []), ...g.roads.flat(), ...g.parks.map(p => p.at), ...g.spots.map(p => p.at), ...g.entrances.map(p => p.at)];
+  const la = pts.map(p => p[0]), lo = pts.map(p => p[1]);
+  const n = Math.max(...la), s = Math.min(...la), e = Math.max(...lo), wst = Math.min(...lo);
+  const pad = w.pad || [1.35, 1.9, .0011, .0005];   // lat scale, lon scale, extra north, extra south (room for pin labels)
+  if (w.margin) { const m = w.margin.slice(); if (narrow) { m[2] += .006; m[3] += .006; } gmap.region = new mapkit.CoordinateRegion(new mapkit.Coordinate((n + m[0] + s - m[1]) / 2, (e + m[2] + wst - m[3]) / 2), new mapkit.CoordinateSpan((n - s + m[0] + m[1]) * 1.08, (e - wst + m[2] + m[3]) * 1.08)); return; }   // margin = degrees to add N, S, E, W
+  gmap.region = new mapkit.CoordinateRegion(new mapkit.Coordinate((n + pad[2] + s - pad[3]) / 2, (e + wst) / 2), new mapkit.CoordinateSpan((n - s + pad[2] + pad[3]) * pad[0], (e - wst) * pad[1]));
+}
+const CAM = { 1: 'img/camera-20.png', 2: 'img/camera-40.png', 3: 'img/camera-60.png' };
+// names show once zoomed in past the whole-metro view; MapKit's adaptive mode drops any label that would collide
+const mkLabels = () => (amap && amap.region.span.latitudeDelta < 0.45) ? mapkit.FeatureVisibility.Adaptive : mapkit.FeatureVisibility.Hidden;
+function drawApple(el, shown) {
+  if (!amap) {
+    mkInit();
+    amap = new mapkit.Map(el, { colorScheme: mapkit.Map.ColorSchemes.Light, showsMapTypeControl: false, showsPointsOfInterest: false, isRotationEnabled: false });
+    let rafId = 0;
+    el.addEventListener('mousemove', ev => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        const hits = Object.values(annByKey).filter(a => {
+          const p = amap.convertCoordinateToPointOnPage(a.coordinate);
+          const dx = ev.pageX - p.x, dy = ev.pageY - (p.y - 20);
+          return dx * dx + dy * dy < 22 * 22;
+        }).map(a => a.data.key);
+        hotList(hits);
+      });
+    });
+    el.addEventListener('mouseleave', () => hotList([]));
+    amap.addEventListener('region-change-end', () => { const v = mkLabels(); amap.annotations.forEach(a => { if (a.data) a.titleVisibility = v; }); });
+  }
+  amap.removeAnnotations(amap.annotations);
+  const delegate = { calloutContentForAnnotation: a => {
+    const d = document.createElement('div'); d.className = 'mkcall';
+    d.innerHTML = `<b>${esc(a.data.name)}</b><span>${esc(a.data.town)}</span><a href="#${a.data.key}">See photos →</a>${FROMBOOK ? `<a href="${chooseUrl(a.data)}">Choose this spot →</a>` : ''}`;
+    return d; } };
+  const anns = shown.filter(l => l.lat && l.lon).map(l => new mapkit.MarkerAnnotation(new mapkit.Coordinate(l.lat, l.lon),
+    { title: l.name, color: '#b9781f', glyphColor: '#ffffff', glyphImage: CAM, selectedGlyphImage: CAM, data: l, callout: delegate, titleVisibility: mkLabels(), clusteringIdentifier: 'loc' }));
+  amap.annotationForCluster = c => new mapkit.MarkerAnnotation(c.coordinate, { color: '#8f5a12', glyphText: String(c.memberAnnotations.length), title: c.memberAnnotations.length + ' locations', titleVisibility: mapkit.FeatureVisibility.Hidden });
+  annByKey = {}; anns.forEach(a => { annByKey[a.data.key] = a; a.addEventListener('select', () => markList(a.data.key)); });
+  amap.addAnnotations(anns);
+  if (anns.length) amap.showItems(anns, { animate: false, padding: new mapkit.Padding(50, 40, 50, 40) });
+}
+function renderPlace(l) {
+  const facts = [['Great for', l.for.join(' · ')], ['Walking', l.walk], ['Best seasons', l.seasons.join(' · ')], ['Setting', l.setting.join(' · ')]]
+    .filter(f => f[1]).map(f => `<div><dt>${f[0]}</dt><dd>${esc(f[1])}</dd></div>`).join('');
+  const addr = l.addr ? `<div><dt>Address</dt><dd><span class="addrtext">${esc(l.addr)}</span><button class="copy" type="button" id="copyaddr">Copy address</button></dd></div>` : '';
+  $('#place').innerHTML = `<div class="wrap">
+    <a class="back" href="#">← All locations</a>
+    <div class="place-head"><span class="label">${esc(l.area || 'Session location')}</span><h1>${esc(l.name)}</h1><div class="where">${esc(l.town)}</div>${FROMBOOK ? `<div class="choose-top">${chooseBtn(l)}</div>` : ''}${l.addr ? `<a class="addr" href="${esc(l.directions || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(l.addr))}" target="_blank" rel="noopener">${esc(l.addr)}</a>` : ''}</div>
+    <div class="place-body">
+      <div><p class="about">${esc(l.about)}</p>${l.know ? `<div class="know"><b>Good to know</b>${esc(l.know)}</div>` : ''}</div>
+      <dl class="facts">${addr}${facts}<div class="acts">${l.directions ? `<a class="btn btn-line btn-sm" href="${esc(l.directions)}" target="_blank" rel="noopener">Get directions</a>` : ''}${chooseBtn(l) || `<a class="btn btn-solid btn-sm" href="../book.html">Book a session</a>`}</div></dl>
+    </div>
+    ${(MK_TOKEN && window.mapkit && l.lat && l.lon) ? `<section class="region"><span class="label">Where it is</span><h2>Finding ${esc(l.town || l.name)}</h2><p class="lede" id="region-lede">${esc(l.name)} is in ${esc(l.town)}. Here’s where that sits next to a few places you might know.</p><div class="region-grid"><div class="region-frame"><div class="region-map" id="regionmap" role="region" aria-label="Map showing ${esc(l.name)} with downtown Minneapolis, downtown St. Paul and Mall of America"></div></div><div><span class="label" style="margin-bottom:8px">Drive time</span><ul class="drives" id="drives">${LANDMARKS.filter(m => m.drive).map(m => `<li><span>${esc(m.from)}<small>${esc(m.sub)}</small></span><b data-k="${m.k}">…</b></li>`).join('')}</ul><p class="drives-note" id="drives-note">Typical drive without traffic, from Apple Maps.</p><div class="acts"><a class="btn btn-line btn-sm" href="https://maps.apple.com/?q=${encodeURIComponent(l.name)}&ll=${l.lat},${l.lon}" target="_blank" rel="noopener">Open in Apple Maps</a><a class="btn btn-line btn-sm" href="${esc(l.directions || ('https://www.google.com/maps/search/?api=1&query=' + l.lat + ',' + l.lon))}" target="_blank" rel="noopener">Open in Google Maps</a></div></div></div></section>` : ''}
+    ${(l.guide || l.walkmap) ? `<section class="guide"><span class="label">Getting there</span><h2>${esc((l.walkmap && l.walkmap.title) || 'Where to park and walk')}</h2><div class="guide-grid"><div><div class="guide-frame" id="guideframe"><div class="guide-live" id="guidemap" role="region" aria-label="Map of where to park and walk at ${esc(l.name)}"></div>${l.guide || ''}</div>${guideLegend(l)}</div><div>${l.walkmap ? `<ol class="steps">${l.walkmap.steps.map(st => `<li><div><b>${esc(st[0])}</b><span>${esc(st[1])}</span></div></li>`).join('')}</ol>` : `<p>${esc(l.guideNote)}</p>`}<div class="acts">${l.directions ? `<a class="btn btn-solid btn-sm" href="${esc(l.directions)}" target="_blank" rel="noopener">${esc((l.walkmap && l.walkmap.directionsLabel) || 'Directions to the lot')}</a>` : ''}</div></div></div></section>` : ''}
+    <div class="gallery">${l.photos.map((p, i) => `<img src="img/${p[0]}" alt="Our Time session at ${esc(l.name)}, photo ${i + 1}" width="${p[1]}" height="${p[2]}" loading="${i < 3 ? 'eager' : 'lazy'}">`).join('')}</div>
+  </div>`;
+  const b = document.getElementById('copyaddr');
+  if (b) b.addEventListener('click', () => {
+    const done = () => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy address', 1600); };
+    try { navigator.clipboard.writeText(l.addr).then(done, () => selectAddr(b)); } catch (e) { selectAddr(b); }
+  });
+}
+function selectAddr(b) {
+  const t = b.parentNode.querySelector('.addrtext'), r = document.createRange(); r.selectNodeContents(t);
+  const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent = 'Selected: press Copy';
+}
+function route() {
+  const key = (location.hash.slice(1) || "levee-park"), l = LOCS.find(x => x.key === key);
+  $('#list').hidden = !!l; $('#place').hidden = !l;
+  if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "levee-park") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); }
+  else { document.title = "Where we shoot \u00b7 Our Time Photography"; renderList(); }
+}
+document.querySelectorAll('.tools .chip').forEach(b => b.addEventListener('click', () => {
+  const f = b.dataset.f, v = b.dataset.v, on = b.getAttribute('aria-pressed') !== 'true';
+  b.setAttribute('aria-pressed', on);
+  if (f === 'easy') state.easy = on; else on ? state[f].add(v) : state[f].delete(v);
+  renderList();
+}));
+$('#ftog').addEventListener('click', () => {
+  const open = $('#tools').hidden; $('#tools').hidden = !open; $('#ftog').setAttribute('aria-expanded', open);
+});
+$('#clear').addEventListener('click', () => {
+  state.for.clear(); state.town.clear(); state.setting.clear(); state.season.clear(); state.easy = false;
+  document.querySelectorAll('.tools .chip').forEach(b => b.setAttribute('aria-pressed', 'false')); renderList();
+});
+$('#v-grid').addEventListener('click', () => { state.view = 'grid'; renderList(); });
+$('#v-map').addEventListener('click', () => { state.view = 'map'; renderList(); });
+if (FROMBOOK) {
+  $('#bookbtn').textContent = '← Back to your booking form';
+  $('#bookbar').hidden = false;
+  $('#cta-h').textContent = 'Back to your booking';
+  $('#cta-p').textContent = 'Your answers are saved. Tap Choose this spot on any location, or head back and pick one on the form.';
+  $('#cta-btn').textContent = 'Back to your booking form';
+  if (FROMBOOK === 'Family' || FROMBOOK === 'Seniors') {
+    state.for.add(FROMBOOK);
+    document.querySelectorAll('.tools .chip[data-f="for"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === FROMBOOK));
+  }
+}
+window.addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>
