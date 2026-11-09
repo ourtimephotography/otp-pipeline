@@ -1,0 +1,12 @@
+User-agent: *
+# client-only pages (payments, thank-you, booking lookup) and test/preview copies
+Disallow: /pay.html
+Disallow: /thanks.html
+Disallow: /booking.html
+Disallow: /locations/preview.html
+Disallow: /locations/test.html
+# the repo's root page is the job-pipeline graphic embedded in Notion
+Disallow: /$
+Disallow: /index.html
+
+Sitemap: https://pay.ourtimephoto.com/sitemap.xml
