@@ -155,6 +155,14 @@ footer .in { max-width: 1180px; margin: 0 auto; padding: 22px max(16px, env(safe
 footer a { color: var(--amber-ink) }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important } }
 </style>
+<!-- Google Analytics (GA4, info@ourtimephoto.com, same property as www). Live host only. -->
+<script>
+window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+if (location.hostname === 'pay.ourtimephoto.com') {
+  var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=G-TL5BK008PP'; document.head.appendChild(g);
+  gtag('js', new Date()); gtag('config', 'G-TL5BK008PP');
+}
+</script>
 </head>
 <body>
 <header class="top"><div class="in">
@@ -479,6 +487,7 @@ footer a { color: var(--amber-ink) }
       .then(function (d) {
         if (!d.ok) throw new Error(d.error || 'server');
         clearDraft();
+        gtag('event', 'generate_lead', {session_type: kind});
         $('form-view').hidden = true; $('done-view').hidden = false;
         $('done-title').textContent = 'Thank you, ' + data.name.split(/\s+/)[0] + '!';
         $('done-steps').innerHTML = (ev ? STEPS.event : STEPS.session).map(function (s) { return '<li>' + s + '</li>'; }).join('');
