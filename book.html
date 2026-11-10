@@ -186,8 +186,8 @@ footer a { color: var(--amber-ink) }
         <fieldset>
           <legend>What kind of session?</legend>
           <div class="types" role="radiogroup" aria-label="Session type">
-            <label class="type"><input type="radio" name="session" value="family"><b>Family</b><span>$450 per hour, up to six people</span></label>
-            <label class="type"><input type="radio" name="session" value="senior"><b>Senior</b><span>$375 per hour</span></label>
+            <label class="type"><input type="radio" name="session" value="family"><b>Family</b><span>$350 per hour, up to six people</span></label>
+            <label class="type"><input type="radio" name="session" value="senior"><b>Senior</b><span>$300 per hour</span></label>
             <label class="type"><input type="radio" name="session" value="event"><b>Event</b><span>Birthdays, mitzvahs, celebrations</span></label>
             <label class="type"><input type="radio" name="session" value="corporate"><b>Corporate event</b><span>Custom quote</span></label>
           </div>
@@ -258,6 +258,7 @@ footer a { color: var(--amber-ink) }
               <div class="locs" id="locs" role="radiogroup" aria-label="Location"></div>
               <p class="locs-foot">Want a closer look? See maps, parking and more photos on our <a id="locs-link" href="locations/?from=book">session locations</a> page, and choose your spot from there. Your answers here will be saved.</p>
             </div>
+            <div class="field"><label class="check"><input type="checkbox" id="download"><span>Add every photo as high-resolution downloads (+$100)<small>$100 when you add it now. If you add it later from your gallery, it’s $150. Seniors always get their yearbook photo free.</small></span></label></div>
             <div class="field" id="f-ideas" data-req-else="Tell us a little about the place you have in mind."><label for="ideas"><span id="ideas-q">Any location ideas?</span> <span class="opt" id="ideas-opt">(optional)</span></label><input id="ideas" name="locationIdeas" type="text" maxlength="600" placeholder="Grandma’s farm, our neighborhood park, somewhere with fall color"></div>
           </fieldset>
 
@@ -310,8 +311,8 @@ footer a { color: var(--amber-ink) }
   var LOCS = [{"key":"rapids-lake","name":"Rapids Lake","town":"Carver","for":["Family"],"card":"rapids-lake-card.jpg"},{"key":"lake-minnewashta-regional-park","name":"Lake Minnewashta Regional Park","town":"Chanhassen","for":["Family"],"card":"lake-minnewashta-regional-park-card.jpg"},{"key":"chaska-city-square-park","name":"Chaska City Square Park","town":"Chaska","for":["Family"],"card":"chaska-city-square-park-card.jpg"},{"key":"chaska-railroad-tracks","name":"Chaska Railroad Tracks","town":"Chaska","for":["Seniors"],"card":"chaska-railroad-tracks-card.jpg"},{"key":"firemen-s-park-veterans-park","name":"Firemen's Park + Veterans Park","town":"Chaska","for":["Family"],"card":"firemen-s-park-veterans-park-card.jpg"},{"key":"minnesota-landscape-arboretum","name":"Minnesota Landscape Arboretum","town":"Chaska","for":["Seniors","Family"],"card":"minnesota-landscape-arboretum-card.jpg"},{"key":"sunset-park","name":"Sunset Park","town":"Chaska","for":["Family","Seniors"],"card":"sunset-park-card.jpg"},{"key":"miller-park","name":"Miller Park","town":"Eden Prairie","for":["Family"],"card":"miller-park-card.jpg"},{"key":"prairie-bluff-conservation-area","name":"Prairie Bluff Conservation Area","town":"Eden Prairie","for":["Seniors"],"card":"prairie-bluff-conservation-area-card.jpg"},{"key":"purgatory-creek-park","name":"Purgatory Creek Park","town":"Eden Prairie","for":["Family"],"card":"purgatory-creek-park-card.jpg"},{"key":"downtown-excelsior","name":"Downtown Excelsior","town":"Excelsior","for":["Seniors","Family"],"card":"downtown-excelsior-card.jpg"},{"key":"port-of-excelsior","name":"Port of Excelsior","town":"Excelsior","for":["Seniors"],"card":"port-of-excelsior-card.jpg"},{"key":"levee-park","name":"Levee Park","town":"Hastings","for":["Family","Seniors"],"card":"levee-park-card.jpg"},{"key":"schaar-s-bluff","name":"Schaar's Bluff","town":"Hastings","for":["Seniors","Family"],"card":"schaar-s-bluff-card.jpg"},{"key":"lagoon-park","name":"Lagoon Park","town":"Jordan","for":["Family","Seniors"],"card":"lagoon-park-card.jpg"},{"key":"lyndale-park-peace-garden","name":"Lyndale Park Peace Garden","town":"Minneapolis","for":["Family","Seniors"],"card":"lyndale-park-peace-garden-card.jpg"},{"key":"mill-city-ruins","name":"Mill City Ruins","town":"Minneapolis","for":["Seniors","Family"],"card":"mill-city-ruins-card.jpg"},{"key":"minnehaha-regional-park","name":"Minnehaha Regional Park","town":"Minneapolis","for":["Seniors","Family"],"card":"minnehaha-regional-park-card.jpg"},{"key":"stone-arch-bridge","name":"Stone Arch Bridge","town":"Minneapolis","for":["Seniors"],"card":"stone-arch-bridge-card.jpg"},{"key":"wood-lake-nature-center","name":"Wood Lake Nature Center","town":"Richfield","for":["Family"],"card":"wood-lake-nature-center-card.jpg"},{"key":"huber-park","name":"Huber Park","town":"Shakopee","for":["Seniors","Family"],"card":"huber-park-card.jpg"},{"key":"cathedral-hill","name":"Cathedral Hill","town":"St. Paul","for":["Seniors"],"card":"cathedral-hill-card.jpg"},{"key":"como-park","name":"Como Park","town":"St. Paul","for":["Family","Seniors"],"card":"como-park-card.jpg"},{"key":"harriet-island-regional-park","name":"Harriet Island Regional Park","town":"St. Paul","for":["Family"],"card":"harriet-island-regional-park-card.jpg"},{"key":"st-anthony-park-library","name":"St. Anthony Park Library","town":"St. Paul","for":["Seniors"],"card":"st-anthony-park-library-card.jpg"},{"key":"aamodt-s-apple-farm","name":"Aamodt's Apple Farm","town":"Stillwater","for":["Family"],"card":"aamodt-s-apple-farm-card.jpg"},{"key":"carver-park-reserve","name":"Carver Park Reserve","town":"Victoria","for":["Seniors"],"card":"carver-park-reserve-card.jpg"},{"key":"wassermann-lake-reserve","name":"Wassermann Lake Reserve","town":"Victoria","for":["Seniors"],"card":"wassermann-lake-reserve-card.jpg"},{"key":"grimm-farm-historic-site","name":"Grimm Farm Historic Site","town":"Waconia","for":["Family"],"card":"grimm-farm-historic-site-card.jpg"}];
   var loaded = Date.now();
   var TYPES = {
-    family: {head: 'Book a family session', price: '$450', unit: 'per hour', note: 'Up to six people, plus $30 per extra person per hour. Dogs are always welcome, and always free. Every photo included as a full-resolution download.'},
-    senior: {head: 'Book a senior session', price: '$375', unit: 'per hour', note: 'One hour all about your senior, with time for an outfit change and a spot or two that feel like them. Every photo included as a full-resolution download.'},
+    family: {head: 'Book a family session', price: '$350', unit: 'per hour', note: 'Up to six people, plus $30 per extra person per hour. Dogs are always welcome, and always free.'},
+    senior: {head: 'Book a senior session', price: '$300', unit: 'per hour', note: 'One hour all about your senior, with time for an outfit change and a spot or two that feel like them. Your yearbook photo is always free.'},
     event: {head: 'Book your event', price: 'From $250', unit: 'per hour, per photographer', note: 'Two-hour minimum. Every photo included as a full-resolution download.'},
     corporate: {head: 'Book a corporate event', price: 'From $1,000', unit: 'up to 3 hours', note: 'Then $300 for each extra hour, including the rights to use the photos in your marketing. We’ll send a custom quote after our planning call.'}
   };
@@ -495,7 +496,7 @@ footer a { color: var(--amber-ink) }
 
   // running estimate (not a quote): the same site prices Autopilot uses
   var lastAmt = '';
-  var P = {"family_hour":450,"family_people_included":6,"family_extra_person_hour":30,"senior_hour":375,"event_hour":250,"event_min_hours":2,"corporate_base":1000,"corporate_base_hours":3,"corporate_extra_hour":300,"retainer":150,"gallery_extension_month":25};   // from otp-tools/pricing/prices.json, filled in by build.py
+  var P = {"family_hour":350,"family_people_included":6,"family_extra_person_hour":30,"senior_hour":300,"download_booking":100,"download_later":150,"event_hour":250,"event_min_hours":2,"corporate_base":1000,"corporate_base_hours":3,"corporate_extra_hour":300,"retainer":150,"gallery_extension_month":25};   // from otp-tools/pricing/prices.json, filled in by build.py
   function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
   function hrsLabel(h) { return (h === 1.5 ? '1½' : String(h)) + ' hour' + (h === 1 ? '' : 's'); }
   function spanHours() {
@@ -514,7 +515,7 @@ footer a { color: var(--amber-ink) }
         lines.push(['Family session, ' + hrsLabel(h), money(P.family_hour * h)]); total = P.family_hour * h;
         if (extra) { lines.push([extra + ' extra ' + (extra === 1 ? 'person' : 'people') + ' × $30 × ' + hrsLabel(h), money(P.family_extra_person_hour * extra * h)]); total += P.family_extra_person_hour * extra * h; }
       } else { lines.push(['Senior session, ' + hrsLabel(h), money(P.senior_hour * h)]); total = P.senior_hour * h; }
-      lines.push(['Every photo as a download', 'Included']);
+      if ($('download').checked) { lines.push(['Full-gallery downloads (added at booking)', money(P.download_booking)]); total += P.download_booking; }
       note = 'Estimate only. We confirm your quote after the planning call.';
     } else if (kind === 'event') {
       var hrs = spanHours(), bill = Math.max(hrs || P.event_min_hours, P.event_min_hours), ph = radio('photographers') === '2' ? 2 : 1;
@@ -549,6 +550,7 @@ footer a { color: var(--amber-ink) }
   function estimateText() {
     var e = estimate(); if (!e) return '';
     var kind = current(), bits = [];
+    if ((kind === 'family' || kind === 'senior') && $('download').checked) bits.push('with downloads');
     return (e.from ? 'from ' : '') + money(e.total) + (bits.length ? ' (' + bits.join(', ') + ')' : '');
   }
   form.addEventListener('input', renderEstimate);
