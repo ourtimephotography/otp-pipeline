@@ -107,6 +107,11 @@ h1, h2, h3 { font-family:var(--display); font-weight:400; margin:0; letter-spaci
 .pin-hot .pin { transform:scale(1.6); background:var(--ink) }
 .pin { transition:transform .15s ease;  width:16px; height:16px; border-radius:50%; background:var(--amber); border:3px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.35) }
 /* place page */
+.place-top { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:28px 0 0 }
+.place-top .back { margin:0 }
+.share { display:inline-flex; align-items:center; gap:7px; font:500 14px/1 var(--body); padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); cursor:pointer; white-space:nowrap }
+.share:hover { border-color:var(--soft) }
+.share svg { width:15px; height:15px; flex:none }
 .back { display:inline-flex; gap:6px; align-items:center; margin:28px 0 0; color:var(--amber-ink); font:500 15px/1 var(--body); text-decoration:none }
 .back:hover { text-decoration:underline; text-underline-offset:3px }
 .place-head { padding-block:18px clamp(24px, 3vw, 36px) }
@@ -546,7 +551,7 @@ function renderPlace(l) {
     .filter(f => f[1]).map(f => `<div><dt>${f[0]}</dt><dd>${esc(f[1])}</dd></div>`).join('');
   const addr = l.addr ? `<div><dt>Address</dt><dd><span class="addrtext">${esc(l.addr)}</span><button class="copy" type="button" id="copyaddr">Copy address</button></dd></div>` : '';
   $('#place').innerHTML = `<div class="wrap">
-    <a class="back" href="#">← All locations</a>
+    <div class="place-top"><a class="back" href="#">← All locations</a><button class="share" type="button" id="sharebtn" aria-label="Share ${esc(l.name)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span>Share</span></button></div>
     <div class="place-head"><span class="label">${where(l)}</span><h1>${esc(l.name)}</h1>${FROMBOOK ? `<div class="choose-top">${chooseBtn(l)}</div>` : ''}</div>
     ${hero ? `<button class="hero" type="button" data-i="${heroI}" aria-label="View photos from ${esc(l.name)}"><img src="img/${hero[0]}" alt="${esc(heroAlt)}" width="${hero[1]}" height="${hero[2]}"></button>` : ''}
     <div class="place-body">
@@ -559,11 +564,25 @@ function renderPlace(l) {
     ${also.length ? `<section class="also"><span class="label">You might also like</span><h2>More spots with a similar look</h2><div class="grid">${also.map(card).join('')}</div></section>` : ''}
   </div>`;
   $('#place').querySelectorAll('.gallery img, .hero').forEach(el => el.addEventListener('click', () => openLB(l, +el.dataset.i || 0)));
+  const sb = document.getElementById('sharebtn');
+  sb.addEventListener('click', () => sharePlace(l, sb));
   const b = document.getElementById('copyaddr');
   if (b) b.addEventListener('click', () => {
     const done = () => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy address', 1600); };
     try { navigator.clipboard.writeText(l.addr).then(done, () => selectAddr(b)); } catch (e) { selectAddr(b); }
   });
+}
+// Share = the spot's own page (it has its own link preview). Phone/Mac share sheet when there is one, else copy the link.
+function sharePlace(l, btn) {
+  const url = location.hostname === 'pay.ourtimephoto.com' ? 'https://pay.ourtimephoto.com/locations/' + l.key : location.href.split('#')[0] + '#' + l.key;
+  const label = btn.querySelector('span'), say = t => { label.textContent = t; setTimeout(() => label.textContent = 'Share', 1800); };
+  const track = m => { if (window.gtag) gtag('event', 'share', {method: m, content_type: 'location', item_id: l.key}); };
+  if (navigator.share) {
+    navigator.share({title: l.name + ' · Our Time Photography', text: l.name + ': a session spot from Our Time Photography', url}).then(() => track('share_sheet'), () => {});
+    return;
+  }
+  const fallback = () => { window.prompt('Copy this link:', url); };
+  try { navigator.clipboard.writeText(url).then(() => { say('Link copied'); track('copy_link'); }, fallback); } catch (e) { fallback(); }
 }
 function selectAddr(b) {
   const t = b.parentNode.querySelector('.addrtext'), r = document.createRange(); r.selectNodeContents(t);
