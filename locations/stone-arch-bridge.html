@@ -178,6 +178,14 @@ footer.small img { width:30px; height:30px; opacity:.75; vertical-align:middle; 
 @media (max-width:560px) { .grid { grid-template-columns:1fr } .row { grid-template-columns:1fr } .row > span { padding-top:0 } }
 @media (prefers-reduced-motion: reduce) { .card img { transition:none } }
 </style>
+<!-- Google Analytics (GA4, info@ourtimephoto.com, same property as www). Live host only. -->
+<script>
+window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+if (location.hostname === 'pay.ourtimephoto.com') {
+  var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=G-TL5BK008PP'; document.head.appendChild(g);
+  gtag('js', new Date()); gtag('config', 'G-TL5BK008PP');
+}
+</script>
 </head>
 <body>
 <noscript><main style="max-width:760px;margin:40px auto;padding:0 20px;font-family:Georgia,serif"><h1>Stone Arch Bridge</h1><p>The historic stone bridge over the Mississippi, with the Minneapolis skyline and the mill district behind you.</p><p><b>Good to know:</b> Paid parking nearby. Weekends get busy; early mornings and weekday evenings are calmer.</p><ul><li>Minneapolis</li><li>Some walking</li><li>Spring, Summer, Fall</li></ul><p>100 Portland Ave, Minneapolis, MN 55401 · <a href="https://www.google.com/maps/search/?api=1&amp;query=Stone+Arch+Bridge%2C+100+Portland+Ave%2C+Minneapolis%2C+MN+55401">Get directions</a></p><p><a href="../book.html">Book a session</a> · <a href="./">All session locations</a></p></main></noscript>
@@ -498,7 +506,7 @@ function selectAddr(b) {
 function route() {
   const key = (location.hash.slice(1) || "stone-arch-bridge"), l = LOCS.find(x => x.key === key);
   $('#list').hidden = !!l; $('#place').hidden = !l;
-  if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "stone-arch-bridge") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); }
+  if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "stone-arch-bridge") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); if (window.gtag) gtag('event', 'view_location', {location_name: l.name}); }
   else { document.title = "Where we shoot \u00b7 Our Time Photography"; renderList(); }
 }
 document.querySelectorAll('.tools .chip').forEach(b => b.addEventListener('click', () => {

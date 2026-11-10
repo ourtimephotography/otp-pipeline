@@ -178,6 +178,14 @@ footer.small img { width:30px; height:30px; opacity:.75; vertical-align:middle; 
 @media (max-width:560px) { .grid { grid-template-columns:1fr } .row { grid-template-columns:1fr } .row > span { padding-top:0 } }
 @media (prefers-reduced-motion: reduce) { .card img { transition:none } }
 </style>
+<!-- Google Analytics (GA4, info@ourtimephoto.com, same property as www). Live host only. -->
+<script>
+window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+if (location.hostname === 'pay.ourtimephoto.com') {
+  var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=G-TL5BK008PP'; document.head.appendChild(g);
+  gtag('js', new Date()); gtag('config', 'G-TL5BK008PP');
+}
+</script>
 </head>
 <body>
 <noscript><main style="max-width:760px;margin:40px auto;padding:0 20px;font-family:Georgia,serif"><h1>Aamodt&#x27;s Apple Farm</h1><p>An orchard and vineyard with a red barn, rustic wood and rows of apple trees. Peak season is September and October.</p><p><b>Good to know:</b> It&#x27;s a working farm and busy in apple season; we confirm their photo policy before booking. Weekdays are best.</p><ul><li>Stillwater</li><li>Easy (stroller friendly)</li><li>Fall</li></ul><p>6428 Manning Ave N, Stillwater, MN 55082 · <a href="https://www.google.com/maps/search/?api=1&amp;query=Aamodt%27s+Apple+Farm%2C+6428+Manning+Ave+N%2C+Stillwater%2C+MN+55082">Get directions</a></p><p><a href="../book.html">Book a session</a> · <a href="./">All session locations</a></p></main></noscript>
@@ -498,7 +506,7 @@ function selectAddr(b) {
 function route() {
   const key = (location.hash.slice(1) || "aamodt-s-apple-farm"), l = LOCS.find(x => x.key === key);
   $('#list').hidden = !!l; $('#place').hidden = !l;
-  if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "aamodt-s-apple-farm") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); }
+  if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "aamodt-s-apple-farm") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); if (window.gtag) gtag('event', 'view_location', {location_name: l.name}); }
   else { document.title = "Where we shoot \u00b7 Our Time Photography"; renderList(); }
 }
 document.querySelectorAll('.tools .chip').forEach(b => b.addEventListener('click', () => {

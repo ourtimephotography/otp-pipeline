@@ -178,6 +178,14 @@ footer.small img { width:30px; height:30px; opacity:.75; vertical-align:middle; 
 @media (max-width:560px) { .grid { grid-template-columns:1fr } .row { grid-template-columns:1fr } .row > span { padding-top:0 } }
 @media (prefers-reduced-motion: reduce) { .card img { transition:none } }
 </style>
+<!-- Google Analytics (GA4, info@ourtimephoto.com, same property as www). Live host only. -->
+<script>
+window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+if (location.hostname === 'pay.ourtimephoto.com') {
+  var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=G-TL5BK008PP'; document.head.appendChild(g);
+  gtag('js', new Date()); gtag('config', 'G-TL5BK008PP');
+}
+</script>
 </head>
 <body>
 <noscript><main style="max-width:760px;margin:40px auto;padding:0 20px;font-family:Georgia,serif"><h1>Sunset Park</h1><p>Paved and dirt trails through tall grass and trees, a wooden bench, open lawn that glows at golden hour, and a quiet pond at the edge of the park.</p><p><b>Good to know:</b> Free parking in the park&#x27;s lot by the playground. Close to home for us, so it is easy to schedule. Evening light here is the best of the day.</p><ul><li>Chaska</li><li>Lots of walking</li><li>Summer, Fall</li></ul><p>800 Victoria Dr, Chaska, MN 55318 · <a href="https://www.google.com/maps/search/?api=1&amp;query=Sunset+Park%2C+800+Victoria+Dr%2C+Chaska%2C+MN+55318">Get directions</a></p><p><a href="../book.html">Book a session</a> · <a href="./">All session locations</a></p></main></noscript>
@@ -498,7 +506,7 @@ function selectAddr(b) {
 function route() {
   const key = (location.hash.slice(1) || "sunset-park"), l = LOCS.find(x => x.key === key);
   $('#list').hidden = !!l; $('#place').hidden = !l;
-  if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "sunset-park") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); }
+  if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "sunset-park") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); if (window.gtag) gtag('event', 'view_location', {location_name: l.name}); }
   else { document.title = "Where we shoot \u00b7 Our Time Photography"; renderList(); }
 }
 document.querySelectorAll('.tools .chip').forEach(b => b.addEventListener('click', () => {
