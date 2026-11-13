@@ -141,6 +141,8 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--amber); out
 .est ul { list-style: none; padding: 0; margin: 12px 0 0; font-size: 14.5px; color: var(--ink-soft) }
 .est li { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; border-top: 1px dashed var(--line) }
 .est li:first-child { border-top: 0 }
+.est li.total { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 7px; color: var(--ink); font-weight: 600 }
+.est li.total b { font-weight: 600 }
 .est li b { font-weight: 500; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums }
 .est .fine { font-size: 13px; color: var(--ink-soft); margin: 10px 0 0 }
 .side .est { margin: 18px 0 0 }
@@ -535,16 +537,16 @@ if (location.hostname === 'pay.ourtimephoto.com') {
       var h = Number(radio('hours') || 1);
       if (kind === 'family') {
         var n = Math.round(Number(val('people'))) || 0, extra = Math.max(0, n - P.family_people_included);
-        lines.push(['Family session, ' + hrsLabel(h), money(P.family_hour * h)]); total = P.family_hour * h;
-        if (extra) { lines.push([extra + ' extra ' + (extra === 1 ? 'person' : 'people') + ' × $30 × ' + hrsLabel(h), money(P.family_extra_person_hour * extra * h)]); total += P.family_extra_person_hour * extra * h; }
-      } else { lines.push(['Senior session, ' + hrsLabel(h), money(P.senior_hour * h)]); total = P.senior_hour * h; }
-      if ($('download').checked) { lines.push(['Full-gallery downloads (added at booking)', money(P.download_booking)]); total += P.download_booking; }
+        lines.push(['Family session: ' + hrsLabel(h) + ' × $350 per hour', money(P.family_hour * h)]); total = P.family_hour * h;
+        if (extra) { lines.push([extra + ' extra ' + (extra === 1 ? 'person' : 'people') + ' over six: $30 each per hour × ' + hrsLabel(h), money(P.family_extra_person_hour * extra * h)]); total += P.family_extra_person_hour * extra * h; }
+      } else { lines.push(['Senior session: ' + hrsLabel(h) + ' × $300 per hour', money(P.senior_hour * h)]); total = P.senior_hour * h; }
+      if ($('download').checked) { lines.push(['Full-resolution downloads in your gallery (added at booking)', money(P.download_booking)]); total += P.download_booking; }
       note = 'Estimate only. We confirm your quote after the planning call.';
       note += ' If applicable, location permit fees are added at cost.';
     } else if (kind === 'event') {
       var hrs = spanHours(), bill = Math.max(hrs || P.event_min_hours, P.event_min_hours), ph = radio('photographers') === '2' ? 2 : 1;
       from = !hrs;
-      lines.push([(ph === 2 ? 'Two photographers' : 'One photographer') + ', ' + (hrs ? hrsLabel(+bill.toFixed(2)) : '2-hour minimum'), money(P.event_hour * bill * ph)]);
+      lines.push([(ph === 2 ? 'Two photographers' : 'One photographer') + ': ' + (hrs ? hrsLabel(+bill.toFixed(2)) : '2-hour minimum') + ' × $250 per hour' + (ph === 2 ? ', each' : ''), money(P.event_hour * bill * ph)]);
       total = P.event_hour * bill * ph;
       lines.push(['Every photo as a download', 'Included']);
       if (hrs && hrs < P.event_min_hours) note = 'Events have a two-hour minimum. ';
@@ -566,7 +568,7 @@ if (location.hostname === 'pay.ourtimephoto.com') {
       var box = $(id); box.hidden = !e; if (!e) return;
       var amt = (e.from ? 'From ' : '') + money(e.total);
       box.innerHTML = '<div class="top-line"><span class="label">Your estimate</span><span class="amt">' + amt + '</span></div><ul>' +
-        e.lines.map(function (l) { return '<li><span>' + esc(l[0]) + '</span><b>' + l[1] + '</b></li>'; }).join('') + '</ul><p class="fine">' + esc(e.note) + '</p>';
+        e.lines.map(function (l) { return '<li><span>' + esc(l[0]) + '</span><b>' + l[1] + '</b></li>'; }).join('') + '<li class="total"><span>' + 'Estimated total' + '</span><b>' + amt + '</b></li></ul><p class="fine">' + esc(e.note) + '</p>';
       if (lastAmt && amt !== lastAmt) { var a = box.querySelector('.amt'); a.classList.add('bump'); setTimeout(function () { a.classList.remove('bump'); }, 600); }
     });
     lastAmt = e ? (e.from ? 'From ' : '') + money(e.total) : '';
