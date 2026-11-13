@@ -541,8 +541,9 @@ if (location.hostname === 'pay.ourtimephoto.com') {
         if (extra) { lines.push([extra + ' extra ' + (extra === 1 ? 'person' : 'people') + ' over six: $30 each per hour × ' + hrsLabel(h), money(P.family_extra_person_hour * extra * h)]); total += P.family_extra_person_hour * extra * h; }
       } else { lines.push(['Senior session: ' + hrsLabel(h) + ' × $300 per hour', money(P.senior_hour * h)]); total = P.senior_hour * h; }
       if ($('download').checked) { lines.push(['Full-resolution downloads in your gallery (added at booking)', money(P.download_booking)]); total += P.download_booking; }
+      var spot = radio('location'), sl = LOCS.filter(function (l) { return l.name === spot; })[0];
+      lines.push([sl && sl.fee ? 'Location permit for ' + sl.name + ', if needed' : 'Location permit, if applicable', 'At cost']);
       note = 'Estimate only. We confirm your quote after the planning call.';
-      note += ' If applicable, location permit fees are added at cost.';
     } else if (kind === 'event') {
       var hrs = spanHours(), bill = Math.max(hrs || P.event_min_hours, P.event_min_hours), ph = radio('photographers') === '2' ? 2 : 1;
       from = !hrs;
