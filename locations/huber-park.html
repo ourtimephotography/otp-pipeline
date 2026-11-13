@@ -557,7 +557,7 @@ function renderPlace(l) {
     ${hero ? `<button class="hero" type="button" data-i="${heroI}" aria-label="View photos from ${esc(l.name)}"><img src="img/${hero[0]}" alt="${esc(heroAlt)}" width="${hero[1]}" height="${hero[2]}"></button>` : ''}
     <div class="place-body">
       <div><p class="about">${esc(l.about)}</p>${l.know ? `<div class="know"><b>Good to know</b>${esc(l.know)}</div>` : ''}</div>
-      <dl class="facts">${addr}${facts}<div class="acts">${l.directions ? `<a class="btn btn-line btn-sm" href="${esc(l.directions)}" target="_blank" rel="noopener">Get directions</a>` : ''}${chooseBtn(l) || `<a class="btn btn-solid btn-sm" href="../book.html">Book a session</a>`}</div></dl>
+      <dl class="facts">${addr}${facts}<div class="acts">${l.directions ? `<a class="btn btn-line btn-sm" href="${esc(l.directions)}" target="_blank" rel="noopener">Get directions</a>` : ''}${chooseBtn(l) || `<a class="btn btn-solid btn-sm" href="${chooseUrl(l)}">Book a session here</a>`}</div></dl>
     </div>
     <div class="gallery-wrap"><div class="gallery">${l.photos.map((p, i) => `<img src="img/${p[0]}" data-i="${i}" alt="${esc(alt(l, i))}" width="${p[1]}" height="${p[2]}" loading="${i < 3 ? 'eager' : 'lazy'}">`).join('')}</div></div>
     ${(MK_TOKEN && window.mapkit && l.lat && l.lon) ? `<section class="region"><span class="label">Where it is</span><h2>Finding ${esc(l.town || l.name)}</h2><p class="lede" id="region-lede">${esc(l.name)} is in ${esc(l.town)}. Here’s where that sits next to a few places you might know.</p><div class="region-grid"><div class="region-frame"><div class="region-map" id="regionmap" role="region" aria-label="Map showing ${esc(l.name)} with downtown Minneapolis, downtown St. Paul and Mall of America"></div></div><div><span class="label" style="margin-bottom:8px">Drive time</span><ul class="drives" id="drives">${LANDMARKS.filter(m => m.drive).map(m => `<li><span>${esc(m.from)}<small>${esc(m.sub)}</small></span><b data-k="${m.k}">…</b></li>`).join('')}</ul><p class="drives-note" id="drives-note">Typical drive without traffic, from Apple Maps.</p><div class="acts"><a class="btn btn-line btn-sm" href="https://maps.apple.com/?q=${encodeURIComponent(l.name)}&ll=${l.lat},${l.lon}" target="_blank" rel="noopener">Open in Apple Maps</a><a class="btn btn-line btn-sm" href="${esc(l.directions || ('https://www.google.com/maps/search/?api=1&query=' + l.lat + ',' + l.lon))}" target="_blank" rel="noopener">Open in Google Maps</a></div></div></div></section>` : ''}
@@ -595,6 +595,13 @@ function route() {
   $('#list').hidden = !!l; $('#place').hidden = !l;
   if (l) { renderPlace(l); drawRegion(l); drawGuide(l); if (l.key !== "huber-park") document.title = l.name + (PREVIEW ? '' : ' · Our Time Photography'); window.scrollTo(0, 0); if (window.gtag) gtag('event', 'view_location', {location_name: l.name}); }
   else { document.title = "Where we shoot \u00b7 Our Time Photography"; renderList(); }
+  bookLinks(l);
+}
+// On a spot page every Book button carries the spot to the form (book.html?location=<name> preselects it).
+function bookLinks(l) {
+  const url = l ? chooseUrl(l) : "../book.html";
+  $('#bookbtn').href = url; $('#cta-btn').href = url;
+  if (!FROMBOOK) $('#cta-btn').textContent = l ? 'Book a session here' : 'Book a session';
 }
 document.querySelectorAll('.tools .chip').forEach(b => b.addEventListener('click', () => {
   const f = b.dataset.f, v = b.dataset.v, on = b.getAttribute('aria-pressed') !== 'true';
