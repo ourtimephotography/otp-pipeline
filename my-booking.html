@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Your booking · Our Time Photography</title>
+<link rel="icon" href="https://pay.ourtimephoto.com/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pay.ourtimephoto.com/favicon-32.png">
+<link rel="apple-touch-icon" href="https://pay.ourtimephoto.com/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#f4f4ef; --card:#fbfbf8; --ink:#1d2320; --muted:#545d57; --amber:#b9781f; --amber-ink:#8f5a12; --btn-ink:#1d1608; --line:#d4d6cc; --done:#3f6b4b; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; background:var(--paper); color:var(--ink); font:16px/1.6 Figtree, Helvetica, Arial, sans-serif; }
+  main { max-width:640px; margin:0 auto; padding:40px 20px 64px; }
+  .brand { font-family:Georgia, serif; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .brand a { color:inherit; text-decoration:none; }
+  h1 { font-family:"Libre Caslon Display", Georgia, serif; font-weight:400; font-size:34px; line-height:1.15; margin:0 0 18px; }
+  h2 { font-family:"Libre Caslon Display", Georgia, serif; font-weight:400; font-size:24px; margin:36px 0 12px; }
+  p { margin:0 0 14px; }
+  .demo { background:#fff3dc; border:1px solid #e6c98f; border-radius:12px; padding:10px 14px; font-size:14px; margin-bottom:18px; }
+  .session { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 18px; display:grid; grid-template-columns:auto 1fr; gap:4px 14px; }
+  .session dt { color:var(--muted); font-size:14px; padding-top:2px; }
+  .session dd { margin:0; font-weight:600; }
+  ol.steps { list-style:none; margin:0; padding:0; }
+  .step { position:relative; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 18px 16px 58px; margin:0 0 12px; }
+  .step .mark { position:absolute; left:18px; top:17px; width:26px; height:26px; border-radius:50%; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:var(--muted); background:#fff; }
+  .step.done .mark { background:var(--done); border-color:var(--done); color:#fff; }
+  .step.now { border-color:var(--amber); box-shadow:0 0 0 1px var(--amber); }
+  .step.now .mark { background:var(--amber); border-color:var(--amber); color:var(--btn-ink); }
+  .step.later { opacity:.72; }
+  .step h3 { margin:0 0 4px; font-size:17px; }
+  .step .tag { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-left:8px; color:var(--muted); }
+  .step.now .tag { color:var(--amber-ink); }
+  .step.done .tag { color:var(--done); }
+  .step p { margin:0; color:var(--muted); }
+  .btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .btn { display:inline-block; background:var(--amber); color:var(--btn-ink); text-decoration:none; font-weight:600; padding:12px 20px; border-radius:999px; font-size:15px; }
+  .btn.alt { background:transparent; border:1.5px solid var(--amber); color:var(--amber-ink); }
+  .btn[aria-disabled=true] { opacity:.55; pointer-events:none; }
+  details.agreement { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:6px 18px; }
+  details.agreement summary { cursor:pointer; font-weight:600; padding:10px 0; }
+  .agr h1 { font-size:26px; margin:14px 0 10px; }
+  .agr h2 { font-size:20px; margin:22px 0 8px; }
+  .agr h3 { font-size:17px; margin:18px 0 6px; font-family:inherit; }
+  .agr blockquote { margin:0 0 14px; padding:10px 14px; border-left:3px solid var(--amber); background:#f6efe2; border-radius:0 10px 10px 0; }
+  .agr ul { margin:0 0 14px; padding-left:22px; }
+  .agr a { color:var(--amber-ink); }
+  .agr .terms { border:1px solid #e6c98f; background:#fff8ea; border-radius:12px; padding:4px 14px 2px; margin:0 0 14px; }
+  .note { color:var(--muted); font-size:14px; margin-top:28px; }
+  .note a { color:var(--amber-ink); }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--amber); margin-right:8px; animation:pulse 1s infinite alternate; }
+  @keyframes pulse { from { opacity:.25 } to { opacity:1 } }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand"><a href="https://www.ourtimephoto.com/">Our Time Photography</a></div>
+  <h1 id="title">One moment…</h1>
+  <div id="app"><p><span class="dot"></span>Loading your booking.</p></div>
+  <p class="note">Questions? Reply to any email from us, or write to <a href="mailto:info@ourtimephoto.com">info@ourtimephoto.com</a>.</p>
+</main>
+<script>
+// The client's booking page. It asks Our Time Autopilot (a Google Apps Script web app, the api= address) for this job's
+// live state (?action=bookingdata) without sending Google cookies, and shows the step they're on with real buttons.
+// Everything is drawn with textContent, so nothing from the job can inject markup.
+(function () {
+  var q = new URLSearchParams(location.search);
+  var api = q.get('api'), job = q.get('job') || '', sig = q.get('sig') || '';
+  var app = document.getElementById('app');
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function setTitle(t) { document.getElementById('title').textContent = t; document.title = t + ' · Our Time Photography'; }
+  function fail(title, body) { setTitle(title); app.innerHTML = ''; app.appendChild(el('p', '', body)); }
+  function safeUrl(u) { return /^https:\/\//.test(u || '') ? u : ''; }
+  if (!api || !/^https:\/\/script\.google\.com\//.test(api) || !job || !sig) {
+    fail('Something went wrong', 'This link is incomplete. Please use the link in our email, or reply to it and we’ll sort it out.');
+    return;
+  }
+  function runs(parent, r) {
+    (r || []).forEach(function (x) {
+      var node = document.createTextNode(x[0]), wrap = node;
+      if (x[1]) { var b = el('b'); b.appendChild(wrap); wrap = b; }
+      if (x[2]) { var i = el('i'); i.appendChild(wrap); wrap = i; }
+      var href = safeUrl(x[3]);
+      if (href) { var a = el('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(wrap); wrap = a; }
+      parent.appendChild(wrap);
+    });
+  }
+  function agreement(blocks) {
+    var box = el('div', 'agr'), list = null, terms = null;
+    blocks.forEach(function (b) {
+      var text = b.r.map(function (x) { return x[0]; }).join('').trim();
+      if (b.t !== 'li') list = null;
+      if (/^h[123]$/.test(b.t)) { terms = null; if (text === 'Special terms for this session') { terms = el('div', 'terms'); box.appendChild(terms); } }
+      var target = terms || box;
+      var node;
+      if (b.t === 'li') { if (!list) { list = el('ul'); target.appendChild(list); } node = el('li'); list.appendChild(node); }
+      else { node = el(b.t === 'quote' ? 'blockquote' : b.t); target.appendChild(node); }
+      runs(node, b.r);
+    });
+    return box;
+  }
+  function render(d) {
+    if (!d.ok) { fail(d.title || 'Something went wrong', d.body || 'Please try again in a minute, or reply to any email from us.'); return; }
+    setTitle('Hi ' + d.first + ', here’s your ' + d.kind);
+    app.innerHTML = '';
+    if (d.demo) app.appendChild(el('div', 'demo', 'Demo with a made-up family. The buttons don’t do anything here.'));
+    var s = el('dl', 'session');
+    [['When', d.session.date + (d.session.times ? ', ' + d.session.times : '')], ['Where', d.session.loc], ['Price', d.money.price + (d.money.paid !== '$0' ? ' (' + d.money.paid + ' paid)' : '')]]
+      .forEach(function (row) { s.appendChild(el('dt', '', row[0])); s.appendChild(el('dd', '', row[1])); });
+    app.appendChild(s);
+    app.appendChild(el('h2', '', 'Your steps'));
+    var ol = el('ol', 'steps');
+    d.steps.forEach(function (st, i) {
+      var li = el('li', 'step ' + st.state);
+      li.appendChild(el('span', 'mark', st.state === 'done' ? '✓' : String(i + 1)));
+      var h = el('h3', '', st.title);
+      h.appendChild(el('span', 'tag', st.state === 'done' ? 'Done' : st.state === 'now' ? 'Next' : 'Later'));
+      li.appendChild(h);
+      if (st.text) li.appendChild(el('p', '', st.text));
+      if (st.state !== 'later' && st.buttons && st.buttons.length) {
+        var row = el('div', 'btns');
+        st.buttons.forEach(function (b, j) {
+          var a = el('a', 'btn' + (j ? ' alt' : ''), b[0]);
+          var href = safeUrl(b[1]);
+          if (href && !d.demo) { a.href = href; if (!/^https:\/\/pay\.ourtimephoto\.com\//.test(href)) { a.target = '_blank'; a.rel = 'noopener'; } }
+          else a.setAttribute('aria-disabled', 'true');
+          row.appendChild(a);
+        });
+        li.appendChild(row);
+      }
+      ol.appendChild(li);
+    });
+    app.appendChild(ol);
+    if (d.agreement && d.agreement.length) {
+      app.appendChild(el('h2', '', d.signed ? 'Your signed agreement' : 'Your Photography Agreement'));
+      var det = el('details', 'agreement');
+      if (d.current === 0 && !d.signed) det.open = true;
+      det.appendChild(el('summary', '', det.open ? 'Read before you sign' : 'Show the agreement'));
+      det.appendChild(agreement(d.agreement));
+      app.appendChild(det);
+    }
+  }
+  fetch(api + '?action=bookingdata&job=' + encodeURIComponent(job) + '&sig=' + encodeURIComponent(sig), {credentials: 'omit', redirect: 'follow'})
+    .then(function (r) { return r.json(); })
+    .then(render)
+    .catch(function () { fail('Something went wrong', 'We couldn’t reach our booking system just now. Please try again in a minute, or reply to any email from us.'); });
+})();
+</script>
+</body>
+</html>
